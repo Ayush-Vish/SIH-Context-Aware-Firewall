@@ -1,3 +1,4 @@
+import sys
 import subprocess
 import re
 
@@ -51,6 +52,5 @@ def get_ip_from_domain(domain):
         return []
 
 # Make the function directly importable
-import sys
 sys.modules[__name__] = get_ip_from_domain
 

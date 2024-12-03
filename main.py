@@ -1,6 +1,7 @@
 import subprocess
 import socket
 import get_ip_from_ping
+import get_ip_from_domain
 def main():
     print("\n=== Welcome to the Advanced Firewall Agent ===")
     while True:
@@ -10,7 +11,8 @@ def main():
         print("3. List All Rules")
         print("4. Remove Rule by Name")
         print("5. Monitor Network Traffic")
-        print("6. Exit")
+        print("6. Add Domain Rule")
+        print("7. Exit")
 
         try:
             option = int(input("Enter your choice: "))
@@ -29,39 +31,86 @@ def main():
         elif option == 5:
             monitor_network_traffic()
         elif option == 6:
-            print("Exiting the Advanced Firewall Agent. Goodbye!")
+            add_domain_rule()
             break
         else:
             print("Invalid option. Please choose a valid option from the menu.")
 
+
+def add_domain_rule():
+    try:
+        rule_name_base = input("Enter a base name for the rule: ").strip()
+        domain = input("Enter domain to block (e.g., example.com): ").strip()
+
+        # Get the list of IPs for the domain
+        ip_addresses = get_ip_from_domain(domain)
+
+        if not ip_addresses:
+            print(f"No IPs found for domain '{domain}'. Cannot create rules.")
+            return
+
+        for i, ip in enumerate(ip_addresses, start=1):
+            # Create a unique rule name by appending a number to the base name
+            rule_name = f"{rule_name_base}_{i}"
+
+            # Firewall command to add a rule for each IP
+            command = [
+                "netsh", "advfirewall", "firewall", "add", "rule",
+                f"name={rule_name}",
+                "dir=out",  # Outbound direction
+                "action=block",
+                f"remoteip={ip}",
+                "enable=yes"
+            ]
+
+            # Execute the command
+            execute_command(command, success_message=f"Domain rule '{rule_name}' added successfully for IP {ip}.")
+
+    except Exception as e:
+        print(f"Error while adding domain rule: {e}")
+
+    
+    
+    
 def add_application_rule():
-    name = input("Enter rule name: ").strip()
-    domain = input("Enter domain to block (e.g., example.com): ").strip()
-    app_path = input("Enter application path (e.g., C:\\MyApp.exe): ").strip()
-    direction = input("Enter direction (Inbound/Outbound): ").strip().lower()
+    try:
+        rule_name_base = input("Enter a base name for the rule: ").strip()
+        domain = input("Enter domain to block (e.g., example.com): ").strip()
+        app_path = input("Enter application path (e.g., C:\\MyApp.exe): ").strip()
+        direction = input("Enter direction (Inbound/Outbound): ").strip().lower()
 
-    # Extract IPs using ping
-    ip_addresses = get_ip_from_ping(domain)
-    if not ip_addresses:
-        print(f"Failed to resolve domain '{domain}' to any IP address.")
-        return
+        # Extract IPs using get_ip_from_domain
+        ip_addresses = get_ip_from_domain(domain)
+        if not ip_addresses:
+            print(f"Failed to resolve domain '{domain}' to any IP address.")
+            return
 
-    print(f"Resolved IP addresses for '{domain}': {', '.join(ip_addresses)}")
+        print(f"Resolved IP addresses for '{domain}': {', '.join(ip_addresses)}")
 
-    # Prepare the firewall command
-    direction_flag = "in" if direction == "inbound" else "out"
+        # Determine the direction flag
+        direction_flag = "in" if direction == "inbound" else "out"
 
-    for ip in ip_addresses:
-        command = [
-            "netsh", "advfirewall", "firewall", "add", "rule",
-            f"name={name}",
-            f"dir={direction_flag}",
-            f"action=block",
-            f"program={app_path}",
-            f"remoteip={ip}",
-            "enable=yes"
-        ]
-        execute_command(command, success_message=f"Application rule '{name}' added successfully for IP {ip}.")
+        for i, ip in enumerate(ip_addresses, start=1):
+            # Create a unique rule name by appending a number to the base name
+            rule_name = f"{rule_name_base}_{i}"
+
+            # Firewall command to add a rule for each IP
+            command = [
+                "netsh", "advfirewall", "firewall", "add", "rule",
+                f"name={rule_name}",
+                f"dir={direction_flag}",
+                "action=block",
+                f"program={app_path}",
+                f"remoteip={ip}",
+                "enable=yes"
+            ]
+
+            # Execute the command
+            execute_command(command, success_message=f"Application rule '{rule_name}' added successfully for IP {ip}.")
+
+    except Exception as e:
+        print(f"Error while adding application rule: {e}")
+
 
 def add_port_rule():
     name = input("Enter rule name: ").strip()
