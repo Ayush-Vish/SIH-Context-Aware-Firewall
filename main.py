@@ -40,7 +40,7 @@ def add_application_rule():
     app_path = input("Enter application path (e.g., C:\\MyApp.exe): ").strip()
     direction = input("Enter direction (Inbound/Outbound): ").strip().lower()
 
-    # Resolve the domain to IP addresses
+    # Extract IPs using ping
     ip_addresses = get_ip_from_ping(domain)
     if not ip_addresses:
         print(f"Failed to resolve domain '{domain}' to any IP address.")
@@ -48,11 +48,9 @@ def add_application_rule():
 
     print(f"Resolved IP addresses for '{domain}': {', '.join(ip_addresses)}")
 
-
     # Prepare the firewall command
     direction_flag = "in" if direction == "inbound" else "out"
-    
-    
+
     for ip in ip_addresses:
         command = [
             "netsh", "advfirewall", "firewall", "add", "rule",
@@ -64,8 +62,6 @@ def add_application_rule():
             "enable=yes"
         ]
         execute_command(command, success_message=f"Application rule '{name}' added successfully for IP {ip}.")
-
-    print(f"All resolved IPs for '{domain}' have been blocked for the application.")
 
 def add_port_rule():
     name = input("Enter rule name: ").strip()
