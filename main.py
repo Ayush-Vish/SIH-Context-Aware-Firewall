@@ -67,10 +67,7 @@ def add_domain_rule():
             execute_command(command, success_message=f"Domain rule '{rule_name}' added successfully for IP {ip}.")
 
     except Exception as e:
-        print(f"Error while adding domain rule: {e}")
-
-    
-    
+        print(f"Error while adding domain rule: {e}")    
     
 def add_application_rule():
     try:
@@ -120,9 +117,9 @@ def add_port_rule():
         print("Invalid port number. Please enter a valid integer.")
         return
 
-    protocol = input("Enter protocol (TCP/UDP): ").strip().upper()
-    if protocol not in ["TCP", "UDP"]:
-        print("Invalid protocol. Use 'TCP' or 'UDP'.")
+    protocol = input("Enter protocol (TCP/UDP/Both): ").strip().upper()
+    if protocol not in ["TCP", "UDP", "BOTH"]:
+        print("Invalid protocol. Use 'TCP', 'UDP', or 'Both'.")
         return
 
     action = input("Enter action (Allow/Block): ").strip().lower()
@@ -135,17 +132,31 @@ def add_port_rule():
     action_flag = "allow" if action == "allow" else "block"
     direction_flag = "in" if direction == "inbound" else "out"
 
-    command = [
-        "netsh", "advfirewall", "firewall", "add", "rule",
-        f"name={name}",
-        f"dir={direction_flag}",
-        f"action={action_flag}",
-        f"protocol={protocol}",
-        f"localport={port}",
-        "enable=yes"
-    ]
-
-    execute_command(command, success_message=f"Port rule '{name}' on port {port}/{protocol} added successfully.")
+    if protocol == "BOTH":
+        # Create rules for both TCP and UDP
+        for proto in ["TCP", "UDP"]:
+            command = [
+                "netsh", "advfirewall", "firewall", "add", "rule",
+                f"name={name}_{proto}",
+                f"dir={direction_flag}",
+                f"action={action_flag}",
+                f"protocol={proto}",
+                f"localport={port}",
+                "enable=yes"
+            ]
+            execute_command(command, success_message=f"Port rule '{name}_{proto}' on port {port}/{proto} added successfully.")
+    else:
+        # Create rule for single protocol
+        command = [
+            "netsh", "advfirewall", "firewall", "add", "rule",
+            f"name={name}",
+            f"dir={direction_flag}",
+            f"action={action_flag}",
+            f"protocol={protocol}",
+            f"localport={port}",
+            "enable=yes"
+        ]
+        execute_command(command, success_message=f"Port rule '{name}' on port {port}/{protocol} added successfully.")
 
 def list_all_rules():
     command = ["netsh", "advfirewall", "firewall", "show", "rule", "name=all"]
@@ -155,7 +166,6 @@ def remove_rule_by_name():
     name = input("Enter rule name to remove: ").strip()
     command = ["netsh", "advfirewall", "firewall", "delete", "rule", f"name={name}"]
     execute_command(command, success_message=f"Rule '{name}' removed successfully.")
-
 def monitor_network_traffic():
 
     print("\n=== Monitoring Network Traffic ===")
