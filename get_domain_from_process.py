@@ -45,37 +45,41 @@ def get_process_exe_path(pid):
         return exe_path
     except Exception:
         return None
-
-def capture_tcp_traffic():
+def capture_network_traffic():
     """
-    Capture TCP traffic and map it to the originating process.
+    Capture both TCP and UDP traffic and map it to the originating process.
     """
-    print("Starting TCP traffic sniffer...")
-    with pydivert.WinDivert("tcp") as w:
+    print("Starting network traffic sniffer...")
+    # Capture both TCP and UDP packets
+    with pydivert.WinDivert("tcp or udp") as w:
         for packet in w:
             try:
-                # Process only outbound packets
                 if packet.is_outbound:
-                    # Get the process by source port
                     process_name, exe_path = get_process_by_port(packet.src_port)
                     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                     protocol = PORT_PROTOCOL_MAP.get(packet.dst_port, "Other")
                     
+                    # Determine if it's TCP or UDP
+                    transport_protocol = "TCP" if packet.tcp else "UDP"
+                    
                     print(
-                        f"[{timestamp}] [TCP] Process: {process_name} ({exe_path}) -> "
-                        f"IP: {packet.dst_addr}, Port: {packet.dst_port}, Protocol: {protocol}"
+                        f"[{timestamp}] [{transport_protocol}] "
+                        f"Process: {process_name} ({exe_path}) -> "
+                        f"IP: {packet.dst_addr}, "
+                        f"Port: {packet.dst_port}, "
+                        f"Protocol: {protocol}, "
+                        f"Payload Size: {len(packet.payload)} bytes"
                     )
 
-                # Re-inject the packet to ensure network flow
+                # Re-inject the packet
                 w.send(packet)
 
             except Exception as e:
                 print(f"Error processing packet: {e}")
-                # Ensure the packet is re-injected even on error
                 w.send(packet)
 
 if __name__ == "__main__":
     try:
-        capture_tcp_traffic()
+        capture_network_traffic()
     except KeyboardInterrupt:
         print("\nExiting...")
