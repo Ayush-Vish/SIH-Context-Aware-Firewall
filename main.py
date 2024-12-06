@@ -227,8 +227,7 @@ class FirewallAgent:
     def list_all_rules(self):
         command = ["netsh", "advfirewall", "firewall", "show", "rule", "name=all"]
         self.execute_command(command, success_message="Firewall rules listed below:")
-    
-    
+
     def remove_rule_by_name(self):
         name = input("Enter rule name to remove: ").strip()
         command = ["netsh", "advfirewall", "firewall", "delete", "rule", f"name={name}"]
