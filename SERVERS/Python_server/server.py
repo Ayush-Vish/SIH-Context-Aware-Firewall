@@ -1,6 +1,6 @@
 import socketio
 import psutil
-
+from Scripts.firewall_agent import FirewallAgent
 from Scripts.device_static_info import collect_device_info
 
 class CentralAdminClient:
@@ -9,11 +9,13 @@ class CentralAdminClient:
         self.adminID = None
         self.clientID = None
         self.socketID = None
+        self.firewallAgent = FirewallAgent()
 
         # Bind event handlers
         self.sio.on("connect", self.on_connect)
         self.sio.on("message", self.on_message)
         self.sio.on("disconnect", self.on_disconnect)
+        
 
     @staticmethod
     def get_all_mac_addresses():
@@ -60,6 +62,7 @@ class CentralAdminClient:
             adminEmail = input("Enter Admin Email: ")
             self.sio.connect("http://localhost:3000", auth={"adminEmail": adminEmail})
             self.sio.wait()
+            
         except KeyboardInterrupt:
             print("Disconnected due to keyboard interrupt.")
 
