@@ -14,6 +14,7 @@ class CentralAdminClient:
         self.sio.on("connect", self.on_connect)
         self.sio.on("message", self.on_message)
         self.sio.on("disconnect", self.on_disconnect)
+        self.sio.on("block_ip_from_geolocation", self.block_ip_from_geolocation)
 
     @staticmethod
     def get_all_mac_addresses():
@@ -51,6 +52,9 @@ class CentralAdminClient:
         result = collect_device_info()
         self.sio.emit("static-data", {"clientID": self.clientID ,"static_data": result})
         print("Static data sent successfully")
+
+    def block_ip_from_geolocation(self,data):
+        print(data)
 
     def on_disconnect(self):
         print("Disconnected from Central Admin Server")
