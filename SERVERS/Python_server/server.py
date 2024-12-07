@@ -6,17 +6,17 @@ from Scripts.device_static_info import collect_device_info
 class CentralAdminClient:
     def __init__(self):
         self.sio = socketio.Client()
+        self.firewallAgent = FirewallAgent()
         self.adminID = None
         self.clientID = None
         self.socketID = None
-        self.firewallAgent = FirewallAgent()
 
         # Bind event handlers
         self.sio.on("connect", self.on_connect)
         self.sio.on("message", self.on_message)
         self.sio.on("disconnect", self.on_disconnect)
         self.sio.on("block_ip_from_geolocation", self.block_ip_from_geolocation)
-        self.sio.on("new_app_rules" , self.add_new_app_rules)
+        self.sio.on("new_app_rule", self.add_new_app_rules)
 
     @staticmethod
     def get_all_mac_addresses():
@@ -62,6 +62,8 @@ class CentralAdminClient:
         print("Disconnected from Central Admin Server")
 
     def add_new_app_rules(self,data):
+        print(type(data))
+        data = data.get("rule")
         print(data)
         self.firewallAgent.add_application_rules(data)
         

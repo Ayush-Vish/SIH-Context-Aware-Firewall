@@ -1,11 +1,12 @@
 import psutil
+import pydivert
+import datetime
 from win32api import OpenProcess
 from win32process import GetModuleFileNameEx
 from win32con import PROCESS_QUERY_INFORMATION, PROCESS_VM_READ
-import pydivert
-import datetime
+import sys
 import subprocess
-
+import re
 
 from collections import defaultdict
 
@@ -160,12 +161,14 @@ class FirewallAgent:
 
             results = []
             for rule_config in rules:
+                print(rule_config)
                 # Validate required fields
                 required_fields = ["rule_name", "domain", "app_path", "direction"]
                 if not all(field in rule_config for field in required_fields):
                     raise ValueError(f"Missing required fields. Required: {required_fields}")
 
                 rule_name = rule_config["rule_name"]
+                rule_name = "ASS_BLOCK_" + rule_name
                 domain = rule_config["domain"]
                 app_path = rule_config["app_path"]
                 direction = rule_config["direction"].lower()
@@ -177,9 +180,10 @@ class FirewallAgent:
                 
                 if action not in ['allow', 'block']:
                     raise ValueError(f"Invalid action '{action}' for rule '{rule_name}'")
-
+                print(rule_name, domain, app_path, direction, ports, action)
                 # Get IPs for domain
                 ip_addresses = self.get_ip_from_domain(domain)
+                print("IP addresses",ip_addresses)
                 if not ip_addresses:
                     results.append({
                         "rule_name": rule_name,
@@ -192,7 +196,7 @@ class FirewallAgent:
                 ip_list = ','.join(ip_addresses)
                 direction_flag = "in" if direction == "inbound" else "out"
                 action_flag = "allow" if action == "allow" else "block"
-
+                print(ip_list )
                 if not ports:
                     # Create single rule for all IPs without port specification
                     base_command = [
@@ -204,6 +208,7 @@ class FirewallAgent:
                         f"remoteip={ip_list}",
                         "enable=yes"
                     ]
+                    print(base_command)
                     
                     result = self.execute_command(base_command)
                     results.append({
@@ -228,6 +233,7 @@ class FirewallAgent:
                             "enable=yes"
                         ]
                         
+                        
                         result = self.execute_command(port_command)
                         results.append({
                             "rule_name": port_rule_name,
@@ -236,7 +242,8 @@ class FirewallAgent:
                             "status": "success" if result["success"] else "error",
                             "message": result["message"]
                         })
-
+            print(results)
+            print("Some error")
             return {"results": results}, 200
 
         except ValueError as ve:
@@ -294,7 +301,7 @@ class FirewallAgent:
     def list_all_rules(self):
         command = ["netsh", "advfirewall", "firewall", "show", "rule", "name=all"]
         self.execute_command(command, success_message="Firewall rules listed below:")
-    def get_ip_from_domain(domain):
+    def get_ip_from_domain(self, domain):
         # List of popular DNS servers
         dns_servers = [
             "8.8.8.8",      # Google DNS
@@ -312,8 +319,9 @@ class FirewallAgent:
             for dns_server in dns_servers:
                 # Run nslookup command with specific DNS server
                 command = ["nslookup", domain, dns_server]
+                print("command",command)
                 result = subprocess.run(command, capture_output=True, text=True)
-
+                print("result",result)
                 if result.returncode != 0:
                     print(f"nslookup command failed for DNS {dns_server}: {result.stderr}")
                     continue
@@ -331,7 +339,7 @@ class FirewallAgent:
 
             # Convert set to list
             unique_ips = list(all_ips)
-            
+            print("unique_ips",unique_ips)
             if unique_ips:
                 print(f"Resolved IP addresses across all DNS servers: {', '.join(unique_ips)}")
                 return unique_ips
@@ -342,7 +350,6 @@ class FirewallAgent:
         except Exception as e:
             print(f"Error executing nslookup command: {e}")
             return []
-
     def remove_rule_by_name(self):
         name = input("Enter rule name to remove: ").strip()
         command = ["netsh", "advfirewall", "firewall", "delete", "rule", f"name={name}"]
@@ -350,6 +357,7 @@ class FirewallAgent:
     def execute_command(self ,command, success_message="Command executed successfully."):
         """Helper function to execute subprocess commands."""
         try:
+            print("base command",command)   
             result = subprocess.run(command, capture_output=True, text=True)
             if result.returncode == 0:
                 print(success_message)
