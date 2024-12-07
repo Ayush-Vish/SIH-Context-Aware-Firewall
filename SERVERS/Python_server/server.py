@@ -65,27 +65,50 @@ class CentralAdminClient:
         print("Disconnected from Central Admin Server")
 
     def add_new_app_rules(self,data):
-        print(type(data))
-        data = data.get("rule")
-
+        try:
+            print(data)
+            data = data.get("rule")
+            print(data)
+            self.firewallAgent.add_application_rules(data)
+        except Exception as e:
+            print(e)
+            self.sio.emit("agent_error", {"clientID": self.clientID, "message": "Error in adding new application rule"})
         
-        print(data)
-        self.firewallAgent.add_application_rules(data)
         
     def block_domain(self,data):
-        print(data)
-        rule = data.get("rule")
-        print("Blocking Domain: ",rule)
-        self.firewallAgent.add_domain_rules(rule)
-    def block_port(self,data):
-        print(data)
-        rule = data.get("rule")
-        print("Blocking Port: ",rule)
-        self.firewallAgent.add_port_rule(rule)
-    def show_all_rules(self, data ):
-        self.rules = self.firewallAgent.list_all_rules()
-        self.sio.emit("show_rules", {"clientID":self.clientID , "rules": self.rules})
+        try:
+            print(data)
+            rule = data.get("rule")
+            print("Blocking Domain: ",rule)
+            self.firewallAgent.add_domain_rules(rule)
+        except Exception as e:
+            print(e)
+            self.sio.emit("agent_error", {"clientID": self.clientID, "message": "Error in blocking domain"})
         
+    def block_port(self,data):
+        try:
+            print(data)
+            rule = data.get("rule")
+            print("Blocking Port: ",rule)
+            self.firewallAgent.add_port_rule(rule)
+        except Exception as e:
+            print(e)
+            self.sio.emit("agent_error", {"clientID": self.clientID, "message": "Error in blocking port"})
+        
+    def show_all_rules(self, data ):
+        try:
+            print(data)
+            self.firewallAgent.list_all_rules()
+        except Exception as e:
+            print(e)
+            self.sio.emit("agent_error", {"clientID": self.clientID, "message": "Error in showing rules"})
+    def remove_rule(self,name):
+        try:
+            print(name)
+            self.firewallAgent.remove_rule_by_name(name)
+        except Exception as e:
+            print(e)
+            self.sio.emit("agent_error", {"clientID": self.clientID, "message": "Error in removing rule"})
         
         
     def start(self):

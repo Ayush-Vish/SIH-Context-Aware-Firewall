@@ -391,10 +391,9 @@ class FirewallAgent:
         except Exception as e:
             print(f"Error executing nslookup command: {e}")
             return []
-    def remove_rule_by_name(self):
-        name = input("Enter rule name to remove: ").strip()
+    def remove_rule_by_name(self, name ):
         command = ["netsh", "advfirewall", "firewall", "delete", "rule", f"name={name}"]
-        self.execute_command(command, success_message=f"Rule '{name}' removed successfully.")
+        return self.execute_command(command, success_message=f"Rule '{name}' removed successfully.")
     def execute_command(self ,command, success_message="Command executed successfully."):
         """Helper function to execute subprocess commands."""
         try:

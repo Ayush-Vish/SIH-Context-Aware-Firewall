@@ -116,6 +116,10 @@ io.on("connection", async (socket) => {
 		console.log("Request to show rules")
 		console.log(data)
 	})
+	socket.on("agent_error", async(data) => {
+		console.log("Agent Error:", data);
+
+	})
 	// Handle client disconnect
 	socket.on("disconnect", () => {
 		console.log("Client disconnected:", socket.id);
