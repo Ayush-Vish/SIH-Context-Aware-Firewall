@@ -1,5 +1,6 @@
 import socketio
 import psutil
+import signal
 from Scripts.firewall_agent import FirewallAgent
 from Scripts.device_static_info import collect_device_info
 
@@ -20,6 +21,11 @@ class CentralAdminClient:
         self.sio.on("block_domain" , self.block_domain)
         self.sio.on("block_port", self.block_port)
         self.sio.on("get_rules", self.show_all_rules)
+        
+        
+        # signal handlers
+        signal.signal(signal.SIGTERM, self.handle_termination)
+        signal.signal(signal.SIGINT, self.handle_termination)
 
     @staticmethod
     def get_all_mac_addresses():
@@ -110,7 +116,11 @@ class CentralAdminClient:
             print(e)
             self.sio.emit("agent_error", {"clientID": self.clientID, "message": "Error in removing rule"})
         
-        
+    def handle_termination(self, signum ):
+        print("Terminating the process")
+        self.sio.emit("process_terminated", {"clientID": self.clientID, "message": "Agent terminated the process"})
+        self.sio.disconnect()
+        exit(0)
     def start(self):
         try:
             adminEmail = "palash@gmail.com"

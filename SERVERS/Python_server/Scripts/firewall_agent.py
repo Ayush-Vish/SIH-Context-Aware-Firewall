@@ -520,6 +520,3 @@ class FirewallAgent:
         except Exception as e:
             print(e)
             return {"error": f"Error while adding domain rules: {str(e)}"}, 500
-    
-
-

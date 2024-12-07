@@ -109,12 +109,21 @@ io.on("connection", async (socket) => {
 	socket.on("show_rules", async(data )=>{
 		/**
 		 * TODO : Send the rules to the client with the clientID
+		 * use sockets in the frontend as well 
+		 * pls 
+		 * 
 		 */
 		
 		const clientID = data.clientID;
 
 		console.log("Request to show rules")
 		console.log(data)
+	})
+	/**
+	 * TODO: Send the alert to the client with the clientID
+	 */
+	socket.on("process_terminated" , async(data )=> {
+		console.log("Process terminated", data)
 	})
 	socket.on("agent_error", async(data) => {
 		console.log("Agent Error:", data);
