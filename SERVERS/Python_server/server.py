@@ -16,6 +16,7 @@ class CentralAdminClient:
         self.sio.on("message", self.on_message)
         self.sio.on("disconnect", self.on_disconnect)
         self.sio.on("block_ip_from_geolocation", self.block_ip_from_geolocation)
+        self.sio.on("new_app_rules" , self.add_new_app_rules)
 
     @staticmethod
     def get_all_mac_addresses():
@@ -60,6 +61,11 @@ class CentralAdminClient:
     def on_disconnect(self):
         print("Disconnected from Central Admin Server")
 
+    def add_new_app_rules(self,data):
+        print(data)
+        self.firewallAgent.add_application_rules(data)
+        
+        
     def start(self):
         try:
             adminEmail = input("Enter Admin Email: ")

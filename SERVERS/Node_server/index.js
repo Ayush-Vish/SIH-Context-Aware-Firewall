@@ -84,15 +84,14 @@ io.on("connection", async (socket) => {
 			console.error("Error while finding user by MAC:", error);
 		}
 	});
-
-	socket.on("static-data", async (static_data) => {
-		try {
-			const result = await upsertStaticData(
-				static_data.clientID,
-				static_data.static_data
-			);
-			if (result) {
-				socket.emit("message", {
+	
+	socket.on("static-data", async (static_data)=>{
+		try{
+			console.log("Received Static Data from client:", static_data)
+			const result = await upsertStaticData(static_data.clientID,static_data.static_data)
+			console.log("Static Data Upserted!" , result)
+			if(result){
+				socket.emit("message",{
 					message: "Static Data Upserted!",
 					clientID: static_data.clientID,
 				});
@@ -126,8 +125,21 @@ app.post("/admin", async (req, res) => {
 		res.send({ message: "error creating admin" });
 	}
 });
+app.post("/add-app-rules" , async (req,res)=>{
+	const { clientID, rule } = req.body;
+    const clientInfo = clientMap.get(clientID);
+
+    if (clientInfo) {
+        const socketId = clientInfo.socketId;
+        io.to(socketId).emit("new_app_rule", { rule });
+        res.send({ message: "Rule added and sent to client", clientID, rule });
+    } else {
+        res.status(404).send({ message: "Client not found", clientID });
+    }
+})
 
 app.use("/geolocation", geolocationRoute);
+
 
 // Connect to MongoDB first
 connect(MONGO_URI, {})

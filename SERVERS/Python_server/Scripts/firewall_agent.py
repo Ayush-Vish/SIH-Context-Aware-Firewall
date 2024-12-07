@@ -4,8 +4,6 @@ from win32process import GetModuleFileNameEx
 from win32con import PROCESS_QUERY_INFORMATION, PROCESS_VM_READ
 import pydivert
 import datetime
-import json
-import socket
 import subprocess
 
 

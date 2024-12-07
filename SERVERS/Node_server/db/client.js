@@ -15,6 +15,63 @@ const clientSchema = new mongoose.Schema({
     last_seen: { type: Date },
 });
 
+const clientRules = new mongoose.Schema({
+    clientID: {
+        type: String,
+        required: true,
+        index: true
+      },
+      type: {
+        type: String,
+        enum: ['application', 'domain'],
+        required: true
+      },
+      rule_name: {
+        type: String,
+        required: true
+      },
+      domain: {
+        type: String,
+        required: true
+      },
+      app_path: {
+        type: String,
+        required: function() { return this.type === 'application'; }
+      },
+      direction: {
+        type: String,
+        enum: ['inbound', 'outbound'],
+        required: true
+      },
+      ports: [{
+        type: Number,
+        min: 1,
+        max: 65535
+      }],
+      action: {
+        type: String,
+        enum: ['allow', 'block'],
+        default: 'block'
+      },
+      status: {
+        type: String,
+        enum: ['active', 'inactive'],
+        default: 'active'
+      },
+      created_by: {
+        type: String,
+        required: true
+      },
+      ip_addresses: [{
+        type: String
+      }],
+      last_ip_update: {
+        type: Date,
+        default: Date.now
+      }
+})
+
+clientRules.index
 export const findClientByMAC = async (macAddresses) => {
     try {
         // Search for the client by checking if any of the MAC addresses match the stored ones
