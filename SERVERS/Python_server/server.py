@@ -17,6 +17,7 @@ class CentralAdminClient:
         self.sio.on("disconnect", self.on_disconnect)
         self.sio.on("block_ip_from_geolocation", self.block_ip_from_geolocation)
         self.sio.on("new_app_rule", self.add_new_app_rules)
+        self.sio.on("block_domain" , self.block_domain)
 
     @staticmethod
     def get_all_mac_addresses():
@@ -64,13 +65,20 @@ class CentralAdminClient:
     def add_new_app_rules(self,data):
         print(type(data))
         data = data.get("rule")
+
+        
         print(data)
         self.firewallAgent.add_application_rules(data)
         
+    def block_domain(self,data):
+        print(data)
+        rule = data.get("rule")
+        print("Blocking Domain: ",rule)
+        self.firewallAgent.add_domain_rules(rule)
         
     def start(self):
         try:
-            adminEmail = input("Enter Admin Email: ")
+            adminEmail = "palash@gmail.com"
             self.sio.connect("http://localhost:3000", auth={"adminEmail": adminEmail})
             self.sio.wait()
             
