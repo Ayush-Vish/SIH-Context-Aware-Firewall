@@ -6,6 +6,7 @@ import { createClientByMAC, findClientByMAC } from "./db/client.js";
 import { upsertStaticData } from "./db/clientData.js";
 import { createAdminByEmail, findAdminByEmail } from "./db/admin.js";
 import geolocationRoute from "./Routes/geolocationRoute.js";
+import rulesRoute from "./Routes/rulesRoute.js"
 import { initIO } from "./socket.js";
 
 const app = express(); // Creating an instance of Express
@@ -18,7 +19,7 @@ const MONGO_URI =
 app.use(json());
 
 // Map to store clientId -> { socketId, adminId }
-const clientMap = new Map();
+export const clientMap = new Map();
 
 io.on("connection", async (socket) => {
 	console.log("Client connection Request:", socket.id);
@@ -128,10 +129,13 @@ app.post("/admin", async (req, res) => {
 app.post("/add-app-rules" , async (req,res)=>{
 	const { clientID, rule } = req.body;
     const clientInfo = clientMap.get(clientID);
-
+	console.log(
+		clientID,rule
+	)
     if (clientInfo) {
         const socketId = clientInfo.socketId;
-        io.to(socketId).emit("new_app_rule", { rule });
+	  console.log(socketId)
+	  io.to(socketId).emit("new_app_rule", { rule });
         res.send({ message: "Rule added and sent to client", clientID, rule });
     } else {
         res.status(404).send({ message: "Client not found", clientID });
@@ -139,6 +143,7 @@ app.post("/add-app-rules" , async (req,res)=>{
 })
 
 app.use("/geolocation", geolocationRoute);
+app.use("/rules" , rulesRoute)
 
 
 // Connect to MongoDB first
