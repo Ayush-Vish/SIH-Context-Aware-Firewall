@@ -23,7 +23,7 @@ const clientRules = new mongoose.Schema({
       },
       type: {
         type: String,
-        enum: ['application', 'domain'],
+        enum: ['application', 'domain', 'port'],
         required: true
       },
       rule_name: {

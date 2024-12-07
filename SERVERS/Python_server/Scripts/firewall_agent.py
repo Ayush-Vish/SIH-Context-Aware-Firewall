@@ -169,7 +169,7 @@ class FirewallAgent:
                     raise ValueError(f"Missing required fields. Required: {required_fields}")
 
                 rule_name = rule_config["rule_name"]
-                rule_name = "ASS_BLOCK_" + rule_name + "__" + uuid.uuid4()
+                rule_name = "CSS__" + rule_name + "__" + uuid.uuid4()
                 domain = rule_config["domain"]
                 app_path = rule_config["app_path"]
                 direction = rule_config["direction"].lower()
@@ -341,7 +341,7 @@ class FirewallAgent:
             return {"error": f"Error while adding port rules: {str(e)}"}, 500
     def list_all_rules(self):
         command = ["netsh", "advfirewall", "firewall", "show", "rule", "name=all"]
-        self.execute_command(command, success_message="Firewall rules listed below:")
+        return self.execute_command(command, success_message="Firewall rules listed below:")
     def get_ip_from_domain(self, domain):
         # List of popular DNS servers
         dns_servers = [
@@ -402,7 +402,9 @@ class FirewallAgent:
             result = subprocess.run(command, capture_output=True, text=True)
             if result.returncode == 0:
                 print(success_message)
-                print(result.stdout.strip())
+                # print(result.stdout.strip())
+                print(type(result.stdout.strip()))
+                return {"success": True, "message": result.stdout.strip()}
             else:
                 print("An error occurred:")
                 print(result.stderr.strip())
@@ -438,7 +440,7 @@ class FirewallAgent:
                 if not all(field in rule_config for field in required_fields):
                     raise ValueError(f"Missing required fields. Required: {required_fields}")
 
-                rule_name = rule_config["rule_name"]
+                rule_name ="CSS__" +  rule_config["rule_name"] + "__" + uuid.uuid4()
                 domain = rule_config["domain"] 
                 direction = rule_config["direction"].lower()
                 action = rule_config.get("action", "block").lower()

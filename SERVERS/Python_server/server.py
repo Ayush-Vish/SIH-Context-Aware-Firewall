@@ -10,7 +10,7 @@ class CentralAdminClient:
         self.adminID = None
         self.clientID = None
         self.socketID = None
-
+        self.rules = []
         # Bind event handlers
         self.sio.on("connect", self.on_connect)
         self.sio.on("message", self.on_message)
@@ -19,6 +19,7 @@ class CentralAdminClient:
         self.sio.on("new_app_rule", self.add_new_app_rules)
         self.sio.on("block_domain" , self.block_domain)
         self.sio.on("block_port", self.block_port)
+        self.sio.on("get_rules", self.show_all_rules)
 
     @staticmethod
     def get_all_mac_addresses():
@@ -81,6 +82,11 @@ class CentralAdminClient:
         rule = data.get("rule")
         print("Blocking Port: ",rule)
         self.firewallAgent.add_port_rule(rule)
+    def show_all_rules(self, data ):
+        self.rules = self.firewallAgent.list_all_rules()
+        self.sio.emit("show_rules", {"clientID":self.clientID , "rules": self.rules})
+        
+        
         
     def start(self):
         try:

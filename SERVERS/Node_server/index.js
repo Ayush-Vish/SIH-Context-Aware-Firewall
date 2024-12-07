@@ -106,7 +106,16 @@ io.on("connection", async (socket) => {
 			console.error("Error while finding user by user_id:", error);
 		}
 	});
+	socket.on("show_rules", async(data )=>{
+		/**
+		 * TODO : Send the rules to the client with the clientID
+		 */
+		
+		const clientID = data.clientID;
 
+		console.log("Request to show rules")
+		console.log(data)
+	})
 	// Handle client disconnect
 	socket.on("disconnect", () => {
 		console.log("Client disconnected:", socket.id);

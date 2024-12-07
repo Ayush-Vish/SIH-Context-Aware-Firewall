@@ -3,7 +3,10 @@ import axios from "axios";
 import { getIO } from "../socket.js";
 import { clientMap } from "../index.js";
 const router = Router();
-
+/**
+ * TODO : Save the rules in the DB as well for all controllers.
+ *  
+ */
 
 router.post("/add-app-rules" , async (req,res)=>{
     console.log("Request to add rule", req.body);
@@ -56,7 +59,23 @@ router.post("/block-port" , async(req , res )=>  {
     }
 })
 
+router.get("/get-rules/:clientID", async (req, res) => {
 
+    const { clientID } = req.params;
+    const clientInfo = clientMap.get(clientID);
+    const io = getIO()
+    if (clientInfo) {
+        const socketId = clientInfo.socketId;
+        console.log(socketId)
+        console.log("Requesting rules from client", clientID) 
+        io.to(socketId).emit("get_rules", { clientID });
+        res.send({ message: "Request sent to client", clientID });
+    } else {
+        res.status(404).send({ message: "Client not found", clientID });
+    }
+
+    
+});
 
 
 export default router
