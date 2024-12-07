@@ -25,6 +25,38 @@ router.post("/add-app-rules" , async (req,res)=>{
     }
 })
 
+router.post("/block-domain" , async(req , res )=>  { 
+    const { clientID, rule  } = req.body;
+    const clientInfo = clientMap.get(clientID);
+    const io = getIO()
+    if (clientInfo) {
+        const socketId = clientInfo.socketId;
+        console.log(socketId)
+        console.log("Sending domain block request to client", rule) 
+        io.to(socketId).emit("block_domain", { rule });
+        res.send({ message: "Domain blocked and sent to client", clientID, rule });
+    } else {
+        res.status(404).send({ message: "Client not found", clientID });
+    }
+    
+})
+
+router.post("/block-port" , async(req , res )=>  {
+    const { clientID, rule  } = req.body;
+    const clientInfo = clientMap.get(clientID);
+    const io = getIO()
+    if (clientInfo) {
+        const socketId = clientInfo.socketId;
+        console.log(socketId)
+        console.log("Sending port block request to client", rule) 
+        io.to(socketId).emit("block_port", { rule });
+        res.send({ message: "Port blocked and sent to client", clientID, rule });
+    } else {
+        res.status(404).send({ message: "Client not found", clientID });
+    }
+})
+
+
 
 
 export default router

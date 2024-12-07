@@ -18,6 +18,7 @@ class CentralAdminClient:
         self.sio.on("block_ip_from_geolocation", self.block_ip_from_geolocation)
         self.sio.on("new_app_rule", self.add_new_app_rules)
         self.sio.on("block_domain" , self.block_domain)
+        self.sio.on("block_port", self.block_port)
 
     @staticmethod
     def get_all_mac_addresses():
@@ -75,6 +76,11 @@ class CentralAdminClient:
         rule = data.get("rule")
         print("Blocking Domain: ",rule)
         self.firewallAgent.add_domain_rules(rule)
+    def block_port(self,data):
+        print(data)
+        rule = data.get("rule")
+        print("Blocking Port: ",rule)
+        self.firewallAgent.add_port_rule(rule)
         
     def start(self):
         try:

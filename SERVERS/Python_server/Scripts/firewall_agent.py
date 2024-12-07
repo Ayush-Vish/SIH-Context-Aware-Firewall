@@ -251,68 +251,94 @@ class FirewallAgent:
             return {"error": str(ve)}, 400
         except Exception as e:
             return {"error": f"Error while adding application rules: {str(e)}"}, 500
-    def add_port_rule(self, name, port, protocol, action, direction):
+    def add_port_rule(self, rules=None):
         """
-        Add a port rule to the firewall.
+        Add port rules to the firewall.
 
-        :param name: Rule name
-        :param port: Port number
-        :param protocol: Protocol (TCP/UDP/Both)
-        :param action: Action (Allow/Block)
-        :param direction: Direction (Inbound/Outbound)
+        Expected rules format:
+        rules = [
+            {
+                "name": "rule1",
+                "port": 8080,
+                "protocol": "TCP",
+                "action": "allow",
+                "direction": "inbound"
+            },
+            # ... more rules ...
+        ]
         """
         try:
-            port = int(port)
-        except ValueError:
-            print("Invalid port number. Please enter a valid integer.")
-            return {"error": "Invalid port number"}
+            if not rules or not isinstance(rules, list):
+                raise ValueError("Rules must be provided as a list of rule configurations")
 
-        protocol = protocol.strip().upper()
-        if protocol not in ["TCP", "UDP", "BOTH"]:
-            print("Invalid protocol. Use 'TCP', 'UDP', or 'Both'.")
-            return {"error": "Invalid protocol"}
+            results = []
+            for rule_config in rules:
+                print("Processing rule:", rule_config)
+                # Validate required fields
+                required_fields = ["name", "port", "protocol", "action", "direction"]
+                if not all(field in rule_config for field in required_fields):
+                    raise ValueError(f"Missing required fields. Required: {required_fields}")
 
-        action = action.strip().lower()
-        direction = direction.strip().lower()
+                name = rule_config["name"]
+                port = rule_config["port"]
+                protocol = rule_config["protocol"].strip().upper()
+                action = rule_config["action"].strip().lower()
+                direction = rule_config["direction"].strip().lower()
 
-        if action not in ["allow", "block"] or direction not in ["inbound", "outbound"]:
-            print("Invalid action or direction. Use 'Allow'/'Block' and 'Inbound'/'Outbound'.")
-            return {"error": "Invalid action or direction"}
+                try:
+                    port = int(port)
+                except ValueError:
+                    print("Invalid port number. Please enter a valid integer.")
+                    results.append({"name": name, "status": "error", "message": "Invalid port number"})
+                    continue
 
-        action_flag = "allow" if action == "allow" else "block"
-        direction_flag = "in" if direction == "inbound" else "out"
+                if protocol not in ["TCP", "UDP", "BOTH"]:
+                    print("Invalid protocol. Use 'TCP', 'UDP', or 'Both'.")
+                    results.append({"name": name, "status": "error", "message": "Invalid protocol"})
+                    continue
 
-        results = []
+                if action not in ["allow", "block"] or direction not in ["inbound", "outbound"]:
+                    print("Invalid action or direction. Use 'Allow'/'Block' and 'Inbound'/'Outbound'.")
+                    results.append({"name": name, "status": "error", "message": "Invalid action or direction"})
+                    continue
 
-        if protocol == "BOTH":
-            # Create rules for both TCP and UDP
-            for proto in ["TCP", "UDP"]:
-                command = [
-                    "netsh", "advfirewall", "firewall", "add", "rule",
-                    f"name={name}_{proto}",
-                    f"dir={direction_flag}",
-                    f"action={action_flag}",
-                    f"protocol={proto}",
-                    f"localport={port}",
-                    "enable=yes"
-                ]
-                result = self.execute_command(command, success_message=f"Port rule '{name}_{proto}' on port {port}/{proto} added successfully.")
-                results.append(result)
-        else:
-            # Create rule for single protocol
-            command = [
-                "netsh", "advfirewall", "firewall", "add", "rule",
-                f"name={name}",
-                f"dir={direction_flag}",
-                f"action={action_flag}",
-                f"protocol={protocol}",
-                f"localport={port}",
-                "enable=yes"
-            ]
-            result = self.execute_command(command, success_message=f"Port rule '{name}' on port {port}/{protocol} added successfully.")
-            results.append(result)
+                action_flag = "allow" if action == "allow" else "block"
+                direction_flag = "in" if direction == "inbound" else "out"
 
-        return {"results": results}
+                if protocol == "BOTH":
+                    # Create rules for both TCP and UDP
+                    for proto in ["TCP", "UDP"]:
+                        command = [
+                            "netsh", "advfirewall", "firewall", "add", "rule",
+                            f"name={name}_{proto}",
+                            f"dir={direction_flag}",
+                            f"action={action_flag}",
+                            f"protocol={proto}",
+                            f"localport={port}",
+                            "enable=yes"
+                        ]
+                        result = self.execute_command(command, success_message=f"Port rule '{name}_{proto}' on port {port}/{proto} added successfully.")
+                        results.append(result)
+                else:
+                    # Create rule for single protocol
+                    command = [
+                        "netsh", "advfirewall", "firewall", "add", "rule",
+                        f"name={name}",
+                        f"dir={direction_flag}",
+                        f"action={action_flag}",
+                        f"protocol={protocol}",
+                        f"localport={port}",
+                        "enable=yes"
+                    ]
+                    result = self.execute_command(command, success_message=f"Port rule '{name}' on port {port}/{protocol} added successfully.")
+                    results.append(result)
+
+            return {"results": results}, 200
+
+        except ValueError as ve:
+            return {"error": str(ve)}, 400
+        except Exception as e:
+            return {"error": f"Error while adding port rules: {str(e)}"}, 500
     def list_all_rules(self):
         command = ["netsh", "advfirewall", "firewall", "show", "rule", "name=all"]
         self.execute_command(command, success_message="Firewall rules listed below:")
