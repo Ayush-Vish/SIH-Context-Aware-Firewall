@@ -95,47 +95,57 @@ const clientDataSchema = new Schema(
   { timestamps: true }
 );
 
+export async function getStaticData(clientID) {
+  try{
+    let data = await ClientData.findOne({clientID: clientID})
+    return data;
+  }catch (error) {
+    console.log('Error finding static data:', error);
+    return false;
+  }
+
+}
+
 export async function upsertStaticData(clientID , staticInfo){
-    try{
-        console.log(staticInfo.domain_mapping);
-        
-        let userDeviceData = await ClientData.findOne({ clientID: clientID });
-        if (userDeviceData) {
-            // If document exists, update it with the new staticInfo data
-            userDeviceData.device_info = staticInfo.device_info || userDeviceData.device_info;
-            userDeviceData.active_connections = staticInfo.active_connections || userDeviceData.active_connections;
-            userDeviceData.network_interfaces = staticInfo.network_interfaces || userDeviceData.network_interfaces;
-            userDeviceData.network_usage = staticInfo.network_usage || userDeviceData.network_usage;
-            userDeviceData.running_processes = staticInfo.running_processes || userDeviceData.running_processes;
-            userDeviceData.open_ports = staticInfo.open_ports || userDeviceData.open_ports;
-            userDeviceData.domain_mapping = staticInfo.domain_mapping || userDeviceData.domain_mapping;
-            userDeviceData.application_data = staticInfo.application_data || userDeviceData.application_data
-            // Save the updated document
-            await userDeviceData.save();
-            console.log('User device data updated successfully.');
-          } else {
-            // If document doesn't exist, create a new document
-            const newUserDeviceData = new ClientData({
-              clientID: clientID,
-              device_info: staticInfo.device_info,
-              active_connections: staticInfo.active_connections,
-              network_interfaces: staticInfo.network_interfaces,
-              network_usage: staticInfo.network_usage,
-              running_processes: staticInfo.running_processes,
-              open_ports: staticInfo.open_ports,
-              domain_mapping: staticInfo.domain_mapping,
-              application_data: staticInfo.application_data
-            });
+  try{
       
-            // Save the new document
-            await newUserDeviceData.save();
-            console.log('New user device data created successfully.');
-          }
-          return true;
-        } catch (error) {
-            console.error('Error upserting user device data:', error);
-            return false;
-          }
+      let userDeviceData = await ClientData.findOne({ clientID: clientID });
+      if (userDeviceData) {
+          // If document exists, update it with the new staticInfo data
+          userDeviceData.device_info = staticInfo.device_info || userDeviceData.device_info;
+          userDeviceData.active_connections = staticInfo.active_connections || userDeviceData.active_connections;
+          userDeviceData.network_interfaces = staticInfo.network_interfaces || userDeviceData.network_interfaces;
+          userDeviceData.network_usage = staticInfo.network_usage || userDeviceData.network_usage;
+          userDeviceData.running_processes = staticInfo.running_processes || userDeviceData.running_processes;
+          userDeviceData.open_ports = staticInfo.open_ports || userDeviceData.open_ports;
+          userDeviceData.domain_mapping = staticInfo.domain_mapping || userDeviceData.domain_mapping;
+          userDeviceData.application_data = staticInfo.application_data || userDeviceData.application_data
+          // Save the updated document
+          await userDeviceData.save();
+          console.log('User device data updated successfully.');
+        } else {
+          // If document doesn't exist, create a new document
+          const newUserDeviceData = new ClientData({
+            clientID: clientID,
+            device_info: staticInfo.device_info,
+            active_connections: staticInfo.active_connections,
+            network_interfaces: staticInfo.network_interfaces,
+            network_usage: staticInfo.network_usage,
+            running_processes: staticInfo.running_processes,
+            open_ports: staticInfo.open_ports,
+            domain_mapping: staticInfo.domain_mapping,
+            application_data: staticInfo.application_data
+          });
+    
+          // Save the new document
+          await newUserDeviceData.save();
+          console.log('New user device data created successfully.');
+        }
+        return true;
+      } catch (error) {
+          console.error('Error upserting user device data:', error);
+          return false;
+        }
 }
 
 const ClientData = model('ClientData', clientDataSchema);

@@ -2,10 +2,10 @@ import express from "express"
 import {createServer} from "http"
 import { connect } from "mongoose"
 import { initSocket } from "./socket/init.js"
-import { findAdminByEmail, findAdminByID } from "./db/admin.js"
+import { createAdminByEmail, findAdminByEmail, findAdminByID } from "./db/admin.js"
 import { message } from "./socket/message.js"
 import { createClientByMAC, findClientByMAC } from "./db/client.js"
-import { upsertStaticData } from "./db/clientData.js"
+import { getStaticData, upsertStaticData } from "./db/clientData.js"
 const app = express()
 const server = createServer(app)
 const socket = initSocket(server)
@@ -116,10 +116,128 @@ app.get("/",(req,res) => {
     res.send("dashboard running on port 3000")
 })
 
-app.post("/static-data",(req,res)=>{
-    message("resend static data",{sendStaticDetails: true})
-    res.end()
+app.post("/admin/signup",async (req,res)=>{
+    const {email , password} = req.body;
+    const admin = await findAdminByEmail(email);
+    if(admin){
+        res.send({
+            message: "admin with email already exists",
+        });
+        return;
+    }
+    const newAdmin = await createAdminByEmail(email,password);
+    res.send({
+        message: "new admin created",
+        admin: newAdmin
+    })
+    return;
 })
+
+app.post("/admin/signin",async (req,res) => {
+    const {email,password} = req.body;
+    const admin = await findAdminByEmail(email);
+    if(!admin){
+        res.send({
+            message: "admin for given email doesnt exist"
+        });
+        return;
+    }else if(admin.password != password){
+        res.send({
+            message: "incorrect password"
+        });
+        return;
+    }
+    res.send({
+        message: "login successfull",
+        admin: admin
+    })
+})
+
+app.post("/details/client/", (req, res) => {
+    const { clientID } = req.body;
+    console.log("Client ID received:", clientID);
+
+    const result = clientMap.get(clientID);
+    console.log("Client result from map:", result);
+
+    if (!result) {
+        return res.send({
+            message: "device is not online",
+            error: true
+        });
+    }
+
+    console.log("Socket ID for client:", result.socketID);
+    try {
+        if (result.socketID) {
+            socket.to(result.socketID).emit("message", {
+                message: "resend static data",
+                flags: {
+                    sendStaticDetails: true
+                }
+            });
+
+            res.send({
+                message: "Static data resend request sent successfully",
+                error: false
+            });
+        } else {
+            console.log("Error: No socketID found for client");
+            res.status(500).send({
+                message: "No socketID found for client",
+                error: true
+            });
+        }
+
+    } catch (error) {
+        console.log("Error sending socket message:", error);
+        res.status(500).send({
+            message: "Error sending socket message",
+            error: true
+        });
+    }
+});
+
+app.post("/details/admin", async(req,res)=>{
+    const {email} = req.body;
+    const admin = await findAdminByEmail(email)
+    if(!admin){
+        res.send({
+            message: "admin for given email doesnt exist"
+        });
+        return;
+    }
+    res.send({
+        message: "admin details",
+        admin: admin
+    })
+})
+
+app.post("/details/clients", async (req, res) => {
+    const { clientIDS } = req.body;
+    
+    try {
+        // Use Promise.all to wait for all async operations to complete
+        const staticDataPromises = clientIDS.map(async (clientID) => {
+            const data = await getStaticData(clientID);
+            return data;  // Return the data for Promise.all to resolve
+        });
+        
+        // Wait for all promises to resolve
+        const staticData = await Promise.all(staticDataPromises);
+
+        res.send({
+            message: "client static data",
+            data: staticData
+        });
+    } catch (error) {
+        console.log("Error getting static data:", error);
+        res.status(500).send({ message: "Error fetching data" });
+    }
+});
+
+
+
 
 connect(MONGO_URL,{})
     .then(() => {
