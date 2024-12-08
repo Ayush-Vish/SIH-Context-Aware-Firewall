@@ -98,11 +98,13 @@ def get_device_info():
     total_memory = memory_info.total / (1024 ** 3)
     used_memory = memory_info.used / (1024 ** 3)
     available_memory = memory_info.available / (1024 ** 3)
+
+    ip = requests.get('https://checkip.amazonaws.com').text.strip()
     
     return {
         "device_name": device_name,
         "os": f"{os_name} {os_release} (Version: {os_version})",
-        "public_ip": get_public_ip(),
+        "public_ip": ip,
         "uptime": {
             "days": uptime_days,
             "hours": uptime_hours,
