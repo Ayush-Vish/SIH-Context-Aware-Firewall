@@ -3,7 +3,9 @@ import psutil
 import signal
 from Scripts.firewall_agent import FirewallAgent
 from Scripts.device_static_info import collect_device_info
-
+import os 
+pid = os.getpid()
+print(f"Current PID: {pid}")
 class CentralAdminClient:
     def __init__(self):
         self.sio = socketio.Client()
@@ -21,6 +23,7 @@ class CentralAdminClient:
         self.sio.on("block_domain" , self.block_domain)
         self.sio.on("block_port", self.block_port)
         self.sio.on("get_rules", self.show_all_rules)
+        self.sio.on("remove_rule", self.remove_rule)
         
         
         # signal handlers

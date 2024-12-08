@@ -4,7 +4,8 @@ import time
 import subprocess
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-
+pid = os.getpid()
+print(f"Current PID: {pid}")
 class ChangeHandler(FileSystemEventHandler):
     def __init__(self, command):
         self.command = command
