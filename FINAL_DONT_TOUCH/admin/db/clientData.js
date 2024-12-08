@@ -64,18 +64,21 @@ const openPortSchema = new Schema({
 
   const domainMappingSchema = new Schema({
     process_name: { type: String },
-    domains: [
-      {
-        domain: { type: String },
-        timestamp: { type: Date, default: Date.now }
-      }
-    ]
+    domains: [{
+      domain:String,
+      timestamp:Date
+    }]
   });
 
-  const domainMap = new Schema({
-    timestamp: {type: Date, default: Date.now},
-    domainMapping: domainMappingSchema
-  })
+  const applicationDataSchema = new Schema({
+    process: String,
+    name: String,
+    pid: Number,
+    path: String,
+    uptime: String,
+    total_bytes_sent: Number,
+    total_bytes_received: Number,
+  });
 
 const clientDataSchema = new Schema(
   {
@@ -86,13 +89,16 @@ const clientDataSchema = new Schema(
     network_usage: networkUsageSchema,
     running_processes: [runningProcessSchema],
     open_ports: [openPortSchema],
-    domain_mapping: [domainMap]
+    domain_mapping: [domainMappingSchema],
+    application_data: [applicationDataSchema]
   },
   { timestamps: true }
 );
 
 export async function upsertStaticData(clientID , staticInfo){
     try{
+        console.log(staticInfo.domain_mapping);
+        
         let userDeviceData = await ClientData.findOne({ clientID: clientID });
         if (userDeviceData) {
             // If document exists, update it with the new staticInfo data
@@ -102,8 +108,8 @@ export async function upsertStaticData(clientID , staticInfo){
             userDeviceData.network_usage = staticInfo.network_usage || userDeviceData.network_usage;
             userDeviceData.running_processes = staticInfo.running_processes || userDeviceData.running_processes;
             userDeviceData.open_ports = staticInfo.open_ports || userDeviceData.open_ports;
-            userDeviceData.domain_mapping = userDeviceData.domain_mapping.push(staticInfo.domain_mapping) || userDeviceData.domain_mapping;
-
+            userDeviceData.domain_mapping = staticInfo.domain_mapping || userDeviceData.domain_mapping;
+            userDeviceData.application_data = staticInfo.application_data || userDeviceData.application_data
             // Save the updated document
             await userDeviceData.save();
             console.log('User device data updated successfully.');
@@ -117,7 +123,8 @@ export async function upsertStaticData(clientID , staticInfo){
               network_usage: staticInfo.network_usage,
               running_processes: staticInfo.running_processes,
               open_ports: staticInfo.open_ports,
-              domain_mapping: staticInfo.domain_mapping
+              domain_mapping: staticInfo.domain_mapping,
+              application_data: staticInfo.application_data
             });
       
             // Save the new document

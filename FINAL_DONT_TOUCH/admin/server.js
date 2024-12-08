@@ -100,8 +100,25 @@ socket.on("connect", async (socket) => {
     })
 })
 
+// Function to send the "resend static data" message every 10 minutes
+const resendStaticDataMessage = () => {
+    setInterval(() => {
+        clientMap.forEach(({ socketID, adminID }) => {
+            message("resend static data", {sendStaticDetails: true})
+            console.log(`Sent request to client ${socketID} to resend static data`);
+        });
+    }, 10 * 60 * 1000);
+}
+
+resendStaticDataMessage()
+
 app.get("/",(req,res) => {
     res.send("dashboard running on port 3000")
+})
+
+app.post("/static-data",(req,res)=>{
+    message("resend static data",{sendStaticDetails: true})
+    res.end()
 })
 
 connect(MONGO_URL,{})

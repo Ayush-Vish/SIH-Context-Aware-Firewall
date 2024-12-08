@@ -7,10 +7,7 @@ from datetime import datetime
 app_domains = []
 
 def get_domain_mapping():
-    return {
-        "timestamp": datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-        "domainMapping": app_domains
-    }
+    return app_domains
 
 def capture_dns_requests(pkt):
     # Check if the packet contains DNS and is a query
