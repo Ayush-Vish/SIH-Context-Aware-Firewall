@@ -6,6 +6,7 @@ import socket
 import time
 import win32com
 from datetime import datetime
+from .domain_mapping import get_domain_mapping
 
 def get_active_connections():
     connections = psutil.net_connections(kind='inet')
@@ -184,6 +185,7 @@ def collect_device_info():
     network_usage = get_packet_byte_device_usage_info()
     running_processes = get_running_processes()
     open_ports = get_open_ports()
+    domain_mapping = get_domain_mapping()
 
     result = {
         "device_info": device_info,
@@ -191,8 +193,11 @@ def collect_device_info():
         "network_interfaces": interfaces_info,
         "network_usage": network_usage,
         "running_processes": running_processes,
-        "open_ports": open_ports
+        "open_ports": open_ports,
+        "domain_mapping": domain_mapping
     }
+
+    print(domain_mapping)
 
     return result
         

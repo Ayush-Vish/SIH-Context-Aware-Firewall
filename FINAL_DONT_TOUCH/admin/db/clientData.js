@@ -62,6 +62,21 @@ const openPortSchema = new Schema({
     process_name: { type: String, required: true }
   });
 
+  const domainMappingSchema = new Schema({
+    process_name: { type: String },
+    domains: [
+      {
+        domain: { type: String },
+        timestamp: { type: Date, default: Date.now }
+      }
+    ]
+  });
+
+  const domainMap = new Schema({
+    timestamp: {type: Date, default: Date.now},
+    domainMapping: domainMappingSchema
+  })
+
 const clientDataSchema = new Schema(
   {
     clientID: String,
@@ -70,7 +85,8 @@ const clientDataSchema = new Schema(
     network_interfaces: [interfaceInfoSchema],
     network_usage: networkUsageSchema,
     running_processes: [runningProcessSchema],
-    open_ports: [openPortSchema]
+    open_ports: [openPortSchema],
+    domain_mapping: [domainMap]
   },
   { timestamps: true }
 );
@@ -86,7 +102,8 @@ export async function upsertStaticData(clientID , staticInfo){
             userDeviceData.network_usage = staticInfo.network_usage || userDeviceData.network_usage;
             userDeviceData.running_processes = staticInfo.running_processes || userDeviceData.running_processes;
             userDeviceData.open_ports = staticInfo.open_ports || userDeviceData.open_ports;
-      
+            userDeviceData.domain_mapping = userDeviceData.domain_mapping.push(staticInfo.domain_mapping) || userDeviceData.domain_mapping;
+
             // Save the updated document
             await userDeviceData.save();
             console.log('User device data updated successfully.');
@@ -99,7 +116,8 @@ export async function upsertStaticData(clientID , staticInfo){
               network_interfaces: staticInfo.network_interfaces,
               network_usage: staticInfo.network_usage,
               running_processes: staticInfo.running_processes,
-              open_ports: staticInfo.open_ports
+              open_ports: staticInfo.open_ports,
+              domain_mapping: staticInfo.domain_mapping
             });
       
             // Save the new document

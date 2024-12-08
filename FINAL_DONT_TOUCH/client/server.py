@@ -2,6 +2,8 @@ import socketio
 import psutil
 from scripts.start import getAdminEmail , changeAdminEmail
 from scripts.static_info import collect_device_info
+from scripts.domain_mapping import start_dns_in_background
+from scripts.vpn import start_vpn_monitoring
 
 class Client:
     def __init__(self):
@@ -12,6 +14,7 @@ class Client:
             'clientID': None,
             'socketID': None
         }
+        
         #events
         self.socket.on("connect",self.on_connect)
         self.socket.on("message",self.on_message)
@@ -28,6 +31,7 @@ class Client:
                     adminEmail = getAdminEmail()
                     self.socket.connect("http://localhost:3000", auth={"adminEmail": adminEmail})
                     self.socket.wait()
+                    print("hello")
                 else:
                     print("invalid choice. please enter 1 or 2.")
 
@@ -46,9 +50,14 @@ class Client:
                 if addr.family == psutil.AF_LINK: 
                     mac_addresses.append(addr.address)
         return mac_addresses
+    @staticmethod
+    def start_background_processes():
+        start_dns_in_background()
+        start_vpn_monitoring()
     
     def on_connect(self):
         print("connected to admin")
+        self.start_background_processes()
 
     def on_message(self,data):
         print(data)
@@ -74,6 +83,7 @@ class Client:
         result = collect_device_info()
         self.socket.emit("static-details",{"static": result, "identity": self.identity})
         print("static data send to admin")
+    
 
 if __name__ == "__main__":
     client = Client()
