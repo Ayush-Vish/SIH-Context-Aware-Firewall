@@ -6,7 +6,7 @@ import { createClientByMAC, findClientByMAC } from "./db/client.js";
 import { upsertStaticData } from "./db/clientData.js";
 import { createAdminByEmail, findAdminByEmail } from "./db/admin.js";
 import geolocationRoute from "./Routes/geolocationRoute.js";
-import rulesRoute from "./Routes/rulesRoute.js"
+import rulesRoute from "./Routes/rulesRoutev2.js"
 import { initIO } from "./socket.js";
 
 const app = express(); // Creating an instance of Express
@@ -106,6 +106,10 @@ io.on("connection", async (socket) => {
 			console.error("Error while finding user by user_id:", error);
 		}
 	});
+	socket.on("v2_response", async(data) => {
+		console.log("Received v2 response from client:", data);
+		
+	})
 	socket.on("show_rules", async(data )=>{
 		/**
 		 * TODO : Send the rules to the client with the clientID

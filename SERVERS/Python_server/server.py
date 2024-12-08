@@ -25,7 +25,7 @@ class CentralAdminClient:
         self.sio.on("get_rules", self.show_all_rules)
         self.sio.on("remove_rule", self.remove_rule)
         
-        
+        self.sio.on("v2" , self.v2)
         # signal handlers
         signal.signal(signal.SIGTERM, self.handle_termination)
         signal.signal(signal.SIGINT, self.handle_termination)
@@ -41,7 +41,6 @@ class CentralAdminClient:
 
     def on_connect(self):
         print("Connected to Central Admin Server")
-
     def on_message(self, data):
         # Update only if the value is not already set and data.get() is not None
         if data.get("socketID") is not None:
@@ -84,6 +83,13 @@ class CentralAdminClient:
             self.sio.emit("agent_error", {"clientID": self.clientID, "message": "Error in adding new application rule"})
         
         
+    def v2(self,data):
+        commands = data.get("commands")
+        result =[]
+        for command in commands:
+            result.append(self.firewallAgent.execute_command(command))
+        
+        self.sio.emit("v2_response", {"clientID": self.clientID, "result": result})            
     def block_domain(self,data):
         try:
             print(data)
