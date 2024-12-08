@@ -1,10 +1,11 @@
 import psutil
+import requests
 import win32api
 import os
 import platform
 import socket
 import time
-import win32com
+import certifi
 from datetime import datetime
 from .domain_mapping import get_domain_mapping
 from .application_data import get_application_details
@@ -69,6 +70,15 @@ def get_interfaces_info():
 
     return interfaces_info
 
+def get_public_ip():
+    try:
+        # Make a request to an external service that provides the public IP
+        response = requests.get('https://icanhazip.com', verify=False)
+        public_ip = response.text.strip()
+        return public_ip
+    except requests.exceptions.RequestException as e:
+        print(f"Error getting public IP: {e}")
+        return None
 
 def get_device_info():
     device_name = socket.gethostname()
@@ -92,6 +102,7 @@ def get_device_info():
     return {
         "device_name": device_name,
         "os": f"{os_name} {os_release} (Version: {os_version})",
+        "public_ip": get_public_ip(),
         "uptime": {
             "days": uptime_days,
             "hours": uptime_hours,
@@ -199,8 +210,6 @@ def collect_device_info():
         "domain_mapping": domain_mapping,
         "application_data": application_data
     }
-
-    print(domain_mapping)
 
     return result
 

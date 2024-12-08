@@ -4,6 +4,7 @@ const {Schema} = mongoose
 const deviceInfoSchema = new Schema({
   device_name: String,
   os: String,
+  public_ip: String,
   uptime: {
     days: Number,
     hours: Number,
