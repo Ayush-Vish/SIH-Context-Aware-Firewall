@@ -6,8 +6,10 @@ import { createClientByMAC, findClientByMAC } from "./db/client.js";
 import { upsertStaticData } from "./db/clientData.js";
 import { createAdminByEmail, findAdminByEmail } from "./db/admin.js";
 import geolocationRoute from "./Routes/geolocationRoute.js";
-import rulesRoute from "./Routes/rulesRoute.js"
+import rulesRoute from "./Routes/rulesRoute.js";
+import authRoute from "./Routes/authRoute.js";
 import { initIO } from "./socket.js";
+import cors from "cors";
 
 const app = express(); // Creating an instance of Express
 const server = createServer(app); // Creating an HTTP server using Express
@@ -17,6 +19,8 @@ const MONGO_URI =
 	"mongodb+srv://palashchitnavis:palash1234@css.cyoff.mongodb.net/?retryWrites=true&w=majority&appName=CSS";
 
 app.use(json());
+app.use(cors());
+app.use("/auth", authRoute);
 
 // Map to store clientId -> { socketId, adminId }
 export const clientMap = new Map();
@@ -85,14 +89,17 @@ io.on("connection", async (socket) => {
 			console.error("Error while finding user by MAC:", error);
 		}
 	});
-	
-	socket.on("static-data", async (static_data)=>{
-		try{
-			console.log("Received Static Data from client:", static_data)
-			const result = await upsertStaticData(static_data.clientID,static_data.static_data)
-			console.log("Static Data Upserted!" , result)
-			if(result){
-				socket.emit("message",{
+
+	socket.on("static-data", async (static_data) => {
+		try {
+			console.log("Received Static Data from client:", static_data);
+			const result = await upsertStaticData(
+				static_data.clientID,
+				static_data.static_data
+			);
+			console.log("Static Data Upserted!", result);
+			if (result) {
+				socket.emit("message", {
 					message: "Static Data Upserted!",
 					clientID: static_data.clientID,
 				});
@@ -106,29 +113,28 @@ io.on("connection", async (socket) => {
 			console.error("Error while finding user by user_id:", error);
 		}
 	});
-	socket.on("show_rules", async(data )=>{
+	socket.on("show_rules", async (data) => {
 		/**
 		 * TODO : Send the rules to the client with the clientID
-		 * use sockets in the frontend as well 
-		 * pls 
-		 * 
+		 * use sockets in the frontend as well
+		 * pls
+		 *
 		 */
-		
+
 		const clientID = data.clientID;
 
-		console.log("Request to show rules")
-		console.log(data)
-	})
+		console.log("Request to show rules");
+		console.log(data);
+	});
 	/**
 	 * TODO: Send the alert to the client with the clientID
 	 */
-	socket.on("process_terminated" , async(data )=> {
-		console.log("Process terminated", data)
-	})
-	socket.on("agent_error", async(data) => {
+	socket.on("process_terminated", async (data) => {
+		console.log("Process terminated", data);
+	});
+	socket.on("agent_error", async (data) => {
 		console.log("Agent Error:", data);
-
-	})
+	});
 	// Handle client disconnect
 	socket.on("disconnect", () => {
 		console.log("Client disconnected:", socket.id);
@@ -148,25 +154,22 @@ app.post("/admin", async (req, res) => {
 		res.send({ message: "error creating admin" });
 	}
 });
-app.post("/add-app-rules" , async (req,res)=>{
+app.post("/add-app-rules", async (req, res) => {
 	const { clientID, rule } = req.body;
-    const clientInfo = clientMap.get(clientID);
-	console.log(
-		clientID,rule
-	)
-    if (clientInfo) {
-        const socketId = clientInfo.socketId;
-	  console.log(socketId)
-	  io.to(socketId).emit("new_app_rule", { rule });
-        res.send({ message: "Rule added and sent to client", clientID, rule });
-    } else {
-        res.status(404).send({ message: "Client not found", clientID });
-    }
-})
+	const clientInfo = clientMap.get(clientID);
+	console.log(clientID, rule);
+	if (clientInfo) {
+		const socketId = clientInfo.socketId;
+		console.log(socketId);
+		io.to(socketId).emit("new_app_rule", { rule });
+		res.send({ message: "Rule added and sent to client", clientID, rule });
+	} else {
+		res.status(404).send({ message: "Client not found", clientID });
+	}
+});
 
 app.use("/geolocation", geolocationRoute);
-app.use("/rules" , rulesRoute)
-
+app.use("/rules", rulesRoute);
 
 // Connect to MongoDB first
 connect(MONGO_URI, {})
