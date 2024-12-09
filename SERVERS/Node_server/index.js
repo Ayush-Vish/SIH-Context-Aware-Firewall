@@ -113,7 +113,11 @@ io.on("connection", async (socket) => {
 			console.error("Error while finding user by user_id:", error);
 		}
 	});
-	socket.on("show_rules", async (data) => {
+	socket.on("v2_response", async(data) => {
+		console.log("Received v2 response from client:", data);
+		
+	})
+	socket.on("show_rules", async(data )=>{
 		/**
 		 * TODO : Send the rules to the client with the clientID
 		 * use sockets in the frontend as well

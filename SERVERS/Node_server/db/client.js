@@ -1,83 +1,43 @@
 import mongoose from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
-
-const clientSchema = new mongoose.Schema({
-    clientID: { 
-        type: String,  
-        unique: true, 
-    },
-    adminID: { 
-        type: String,
-    },
-    mac_addresses: [String],
-    created_at: { type: Date, default: Date.now },
-    last_seen: { type: Date },
-    active_list: {
-        type: String,
-        enum: ['whitelist', 'blacklist'],
-        default: null
-    },
-    active_rules: [{
-        appName: String,
-        rules: [String]
-    }]
-});
 const ruleSchema = new mongoose.Schema({
-  clientID: {
+  rule_name: { type: String, required: true },
+  appName: { type: String, required: false }, // Link to the application
+  domain: { type: String }, // Optional for domain rules
+  app_path: { type: String , required:false }, // Optional, executable path for domain rules
+  ports: [{ type: Number }], // Optional, ports for the rule
+  port: { type: Number }, // Optional, specific port for port rules
+  protocol: { type: String, enum: ["TCP", "UDP"] }, 
+  action: { type: String, enum: ["allow", "block"], default: "block" },
+  direction: { type: String, enum: ["inbound", "outbound"], required: true },
+  status: { type: String, enum: ["active", "inactive"], default: "active" }
+});
+
+const appSchema = new mongoose.Schema({
+  appName: { type: String, required: true },
+  whitelist: [ruleSchema],
+  blocklist: [ruleSchema],
+  active_list: {
       type: String,
-      required: true,
-      index: true
-  },
-  type: {
-      type: String,
-      enum: ['application', 'domain', 'port'],
-      required: true
-  },
-  rule_name: {
-      type: String,
-      required: true
-  },
-  domain: {
-      type: String,
-      required: function() { return this.type === 'domain'; }
-  },
-  app_path: {
-      type: String,
-      required: function() { return this.type === 'application'; }
-  },
-  direction: {
-      type: String,
-      enum: ['inbound', 'outbound'],
-      required: true
-  },
-  ports: [{
-      type: Number,
-      min: 1,
-      max: 65535
-  }],
-  action: {
-      type: String,
-      enum: ['allow', 'block'],
-      default: 'block'
-  },
-  status: {
-      type: String,
-      enum: ['active', 'inactive'],
-      default: 'active'
-  },
-  created_by: {
-      type: String,
-      required: true
-  },
-  ip_addresses: [{
-      type: String
-  }],
-  last_ip_update: {
-      type: Date,
-      default: Date.now
+      enum: ["whitelist", "blocklist"],
+      default: "blocklist"
   }
 });
-export const Rule = mongoose.model("Rule", ruleSchema);
+
+const clientSchema = new mongoose.Schema({
+  clientID: { 
+      type: String,  
+      unique: true, 
+  },
+  adminID: { 
+      type: String,
+  },
+  mac_addresses: [String],
+  created_at: { type: Date, default: Date.now },
+  last_seen: { type: Date },
+  applications: [appSchema],
+  global_rules: [ruleSchema],
+});
 
 export const findClientByMAC = async (macAddresses) => {
     try {
