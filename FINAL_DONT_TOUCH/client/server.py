@@ -4,7 +4,7 @@ from scripts.start import getAdminEmail , changeAdminEmail
 from scripts.static_info import collect_device_info
 from scripts.domain_mapping import start_dns_in_background
 from scripts.vpn import start_vpn_monitoring
-
+from scripts.firewall_agent import FirewallAgent
 class Client:
     def __init__(self):
         self.socket = socketio.Client()
@@ -14,11 +14,13 @@ class Client:
             'clientID': None,
             'socketID': None
         }
+        self.firewallAgent = FirewallAgent()
         
         #events
         self.socket.on("connect",self.on_connect)
         self.socket.on("message",self.on_message)
         self.socket.on("disconnect",self.on_disconnect)
+        self.socket.on("command" , self.v2)
     def start(self):
         while True:
             try:
@@ -83,7 +85,14 @@ class Client:
         result = collect_device_info()
         self.socket.emit("static-details",{"static": result, "identity": self.identity})
         print("static data send to admin")
-    
+    def v2 (self,data):
+        print(data)
+        print("sfjsdnfds")
+        commands = data.get("commands")
+        result = []
+        for command in commands:
+            result.append(self.firewallAgent.execute_command(command))
+        self.socket.emit("response",{"response": result, "identity": self.identity})
 
 if __name__ == "__main__":
     client = Client()

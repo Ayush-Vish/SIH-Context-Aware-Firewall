@@ -10,6 +10,7 @@ import {
 import { message } from "./socket/message.js";
 import { createClientByMAC, findClientByMAC } from "./db/client.js";
 import { getStaticData, upsertStaticData } from "./db/clientData.js";
+import rulesRoutes from "./Routes/rulesRoute.js";
 import staticInfoRoute from "./Routes/staticInfoRoute.js";
 const app = express();
 const server = createServer(app);
@@ -19,7 +20,6 @@ const MONGO_URL =
 
 app.use(express.json());
 app.use("/static", staticInfoRoute);
-
 // Map clientID -> {socketID , adminID}
 export const clientMap = new Map();
 
@@ -110,6 +110,9 @@ socket.on("connect", async (socket) => {
 			console.log("error in static data part");
 		}
 	});
+	socket.on("response" , async (data ) =>{
+		console.log("v2 response from client", data);
+	})
 });
 
 // Function to send the "resend static data" message every 10 minutes
@@ -127,6 +130,8 @@ resendStaticDataMessage();
 app.get("/", (req, res) => {
 	res.send("dashboard running on port 3000");
 });
+
+app.use("/rules" , rulesRoutes);
 
 app.post("/admin/signup", async (req, res) => {
 	const { email, password } = req.body;

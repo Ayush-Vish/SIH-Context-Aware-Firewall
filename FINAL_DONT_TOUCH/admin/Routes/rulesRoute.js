@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { getIO } from "../socket.js";
-import { clientMap } from "../index.js";
+import { getSocket } from "../socket/init.js";
+import { clientMap } from "../server.js";
 import { Client } from "../db/client.js";
-import { generateNetshCommand } from "../utils/command";
+import { generateNetshCommand } from "../utils/command.js";
 
 const router = Router();
 
@@ -39,12 +39,12 @@ router.post("/add-app-rules", async (req, res) => {
             // Save the client with the new rule
             await client.save();
 
-            const io = getIO();
+            const io = getSocket();
             const clientInfo = clientMap.get(clientID);
 
             if (clientInfo) {
-                const socketId = clientInfo.socketId;
-                io.to(socketId).emit("v2", { commands });
+                const socketId = clientInfo.socketID;
+                io.to(socketId).emit("command", { commands });
             } else {
                 console.error(`Client not found in clientMap: ${clientID}`);
             }
@@ -87,11 +87,11 @@ router.post("/block-domain", async (req, res) => {
               await client.save();
   
               const clientInfo = clientMap.get(clientID);
-              const io = getIO();
+              const io = getSocket();
   
               if (clientInfo) {
-                  const socketId = clientInfo.socketId;
-                  io.to(socketId).emit("v2", { commands });
+                  const socketId = clientInfo.socketID;
+                  io.to(socketId).emit("command", { commands });
               } else {
                   console.error(`Client not found in clientMap: ${clientID}`);
               }
@@ -108,35 +108,40 @@ router.post("/block-domain", async (req, res) => {
   });
   
   router.post("/block-port", async (req, res) => {
-      const { clientID, rule } = req.body;
+      const { clientID, rules } = req.body;
   
       // Validate input
-      if (!clientID || !rule) {
+      if (!clientID || !rules || !Array.isArray(rules)) {
           return res.status(400).send({
               message: "Invalid input. Provide clientID and rule.",
           });
       }
   
       try {
-          const client = await Client.findById(clientID);
+          const client = await Client.findOne({clientID});
           if (!client) {
               return res.status(404).send({ message: "Client not found.", clientID });
           }
   
           const clientInfo = clientMap.get(clientID);
-          const io = getIO();
-  
+          const io =await  getSocket();
+          console.log(clientInfo);
           if (clientInfo) {
-              const socketId = clientInfo.socketId;
+              const socketId = clientInfo.socketID;
               console.log(socketId);
-              console.log("Sending port block request to client", rule);
-  
+              console.log("Sending port block request to client", rules);
+            for (const rule of rules)  {
+                  // Generate the netsh command
+                  const commands = await generateNetshCommand("add", rule);
+                  // Save the client with the new rule
+                  await client.global_rules.push(rule);
+                  await client.save();
+                  console.log(commands , "commands" , socketId);
+                  io.to(socketId).emit("command", { commands });
+            }
               // Add the rule to the global blocklist
-              client.global_blocklist.push(rule);
-              await client.save();
-  
-              io.to(socketId).emit("block_port", { rule });
-              res.send({ message: "Port blocked and sent to client", clientID, rule });
+             
+              res.send({ message: "Port blocked and sent to client", clientID, rules });
           } else {
               res.status(404).send({ message: "Client not found", clientID });
           }
@@ -154,13 +159,16 @@ router.post("/block-domain", async (req, res) => {
   
       try {
           const clientInfo = clientMap.get(clientID);
-          const io = getIO();
+          const io = getSocket();
   
           if (clientInfo) {
-              const socketId = clientInfo.socketId;
+              const socketId = clientInfo.socketID;
               console.log(socketId);
               console.log("Requesting rules from client", clientID);
-              io.to(socketId).emit("get_rules", { clientID });
+              const commands=[
+                  [`netsh` , `advfirewall` , `firewall` , `show` , `rule` , `name=all`]
+              ]
+              io.to(socketId).emit("command", { commands });
               res.send({ message: "Request sent to client", clientID });
           } else {
               res.status(404).send({ message: "Client not found", clientID });
@@ -173,44 +181,60 @@ router.post("/block-domain", async (req, res) => {
           });
       }
   });
-  
+
   router.delete("/delete-rule", async (req, res) => {
       const { clientID, appName, ruleName } = req.body;
   
       // Validate input
-      if (!clientID || !appName || !ruleName) {
+      if (!clientID || !ruleName) {
           return res.status(400).send({
-              message: "Invalid input. Provide clientID, appName, and ruleName.",
+              message: "Invalid input. Provide clientID and ruleName.",
           });
       }
   
       try {
           const clientInfo = clientMap.get(clientID);
-          const io = getIO();
+          const io = getSocket();
   
           if (clientInfo) {
-              const socketId = clientInfo.socketId;
+              const socketId = clientInfo.socketID;
               console.log(socketId);
               console.log("Sending delete rule request to client", ruleName);
   
               // Delete the rule from the database
-              const client = await Client.findById(clientID);
+              const client = await Client.findOne({clientID});
               if (!client) {
                   return res.status(404).send({ message: "Client not found.", clientID });
               }
   
-              // Find the application
-              let app = client.applications.find((app) => app.appName === appName);
-              if (!app) {
-                  return res.status(404).send({ message: "Application not found.", appName });
+              let ruleFound = false;
+  
+              // Check if the rule is a global rule
+              client.global_rules = client.global_rules.filter((rule) => {
+                  if (rule.rule_name === ruleName) {
+                      ruleFound = true;
+                      return false;
+                  }
+                  return true;
+              });
+  
+              if (!ruleFound && appName) {
+                  // Find the application
+                  let app = client.applications.find((app) => app.appName === appName);
+                  if (!app) {
+                      return res.status(404).send({ message: "Application not found.", appName });
+                  }
+  
+                  // Remove the rule from both lists
+                  app.whitelist = app.whitelist.filter((rule) => rule.rule_name !== ruleName);
+                  app.blocklist = app.blocklist.filter((rule) => rule.rule_name !== ruleName);
               }
   
-              // Remove the rule from both lists
-              app.whitelist = app.whitelist.filter((rule) => rule.rule_name !== ruleName);
-              app.blocklist = app.blocklist.filter((rule) => rule.rule_name !== ruleName);
               await client.save();
-  
-              io.to(socketId).emit("delete_rule", { ruleName });
+              const commands = [
+                  [`netsh` , `advfirewall` , `firewall` , `delete` , `rule` , `name=${ruleName}`]
+              ]
+              io.to(socketId).emit("command", { commands });
               res.send({
                   message: "Rule deleted and sent to client",
                   clientID,
@@ -227,4 +251,5 @@ router.post("/block-domain", async (req, res) => {
           });
       }
   });
+  
 export default router;
