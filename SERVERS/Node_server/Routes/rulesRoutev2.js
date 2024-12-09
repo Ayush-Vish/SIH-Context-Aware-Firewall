@@ -19,58 +19,125 @@ const router = Router();
  *         direction: String, enum ["inbound", "outbound"]
  * }
  */
-
-router.post("/add-app-rules", async (req, res) => {
-  const { clientID, rules , listType } = req.body;
+router.post("/add-app-rulesv2", async (req, res) => {
+  const { clientID, rules, listType } = req.body;
 
   // Validate input
   if (!clientID || !rules || !Array.isArray(rules) || !listType) {
-    return res
-      .status(400)
-      .send({
-        message:
-          "Invalid input. Provide clientID, appName, listType (whitelist/blocklist), and rule.",
+      return res.status(400).send({
+          message: "Invalid input. Provide clientID, appName, listType (whitelist/blocklist), and rules.",
       });
   }
 
-  const client = await Client.findById(clientID);
-  if (!client) {
-    return res.status(404).send({ message: "Client not found.", clientID });
-  }
-  rules.forEach(async(rule )=> {
-    const { appName } = rule;
-    client.applications.forEach((app) => {
-        if (app.appName === appName) {
-            if (listType === "whitelist") {
-            app.whitelist.push(rule);
-            } else {
-            app.blocklist.push(rule);
-            }
-        }
-    })
-    await client.save();
+  const client = await Client.findOne({
+    clientID: clientID,
   })
-    const io = getIO();
+  if (!client) {
+      return res.status(404).send({ message: "Client not found.", clientID });
+  }
+  rules.forEach(async (rule) => {
+      const { appName } = rule;
+      let app = client.applications.find((app) => app.appName === appName);
+      if (!app) {
+          // Create a new application entry if it doesn't exist
+          app = { appName, whitelist: [], blocklist: [], active_list: null };
+          client.applications.push(app);
+      }
 
+      if (listType === "whitelist") {
+          app.whitelist.push(rule);
+      } else {
+          app.blocklist.push(rule);
+      }
 
+      // Generate and execute the netsh command
+      const commands = await generateNetshCommand("add", rule, listType);
+      await client.save();
     
-    const clientInfo = clientMap.get(clientID);
+      const io = getIO();
+      const clientInfo = clientMap.get(clientID);
     
-  if (clientInfo) {
-    const socketId = clientInfo.socketId;
-    io.to(socketId).emit("update_rules", { listType, rules });
+      const socketId = clientInfo.socketId;
+      io.to(socketId).emit("v2", { listType, commands });
+  });
+  if (1) {
+  
 
-    res.send({
-      message: "Rule added and sent to client",
-      clientID,
-
-      listType,
-      rules,
-    });
+      res.send({
+          message: "Rules added and sent to client",
+          clientID,
+          listType,
+          rules,
+      });
   } else {
-    res.status(404).send({ message: "Client not found.", clientID });
+      res.status(404).send({ message: "Client not found.", clientID });
   }
 });
+
+/**
+ * 
+ * 
+ * This is original 
+ * note listType is not passed in the body
+ * Its working as expected
+ */
+
+router.post("/add-app-rules", async (req, res) => {
+  const { clientID, rules } = req.body;
+
+  // Validate input
+  if (!clientID || !rules || !Array.isArray(rules) ) {
+      return res.status(400).send({
+          message: "Invalid input. Provide clientID, appName, listType (whitelist/blocklist), and rules.",
+      });
+  }
+
+  const client = await Client.findOne({
+    clientID: clientID,
+  })
+  if (!client) {
+      return res.status(404).send({ message: "Client not found.", clientID });
+  }
+  rules.forEach(async (rule) => {
+      const { appName } = rule;
+      let app = client.applications.find((app) => app.appName === appName);
+      if (!app) {
+          // Create a new application entry if it doesn't exist
+          app = { appName, whitelist: [], blocklist: [], active_list: null };
+          client.applications.push(app);
+      }
+
+     
+          app.blocklist.push(rule);
+      
+
+      // Generate and execute the netsh command
+      const commands = await generateNetshCommand("add", rule);
+      await client.save();
+    
+      const io = getIO();
+      const clientInfo = clientMap.get(clientID);
+    
+      const socketId = clientInfo.socketId;
+      io.to(socketId).emit("v2", {  commands });
+  });
+  if (1) {
+  
+
+      res.send({
+          message: "Rules added and sent to client",
+          clientID,
+      
+          rules,
+      });
+  } else {
+      res.status(404).send({ message: "Client not found.", clientID });
+  }
+});
+
+
+
+
 
 /***
  * 
@@ -88,29 +155,28 @@ router.post("/add-app-rules", async (req, res) => {
 
 
 router.post("/block-domain", async (req, res) => {
-  const { clientID, rule } = req.body;
+  const { clientID, rules } = req.body;
   const clientInfo = clientMap.get(clientID);
   const io = getIO();
-  if (clientInfo) {
-    const socketId = clientInfo.socketId;
-    console.log(socketId);
-    console.log("Sending domain block request to client", rule);
-
-    // Save the rule in the database
-    const client = await Client.findById(clientID);
-    if (!client) {
+  const client = await Client.findOne({
+    clientID: clientID,
+  })
+  if (!client) {
       return res.status(404).send({ message: "Client not found.", clientID });
-    }
-
-    // Add the rule to the global blocklist
-    client.global_blocklist.push(rule);
-    await client.save();
-
-    io.to(socketId).emit("block_domain", { rule });
-    res.send({ message: "Domain blocked and sent to client", clientID, rule });
-  } else {
-    res.status(404).send({ message: "Client not found", clientID });
   }
+  rules.forEach(async (rule) => {
+      const commands = await generateNetshCommand("add", rule);
+
+      client.global_rules.push(rule);
+      await client.save();
+      const clientInfo = clientMap.get(clientID);
+      const io = getIO();
+
+      const socketId = clientInfo.socketId;
+      io.to(socketId).emit("v2", { commands });
+
+  });
+  return res.send({ message: "Rules added and sent to client", clientID, rules });
 });
 
 /**
