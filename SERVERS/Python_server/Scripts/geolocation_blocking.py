@@ -1,9 +1,9 @@
 import psutil
 import geoip2.database
 import time
-
-# Path to GeoLite2 database
-geoip_db_path = "../GeoLite-database/GeoLite2-Country.mmdb"
+import os
+script_dir = os.path.dirname(os.path.abspath(__file__))
+geoip_db_path = os.path.join(script_dir, "../GeoLite-database/GeoLite2-Country.mmdb")
 
 # Function to get the country code for an IP
 def get_country(ip):

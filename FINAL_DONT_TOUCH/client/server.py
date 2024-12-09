@@ -1,9 +1,10 @@
 import socketio
 import psutil
+import threading
 from scripts.start import getAdminEmail , changeAdminEmail
 from scripts.static_info import collect_device_info
 from scripts.domain_mapping import start_dns_in_background
-from scripts.vpn import start_vpn_monitoring
+from scripts.vpn import start_vpn_monitoring , vpn_detected_flag
 from scripts.firewall_agent import FirewallAgent
 class Client:
     def __init__(self):
@@ -15,6 +16,8 @@ class Client:
             'socketID': None
         }
         self.firewallAgent = FirewallAgent()
+
+        self.alert_thread = threading.Thread(target=self.monitor_vpn_alerts, daemon=True)
         
         #events
         self.socket.on("connect",self.on_connect)
@@ -43,6 +46,15 @@ class Client:
             except Exception as e:
                 print(f"error: {e}")
                 break
+
+    def monitor_vpn_alerts(self):
+        """Monitor VPN detected flag and handle alerts."""
+        while True:
+            if vpn_detected_flag.is_set():
+                ip = getattr(vpn_detected_flag, "ip", None)
+                print(f"VPN/Proxy detected: {ip}")
+                self.socket.emit("alert", {"ip": ip, "identity": self.identity, "type": "vpn-alert"})
+                vpn_detected_flag.clear()  # Reset the flag after handling
     
     @staticmethod
     def get_mac_address():
