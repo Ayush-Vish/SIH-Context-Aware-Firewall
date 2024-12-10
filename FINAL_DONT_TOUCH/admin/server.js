@@ -271,9 +271,20 @@ app.post("/details/admin", async (req, res) => {
 		});
 		return;
 	}
+	const activeClients = [];
+
+	clientMap.forEach((value, clientID) => {
+		console.log(value , clientID);
+		
+    	if (value.adminID === admin.adminID) {
+        activeClients.push({ clientID, ...value });
+    	}
+	});
+
 	res.send({
 		message: "admin details",
 		admin: admin,
+		activeClients: activeClients
 	});
 });
 
