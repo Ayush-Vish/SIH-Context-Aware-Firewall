@@ -142,3 +142,34 @@ export const generateNetshCommand = async (actionRule, rule, listType) => {
 
     return commands;
 };
+
+
+export function parseFirewallRules(inputString) {
+    const rules = [];
+    
+    // Regular expression to match each rule block
+    const rulePattern = /Rule Name:([\s\S]*?)(?=Rule Name:|$)/g;
+    const matches = inputString.match(rulePattern);
+
+    if (matches) {
+        matches.forEach((match) => {
+            const rule = {};
+            
+            // Split the block into lines and process key-value pairs
+            const lines = match.trim().split("\n");
+            lines.forEach((line) => {
+                if (line.includes(":")) {
+                    const [key, value] = line.split(":").map(str => str.trim());
+                    rule[key] = value;
+                }
+            });
+
+            // Add the parsed rule to the list
+            if (Object.keys(rule).length > 0) {
+                rules.push(rule);
+            }
+        });
+    }
+    
+    return rules;
+}

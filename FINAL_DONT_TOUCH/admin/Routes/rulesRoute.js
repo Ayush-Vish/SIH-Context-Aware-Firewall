@@ -44,7 +44,8 @@ router.post("/add-app-rules", async (req, res) => {
 
             if (clientInfo) {
                 const socketId = clientInfo.socketID;
-                io.to(socketId).emit("command", { commands });
+                io.to(socketId).emit("command", { commands , rule_type : "app_rules" });
+
             } else {
                 console.error(`Client not found in clientMap: ${clientID}`);
             }
@@ -91,7 +92,7 @@ router.post("/block-domain", async (req, res) => {
   
               if (clientInfo) {
                   const socketId = clientInfo.socketID;
-                  io.to(socketId).emit("command", { commands });
+                  io.to(socketId).emit("command", { commands , rule_type : "domain_rules" });
               } else {
                   console.error(`Client not found in clientMap: ${clientID}`);
               }
@@ -137,7 +138,7 @@ router.post("/block-domain", async (req, res) => {
                   await client.global_rules.push(rule);
                   await client.save();
                   console.log(commands , "commands" , socketId);
-                  io.to(socketId).emit("command", { commands });
+                  io.to(socketId).emit("command", { commands , rule_type : "port_rules" });
             }
               // Add the rule to the global blocklist
              
@@ -168,7 +169,7 @@ router.post("/block-domain", async (req, res) => {
               const commands=[
                   [`netsh` , `advfirewall` , `firewall` , `show` , `rule` , `name=all`]
               ]
-              io.to(socketId).emit("command", { commands });
+              io.to(socketId).emit("command", { commands  , rule_type : "get_rules" });
               res.send({ message: "Request sent to client", clientID });
           } else {
               res.status(404).send({ message: "Client not found", clientID });
@@ -234,7 +235,7 @@ router.post("/block-domain", async (req, res) => {
               const commands = [
                   [`netsh` , `advfirewall` , `firewall` , `delete` , `rule` , `name=${ruleName}`]
               ]
-              io.to(socketId).emit("command", { commands });
+              io.to(socketId).emit("command", { commands  , rule_type: "delete_rule" });
               res.send({
                   message: "Rule deleted and sent to client",
                   clientID,
