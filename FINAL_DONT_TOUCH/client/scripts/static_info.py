@@ -7,10 +7,21 @@ import socket
 import time
 import certifi
 from datetime import datetime
-from .domain_mapping import get_domain_mapping
-from .application_data import get_application_details
+from domain_mapping import get_domain_mapping
+from application_data import get_application_details
 
-def get_active_connections():
+def get_active_connections(exclude_system=True):
+    # Expanded list of known Windows system process names
+    system_processes = [
+        "System", "Idle", "svchost.exe", "services.exe", "lsass.exe",
+        "csrss.exe", "wininit.exe", "winlogon.exe", "dwm.exe", "smss.exe",
+        "taskhostw.exe", "explorer.exe", "fontdrvhost.exe", "audiodg.exe",
+        "spoolsv.exe", "SearchIndexer.exe", "MsMpEng.exe", "dllhost.exe",
+        "conhost.exe", "cmd.exe", "wuauclt.exe", "wlanext.exe",
+        "rundll32.exe", "msiexec.exe", "taskeng.exe", "schtasks.exe",
+        "ctfmon.exe", "SgrmBroker.exe", "sihost.exe", "RuntimeBroker.exe",
+        "CompatTelRunner.exe", "dasHost.exe", "Registry", "System Idle Process"
+    ]
     connections = psutil.net_connections(kind='inet')
     active_connections = []
 
@@ -29,7 +40,12 @@ def get_active_connections():
                 process_name = "N/A"
         else:
             process_name = "N/A"
+
         protocol = 'tcp' if conn.type == 1 else 'udp'
+
+        # Exclude system processes if the flag is set
+        if exclude_system and process_name.lower() in [p.lower() for p in system_processes]:
+            continue
 
         active_connections.append({
             "pid": pid if pid else 'N/A',
@@ -41,6 +57,7 @@ def get_active_connections():
         })
 
     return active_connections
+
 
 
 def get_interfaces_info():
@@ -98,13 +115,11 @@ def get_device_info():
     total_memory = memory_info.total / (1024 ** 3)
     used_memory = memory_info.used / (1024 ** 3)
     available_memory = memory_info.available / (1024 ** 3)
-
-    ip = requests.get('https://checkip.amazonaws.com').text.strip()
     
     return {
         "device_name": device_name,
         "os": f"{os_name} {os_release} (Version: {os_version})",
-        "public_ip": ip,
+        "public_ip": get_public_ip(),
         "uptime": {
             "days": uptime_days,
             "hours": uptime_hours,
@@ -143,7 +158,18 @@ def get_friendly_app_name(path):
         return os.path.splitext(os.path.basename(path))[0].capitalize()
 
 
-def get_running_processes():
+def get_running_processes(exclude_system=True):
+    # List of common system process names
+    system_processes = [
+        "System", "Idle", "svchost.exe", "services.exe", "lsass.exe",
+        "csrss.exe", "wininit.exe", "winlogon.exe", "dwm.exe", "smss.exe",
+        "taskhostw.exe", "explorer.exe", "fontdrvhost.exe", "audiodg.exe",
+        "spoolsv.exe", "SearchIndexer.exe", "MsMpEng.exe", "dllhost.exe",
+        "conhost.exe", "cmd.exe", "wuauclt.exe", "wlanext.exe",
+        "rundll32.exe", "msiexec.exe", "taskeng.exe", "schtasks.exe",
+        "ctfmon.exe", "SgrmBroker.exe", "sihost.exe", "RuntimeBroker.exe",
+        "CompatTelRunner.exe", "dasHost.exe", "Registry", "System Idle Process"
+    ]
     running_processes = []
 
     for proc in psutil.process_iter(['pid', 'name', 'exe']):
@@ -151,6 +177,11 @@ def get_running_processes():
             pid = proc.info['pid']
             name = proc.info['name']
             exe = proc.info['exe']
+
+            # Skip system processes if exclude_system is True
+            if exclude_system and name.lower() in [p.lower() for p in system_processes]:
+                continue
+
             if exe:
                 app_name = get_friendly_app_name(exe)
             else:
@@ -213,6 +244,10 @@ def collect_device_info():
         "application_data": application_data
     }
 
+
     return result
+
+if __name__=="__main__":
+    collect_device_info()
 
         
