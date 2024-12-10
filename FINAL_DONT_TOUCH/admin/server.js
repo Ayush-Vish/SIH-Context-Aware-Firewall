@@ -110,6 +110,10 @@ socket.on("connect", async (socket) => {
 			console.log("error in static data part");
 		}
 	});
+	socket.on("firewall_alert" ,async(data ) => {
+		console.log(data);
+		
+	})
 	socket.on("response" , async (data ) =>{
 		console.log("v2 response from client", data);
 	})
