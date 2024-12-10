@@ -12,7 +12,7 @@ import { createClientByMAC, findClientByMAC } from "./db/client.js";
 import { getStaticData, upsertStaticData } from "./db/clientData.js";
 import rulesRoutes from "./Routes/rulesRoute.js";
 // import staticInfoRoute from "./Routes/staticInfoRoute.js";
-import { parseFirewallRules } from "./utils/command.js";
+import { parseFirewallRules, refineFirewallRule } from "./utils/command.js";
 const app = express();
 const server = createServer(app);
 const socket = initSocket(server);
@@ -115,15 +115,52 @@ socket.on("connect", async (socket) => {
 		console.log(data);
 		
 	})
-	socket.on("response" , async (data ) =>{
-		if(data.rule_type === "get_rules") {
-			console.log(JSON.stringify(data.response[0]));
+	socket.on("response", async (data) => {
+		if (data.rule_type === "get_rules") {
+			const inputString = JSON.stringify(data.response, null, 2);
+			const parsedRules = parseFirewallRules(inputString);
+		    // Safely stringify and extract the rules string
+		    for (const ruleString of parsedRules) {
+			// Ensure the rule is a string before processing
+			const cleanedString = typeof ruleString === "string" 
+			    ? ruleString.replace(/\\n/g, "\n") 
+			    : JSON.stringify(ruleString).replace(/\\n/g, "\n");
+		  
+			const lines = cleanedString.split("\n").map(line => line.trim()).filter(line => line);
+		  
+			const rule = {};
+		  
+			// The first line is the Rule Name
+			if (lines.length > 0) {
+			    rule["Rule Name"] = lines[0];
+			}
+		  
+			// Process subsequent lines for key-value pairs
+			for (let i = 1; i < lines.length; i++) {
+			    const line = lines[i];
+			    if (line.includes(":")) {
+				  const [key, ...valueParts] = line.split(":");
+				  const value = valueParts.join(":").trim(); // Join in case the value contains ":"
+				  rule[key.trim()] = value;
+			    }
+			}
+		  
+			// Print the parsed rule
+			console.log(refineFirewallRule((rule)));
+		  }
 
-			// console.log("v2 response from client", parseFirewallRules( JSON.stringify(data.response[0]))[0]);
+		//     const rulesDataStructure = parseFirewallRules(responseString);
+		//     console.log("Parsed firewall rules:", rulesDataStructure);
+		    
+		    // Log or handle parsed rules
+		//     console.log("Parsed firewall rules:", rulesDataStructure);
 		}
-		
-		// console.log("v2 response from client", data);
-	})
+	  
+		// Optional: Log full response for debugging
+		// console.log("Full response from client:", data);
+	  });
+	
+	  
 });
 
 // Function to send the "resend static data" message every 10 minutes
