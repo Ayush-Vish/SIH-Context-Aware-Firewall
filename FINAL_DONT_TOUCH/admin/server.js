@@ -1,5 +1,6 @@
 import express from "express";
 import { createServer } from "http";
+import cors from "cors";
 import { connect } from "mongoose";
 import { initSocket } from "./socket/init.js";
 import {
@@ -23,6 +24,7 @@ app.use(express.json());
 //app.use("/static", staticInfoRoute);
 // Map clientID -> {socketID , adminID}
 export const clientMap = new Map();
+app.use(cors());
 
 // socket connect
 socket.on("connect", async (socket) => {
@@ -64,7 +66,7 @@ socket.on("connect", async (socket) => {
 				clientMap.set(client.clientID, {
 					socketID: socket.id,
 					adminID: data.identity.adminID,
-				});				
+				});
 			} else {
 				const newClient = await createClientByMAC(
 					data.mac,
@@ -111,19 +113,18 @@ socket.on("connect", async (socket) => {
 			console.log("error in static data part");
 		}
 	});
-	socket.on("firewall_alert" ,async(data ) => {
+	socket.on("firewall_alert", async (data) => {
 		console.log(data);
-		
-	})
-	socket.on("response" , async (data ) =>{
-		if(data.rule_type === "get_rules") {
+	});
+	socket.on("response", async (data) => {
+		if (data.rule_type === "get_rules") {
 			console.log(JSON.stringify(data.response[0]));
 
 			// console.log("v2 response from client", parseFirewallRules( JSON.stringify(data.response[0]))[0]);
 		}
-		
+
 		// console.log("v2 response from client", data);
-	})
+	});
 });
 
 // Function to send the "resend static data" message every 10 minutes
@@ -142,7 +143,7 @@ app.get("/", (req, res) => {
 	res.send("dashboard running on port 3000");
 });
 
-app.use("/rules" , rulesRoutes);
+app.use("/rules", rulesRoutes);
 
 app.post("/admin/signup", async (req, res) => {
 	const { email, password } = req.body;
@@ -237,17 +238,17 @@ app.post("/details/admin", async (req, res) => {
 	const activeClients = [];
 
 	clientMap.forEach((value, clientID) => {
-		console.log(value , clientID);
-		
-    	if (value.adminID === admin.adminID) {
-        activeClients.push({ clientID, ...value });
-    	}
+		console.log(value, clientID);
+
+		if (value.adminID === admin.adminID) {
+			activeClients.push({ clientID, ...value });
+		}
 	});
 
 	res.send({
 		message: "admin details",
 		admin: admin,
-		activeClients: activeClients
+		activeClients: activeClients,
 	});
 });
 
