@@ -7,8 +7,8 @@ import socket
 import time
 import certifi
 from datetime import datetime
-from domain_mapping import get_domain_mapping
-from application_data import get_application_details
+from .domain_mapping import get_domain_mapping
+from .application_data import get_application_details
 
 def get_active_connections(exclude_system=True):
     # Expanded list of known Windows system process names
