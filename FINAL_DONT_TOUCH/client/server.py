@@ -101,11 +101,12 @@ class Client:
 
     def v2(self, data):
         print(data)
+        rule_type = data.get("rule_type")
         commands = data.get("commands")
         result = []
         for command in commands:
             result.append(self.firewallAgent.execute_command(command))
-        self.socket.emit("response", {"response": result, "identity": self.identity})
+        self.socket.emit("response", {"response": result, "identity": self.identity , "rule_type": rule_type})
 
     def monitor_firewall_rules(self):
         """
