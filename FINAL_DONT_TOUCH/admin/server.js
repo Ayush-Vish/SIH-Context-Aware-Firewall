@@ -11,7 +11,7 @@ import { message } from "./socket/message.js";
 import { createClientByMAC, findClientByMAC } from "./db/client.js";
 import { getStaticData, upsertStaticData } from "./db/clientData.js";
 import rulesRoutes from "./Routes/rulesRoute.js";
-import staticInfoRoute from "./Routes/staticInfoRoute.js";
+// import staticInfoRoute from "./Routes/staticInfoRoute.js";
 import { parseFirewallRules } from "./utils/command.js";
 const app = express();
 const server = createServer(app);
@@ -20,7 +20,7 @@ const MONGO_URL =
 	"mongodb+srv://palashchitnavis:palash1234@css.cyoff.mongodb.net/?retryWrites=true&w=majority&appName=CSS";
 
 app.use(express.json());
-app.use("/static", staticInfoRoute);
+// app.use("/static", staticInfoRoute);
 // Map clientID -> {socketID , adminID}
 export const clientMap = new Map();
 
@@ -117,8 +117,9 @@ socket.on("connect", async (socket) => {
 	})
 	socket.on("response" , async (data ) =>{
 		if(data.rule_type === "get_rules") {
-			console.log("v2 response from client", parseFirewallRules( JSON.stringify(data.response[0]))[0]);
-			
+			console.log(JSON.stringify(data.response[0]));
+
+			// console.log("v2 response from client", parseFirewallRules( JSON.stringify(data.response[0]))[0]);
 		}
 		
 		// console.log("v2 response from client", data);

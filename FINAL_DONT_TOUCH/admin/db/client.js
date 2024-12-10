@@ -10,7 +10,8 @@ const ruleSchema = new mongoose.Schema({
   protocol: { type: String, enum: ["TCP", "UDP"] }, 
   action: { type: String, enum: ["allow", "block"], default: "block" },
   direction: { type: String, enum: ["inbound", "outbound"], required: true },
-  status: { type: String, enum: ["active", "inactive"], default: "active" }
+  status: { type: String, enum: ["active", "inactive"], default: "active" },
+  trigger_count: { type: Number, default: 0 },
 });
 
 const appSchema = new mongoose.Schema({
