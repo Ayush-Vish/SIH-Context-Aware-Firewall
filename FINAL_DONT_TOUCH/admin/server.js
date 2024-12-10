@@ -20,7 +20,7 @@ const MONGO_URL =
 	"mongodb+srv://palashchitnavis:palash1234@css.cyoff.mongodb.net/?retryWrites=true&w=majority&appName=CSS";
 
 app.use(express.json());
-// app.use("/static", staticInfoRoute);
+//app.use("/static", staticInfoRoute);
 // Map clientID -> {socketID , adminID}
 export const clientMap = new Map();
 
@@ -64,7 +64,7 @@ socket.on("connect", async (socket) => {
 				clientMap.set(client.clientID, {
 					socketID: socket.id,
 					adminID: data.identity.adminID,
-				});
+				});				
 			} else {
 				const newClient = await createClientByMAC(
 					data.mac,
@@ -181,7 +181,7 @@ app.post("/admin/signin", async (req, res) => {
 	});
 });
 
-app.post("/details/client/", (req, res) => {
+app.post("/resend/client/", (req, res) => {
 	const { clientID } = req.body;
 	console.log("Client ID received:", clientID);
 

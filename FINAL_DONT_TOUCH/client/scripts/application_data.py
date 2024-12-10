@@ -11,7 +11,7 @@ def get_friendly_app_name(path):
         return info
     except Exception:
         return os.path.splitext(os.path.basename(path))[0].capitalize()
-    
+
 def format_uptime(seconds):
     """Converts uptime in seconds to a more readable format."""
     days = seconds // (24 * 3600)
@@ -33,7 +33,12 @@ def get_process_info(pid):
         process = psutil.Process(pid)
         uptime = time.time() - process.create_time()
         path = process.exe()
-        name  = get_friendly_app_name(path)
+
+        # Skip processes without valid paths
+        if not path or path.lower().startswith("c:\\windows"):
+            return None
+        
+        name = get_friendly_app_name(path)
         process_info = {
             "name": name,
             "pid": pid,
@@ -41,7 +46,6 @@ def get_process_info(pid):
             "uptime": format_uptime(uptime),
             "total_bytes_sent": 0,
             "total_bytes_received": 0,
-            "network_info": []  # Initialize as an empty list
         }
         
         # Get system-wide bytes sent and received (this is per system, not per process)
@@ -52,8 +56,7 @@ def get_process_info(pid):
         return process_info
     except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
         return None
-    
-    
+
 def get_all_processes_info():
     for proc in psutil.process_iter(['pid', 'name']):
         pid = proc.info['pid']
@@ -74,4 +77,3 @@ def get_application_details():
             result.append({**value, 'process': key})
         return result
     return convert_to_array(processes_info)
-
