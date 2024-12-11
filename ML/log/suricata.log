@@ -1,0 +1,1347 @@
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: cpu: CPUs/cores online: 8
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: exception-policy: master exception-policy set to: auto
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: win32-syscall: Found a global MTU of 1500
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: logopenfile: fast output device (regular) initialized: fast.log
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: log-pcap: Selected pcap-log compression method: none
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: log-pcap: Selected pcap-log conditional logging: all
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: log-pcap: using normal logging
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: logopenfile: stats output device (regular) initialized: stats.log
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/00
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/01
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/02
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/03
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/04
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/05
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/06
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/07
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/08
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/09
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/0a
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/0b
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/0c
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/0d
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/0e
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/0f
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/10
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/11
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/12
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/13
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/14
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/15
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/16
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/17
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/18
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/19
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/1a
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/1b
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/1c
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/1d
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/1e
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/1f
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/20
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/21
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/22
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/23
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/24
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/25
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/26
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/27
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/28
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/29
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/2a
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/2b
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/2c
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/2d
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/2e
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/2f
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/30
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/31
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/32
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/33
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/34
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/35
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/36
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/37
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/38
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/39
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/3a
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/3b
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/3c
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/3d
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/3e
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/3f
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/40
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/41
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/42
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/43
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/44
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/45
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/46
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/47
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/48
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/49
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/4a
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/4b
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/4c
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/4d
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/4e
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/4f
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/50
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/51
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/52
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/53
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/54
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/55
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/56
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/57
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/58
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/59
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/5a
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/5b
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/5c
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/5d
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/5e
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/5f
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/60
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/61
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/62
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/63
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/64
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/65
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/66
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/67
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/68
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/69
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/6a
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/6b
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/6c
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/6d
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/6e
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/6f
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/70
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/71
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/72
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/73
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/74
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/75
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/76
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/77
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/78
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/79
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/7a
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/7b
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/7c
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/7d
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/7e
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/7f
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/80
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/81
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/82
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/83
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/84
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/85
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/86
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/87
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/88
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/89
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/8a
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/8b
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/8c
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/8d
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/8e
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/8f
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/90
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/91
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/92
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/93
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/94
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/95
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/96
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/97
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/98
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/99
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/9a
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/9b
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/9c
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/9d
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/9e
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/9f
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/a0
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/a1
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/a2
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/a3
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/a4
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/a5
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/a6
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/a7
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/a8
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/a9
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/aa
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ab
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ac
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ad
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ae
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/af
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/b0
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/b1
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/b2
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/b3
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/b4
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/b5
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/b6
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/b7
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/b8
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/b9
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ba
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/bb
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/bc
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/bd
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/be
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/bf
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/c0
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/c1
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/c2
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/c3
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/c4
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/c5
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/c6
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/c7
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/c8
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/c9
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ca
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/cb
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/cc
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/cd
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ce
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/cf
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/d0
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/d1
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/d2
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/d3
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/d4
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/d5
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/d6
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/d7
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/d8
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/d9
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/da
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/db
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/dc
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/dd
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/de
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/df
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/e0
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/e1
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/e2
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/e3
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/e4
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/e5
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/e6
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/e7
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/e8
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/e9
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ea
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/eb
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ec
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ed
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ee
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ef
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/f0
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/f1
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/f2
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/f3
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/f4
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/f5
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/f6
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/f7
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/f8
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/f9
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/fa
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/fb
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/fc
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/fd
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/fe
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ff
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/tmp
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: detect: 1 rule files processed. 6 rules successfully loaded, 0 rules failed, 0
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[18364 - Suricata-Main] 2024-12-07 23:47:23 Info: detect: 6 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 0 inspect application layer, 0 are decoder event only
+[17964 - RX-1] 2024-12-07 23:47:24 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[17964 - RX-1] 2024-12-07 23:47:24 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[17964 - RX-1] 2024-12-07 23:47:24 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[17964 - RX-1] 2024-12-07 23:47:24 Info: win32-syscall: Obtaining offload state failed, device "Bluetooth Device (Personal Area Network)" may not support offload. Error: 0x80041001
+[17964 - RX-1] 2024-12-07 23:47:24 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[16004 - W#01] 2024-12-07 23:47:25 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[18364 - Suricata-Main] 2024-12-07 23:47:25 Warning: suricata: setrlimit unavailable.
+[18364 - Suricata-Main] 2024-12-07 23:47:25 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[18364 - Suricata-Main] 2024-12-07 23:47:29 Notice: suricata: Signal Received.  Stopping engine.
+[7752 - Suricata-Main] 2024-12-07 23:48:04 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[7752 - Suricata-Main] 2024-12-07 23:48:04 Info: cpu: CPUs/cores online: 8
+[7752 - Suricata-Main] 2024-12-07 23:48:04 Info: exception-policy: master exception-policy set to: auto
+[7752 - Suricata-Main] 2024-12-07 23:48:04 Info: win32-syscall: Found a global MTU of 1500
+[7752 - Suricata-Main] 2024-12-07 23:48:04 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[7752 - Suricata-Main] 2024-12-07 23:48:04 Info: logopenfile: fast output device (regular) initialized: fast.log
+[7752 - Suricata-Main] 2024-12-07 23:48:04 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[7752 - Suricata-Main] 2024-12-07 23:48:04 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[7752 - Suricata-Main] 2024-12-07 23:48:04 Info: log-pcap: Selected pcap-log compression method: none
+[7752 - Suricata-Main] 2024-12-07 23:48:04 Info: log-pcap: Selected pcap-log conditional logging: all
+[7752 - Suricata-Main] 2024-12-07 23:48:04 Info: log-pcap: using normal logging
+[7752 - Suricata-Main] 2024-12-07 23:48:04 Info: logopenfile: stats output device (regular) initialized: stats.log
+[7752 - Suricata-Main] 2024-12-07 23:48:04 Info: detect: 1 rule files processed. 6 rules successfully loaded, 0 rules failed, 0
+[7752 - Suricata-Main] 2024-12-07 23:48:04 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[7752 - Suricata-Main] 2024-12-07 23:48:04 Info: detect: 6 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 0 inspect application layer, 0 are decoder event only
+[8660 - RX-1] 2024-12-07 23:48:04 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[8660 - RX-1] 2024-12-07 23:48:04 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[8660 - RX-1] 2024-12-07 23:48:04 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[8660 - RX-1] 2024-12-07 23:48:04 Info: win32-syscall: Obtaining offload state failed, device "Bluetooth Device (Personal Area Network)" may not support offload. Error: 0x80041001
+[8660 - RX-1] 2024-12-07 23:48:04 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[12400 - W#01] 2024-12-07 23:48:04 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[7752 - Suricata-Main] 2024-12-07 23:48:04 Warning: suricata: setrlimit unavailable.
+[7752 - Suricata-Main] 2024-12-07 23:48:04 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[7752 - Suricata-Main] 2024-12-07 23:48:49 Notice: suricata: Signal Received.  Stopping engine.
+[12976 - Suricata-Main] 2024-12-07 23:52:42 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[12976 - Suricata-Main] 2024-12-07 23:52:42 Info: cpu: CPUs/cores online: 8
+[12976 - Suricata-Main] 2024-12-07 23:52:42 Info: exception-policy: master exception-policy set to: auto
+[12976 - Suricata-Main] 2024-12-07 23:52:42 Info: win32-syscall: Found a global MTU of 1500
+[12976 - Suricata-Main] 2024-12-07 23:52:42 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[12976 - Suricata-Main] 2024-12-07 23:52:42 Info: logopenfile: fast output device (regular) initialized: fast.log
+[12976 - Suricata-Main] 2024-12-07 23:52:42 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[12976 - Suricata-Main] 2024-12-07 23:52:42 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[12976 - Suricata-Main] 2024-12-07 23:52:42 Info: log-pcap: Selected pcap-log compression method: none
+[12976 - Suricata-Main] 2024-12-07 23:52:42 Info: log-pcap: Selected pcap-log conditional logging: all
+[12976 - Suricata-Main] 2024-12-07 23:52:42 Info: log-pcap: using normal logging
+[12976 - Suricata-Main] 2024-12-07 23:52:42 Info: logopenfile: stats output device (regular) initialized: stats.log
+[12976 - Suricata-Main] 2024-12-07 23:52:42 Info: detect: 1 rule files processed. 6 rules successfully loaded, 0 rules failed, 0
+[12976 - Suricata-Main] 2024-12-07 23:52:42 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[12976 - Suricata-Main] 2024-12-07 23:52:42 Info: detect: 6 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 0 inspect application layer, 0 are decoder event only
+[8724 - RX-1] 2024-12-07 23:52:42 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[8724 - RX-1] 2024-12-07 23:52:42 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[8724 - RX-1] 2024-12-07 23:52:42 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[8724 - RX-1] 2024-12-07 23:52:42 Info: win32-syscall: Obtaining offload state failed, device "Bluetooth Device (Personal Area Network)" may not support offload. Error: 0x80041001
+[8724 - RX-1] 2024-12-07 23:52:42 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[4884 - W#01] 2024-12-07 23:52:42 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[12976 - Suricata-Main] 2024-12-07 23:52:42 Warning: suricata: setrlimit unavailable.
+[12976 - Suricata-Main] 2024-12-07 23:52:42 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[12976 - Suricata-Main] 2024-12-07 23:53:50 Notice: suricata: Signal Received.  Stopping engine.
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: cpu: CPUs/cores online: 8
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: exception-policy: master exception-policy set to: auto
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: win32-syscall: Found a global MTU of 1500
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: logopenfile: fast output device (regular) initialized: fast.log
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: log-pcap: Selected pcap-log compression method: none
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: log-pcap: Selected pcap-log conditional logging: all
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: log-pcap: using normal logging
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: logopenfile: stats output device (regular) initialized: stats.log
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/00
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/01
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/02
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/03
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/04
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/05
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/06
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/07
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/08
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/09
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/0a
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/0b
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/0c
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/0d
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/0e
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/0f
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/10
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/11
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/12
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/13
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/14
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/15
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/16
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/17
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/18
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/19
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/1a
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/1b
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/1c
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/1d
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/1e
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/1f
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/20
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/21
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/22
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/23
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/24
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/25
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/26
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/27
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/28
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/29
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/2a
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/2b
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/2c
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/2d
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/2e
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/2f
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/30
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/31
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/32
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/33
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/34
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/35
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/36
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/37
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/38
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/39
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/3a
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/3b
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/3c
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/3d
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/3e
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/3f
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/40
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/41
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/42
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/43
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/44
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/45
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/46
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/47
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/48
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/49
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/4a
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/4b
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/4c
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/4d
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/4e
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/4f
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/50
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/51
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/52
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/53
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/54
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/55
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/56
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/57
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/58
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/59
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/5a
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/5b
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/5c
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/5d
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/5e
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/5f
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/60
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/61
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/62
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/63
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/64
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/65
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/66
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/67
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/68
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/69
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/6a
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/6b
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/6c
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/6d
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/6e
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/6f
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/70
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/71
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/72
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/73
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/74
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/75
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/76
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/77
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/78
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/79
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/7a
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/7b
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/7c
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/7d
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/7e
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/7f
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/80
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/81
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/82
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/83
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/84
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/85
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/86
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/87
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/88
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/89
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/8a
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/8b
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/8c
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/8d
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/8e
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/8f
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/90
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/91
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/92
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/93
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/94
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/95
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/96
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/97
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/98
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/99
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/9a
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/9b
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/9c
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/9d
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/9e
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/9f
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/a0
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/a1
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/a2
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/a3
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/a4
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/a5
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/a6
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/a7
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/a8
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/a9
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/aa
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ab
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ac
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ad
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ae
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/af
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/b0
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/b1
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/b2
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/b3
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/b4
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/b5
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/b6
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/b7
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/b8
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/b9
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ba
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/bb
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/bc
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/bd
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/be
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/bf
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/c0
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/c1
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/c2
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/c3
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/c4
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/c5
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/c6
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/c7
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/c8
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/c9
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ca
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/cb
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/cc
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/cd
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ce
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/cf
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/d0
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/d1
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/d2
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/d3
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/d4
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/d5
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/d6
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/d7
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/d8
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/d9
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/da
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/db
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/dc
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/dd
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/de
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/df
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/e0
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/e1
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/e2
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/e3
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/e4
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/e5
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/e6
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/e7
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/e8
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/e9
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ea
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/eb
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ec
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ed
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ee
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ef
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/f0
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/f1
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/f2
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/f3
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/f4
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/f5
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/f6
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/f7
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/f8
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/f9
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/fa
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/fb
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/fc
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/fd
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/fe
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/ff
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: output-filestore: Filestore (v2) creating directory C:\\Program Files\\Suricata\\log/filestore/tmp
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: detect: 1 rule files processed. 6 rules successfully loaded, 0 rules failed, 0
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[10632 - Suricata-Main] 2024-12-08 00:14:49 Info: detect: 6 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 0 inspect application layer, 0 are decoder event only
+[2212 - RX-1] 2024-12-08 00:14:50 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[2212 - RX-1] 2024-12-08 00:14:50 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[2212 - RX-1] 2024-12-08 00:14:50 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[2212 - RX-1] 2024-12-08 00:14:50 Info: win32-syscall: Obtaining offload state failed, device "Bluetooth Device (Personal Area Network)" may not support offload. Error: 0x80041001
+[2212 - RX-1] 2024-12-08 00:14:50 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[16172 - W#01] 2024-12-08 00:14:50 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[10632 - Suricata-Main] 2024-12-08 00:14:50 Warning: suricata: setrlimit unavailable.
+[10632 - Suricata-Main] 2024-12-08 00:14:50 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[10632 - Suricata-Main] 2024-12-08 00:15:30 Notice: suricata: Signal Received.  Stopping engine.
+[15232 - Suricata-Main] 2024-12-08 00:16:44 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[15232 - Suricata-Main] 2024-12-08 00:16:44 Info: cpu: CPUs/cores online: 8
+[15232 - Suricata-Main] 2024-12-08 00:16:44 Info: exception-policy: master exception-policy set to: auto
+[15232 - Suricata-Main] 2024-12-08 00:16:44 Info: win32-syscall: Found a global MTU of 1500
+[15232 - Suricata-Main] 2024-12-08 00:16:44 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[15232 - Suricata-Main] 2024-12-08 00:16:44 Info: logopenfile: fast output device (regular) initialized: fast.log
+[15232 - Suricata-Main] 2024-12-08 00:16:44 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[15232 - Suricata-Main] 2024-12-08 00:16:44 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[15232 - Suricata-Main] 2024-12-08 00:16:44 Info: log-pcap: Selected pcap-log compression method: none
+[15232 - Suricata-Main] 2024-12-08 00:16:44 Info: log-pcap: Selected pcap-log conditional logging: all
+[15232 - Suricata-Main] 2024-12-08 00:16:44 Info: log-pcap: using normal logging
+[15232 - Suricata-Main] 2024-12-08 00:16:44 Info: logopenfile: stats output device (regular) initialized: stats.log
+[15232 - Suricata-Main] 2024-12-08 00:16:44 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[15232 - Suricata-Main] 2024-12-08 00:16:44 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[15232 - Suricata-Main] 2024-12-08 00:16:44 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[5632 - RX-1] 2024-12-08 00:16:44 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[5632 - RX-1] 2024-12-08 00:16:44 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[5632 - RX-1] 2024-12-08 00:16:44 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[5632 - RX-1] 2024-12-08 00:16:44 Info: win32-syscall: Obtaining offload state failed, device "Bluetooth Device (Personal Area Network)" may not support offload. Error: 0x80041001
+[5632 - RX-1] 2024-12-08 00:16:44 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[6384 - W#01] 2024-12-08 00:16:44 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[15232 - Suricata-Main] 2024-12-08 00:16:44 Warning: suricata: setrlimit unavailable.
+[15232 - Suricata-Main] 2024-12-08 00:16:44 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[15232 - Suricata-Main] 2024-12-08 00:17:07 Notice: suricata: Signal Received.  Stopping engine.
+[4660 - Suricata-Main] 2024-12-08 00:17:16 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[4660 - Suricata-Main] 2024-12-08 00:17:16 Info: cpu: CPUs/cores online: 8
+[4660 - Suricata-Main] 2024-12-08 00:17:16 Info: exception-policy: master exception-policy set to: auto
+[4660 - Suricata-Main] 2024-12-08 00:17:16 Info: win32-syscall: Found a global MTU of 1500
+[4660 - Suricata-Main] 2024-12-08 00:17:16 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[4660 - Suricata-Main] 2024-12-08 00:17:16 Info: logopenfile: fast output device (regular) initialized: fast.log
+[4660 - Suricata-Main] 2024-12-08 00:17:16 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[4660 - Suricata-Main] 2024-12-08 00:17:16 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[4660 - Suricata-Main] 2024-12-08 00:17:16 Info: log-pcap: Selected pcap-log compression method: none
+[4660 - Suricata-Main] 2024-12-08 00:17:16 Info: log-pcap: Selected pcap-log conditional logging: all
+[4660 - Suricata-Main] 2024-12-08 00:17:16 Info: log-pcap: using normal logging
+[4660 - Suricata-Main] 2024-12-08 00:17:16 Info: logopenfile: stats output device (regular) initialized: stats.log
+[4660 - Suricata-Main] 2024-12-08 00:17:16 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[4660 - Suricata-Main] 2024-12-08 00:17:16 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[4660 - Suricata-Main] 2024-12-08 00:17:16 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[9600 - RX-1] 2024-12-08 00:17:16 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[9600 - RX-1] 2024-12-08 00:17:16 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[9600 - RX-1] 2024-12-08 00:17:16 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[9600 - RX-1] 2024-12-08 00:17:16 Info: win32-syscall: Obtaining offload state failed, device "Bluetooth Device (Personal Area Network)" may not support offload. Error: 0x80041001
+[9600 - RX-1] 2024-12-08 00:17:16 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[17768 - W#01] 2024-12-08 00:17:16 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[4660 - Suricata-Main] 2024-12-08 00:17:16 Warning: suricata: setrlimit unavailable.
+[4660 - Suricata-Main] 2024-12-08 00:17:16 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[4660 - Suricata-Main] 2024-12-08 00:17:32 Notice: suricata: Signal Received.  Stopping engine.
+[12944 - Suricata-Main] 2024-12-08 15:19:21 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[12944 - Suricata-Main] 2024-12-08 15:19:21 Info: cpu: CPUs/cores online: 8
+[12944 - Suricata-Main] 2024-12-08 15:19:21 Info: exception-policy: master exception-policy set to: auto
+[12944 - Suricata-Main] 2024-12-08 15:19:21 Info: win32-syscall: Found a global MTU of 1500
+[12944 - Suricata-Main] 2024-12-08 15:19:21 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[12944 - Suricata-Main] 2024-12-08 15:19:21 Info: logopenfile: fast output device (regular) initialized: fast.log
+[12944 - Suricata-Main] 2024-12-08 15:19:21 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[12944 - Suricata-Main] 2024-12-08 15:19:21 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[12944 - Suricata-Main] 2024-12-08 15:19:21 Info: log-pcap: Selected pcap-log compression method: none
+[12944 - Suricata-Main] 2024-12-08 15:19:21 Info: log-pcap: Selected pcap-log conditional logging: all
+[12944 - Suricata-Main] 2024-12-08 15:19:21 Info: log-pcap: using normal logging
+[12944 - Suricata-Main] 2024-12-08 15:19:21 Info: logopenfile: stats output device (regular) initialized: stats.log
+[12944 - Suricata-Main] 2024-12-08 15:19:21 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[12944 - Suricata-Main] 2024-12-08 15:19:21 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[12944 - Suricata-Main] 2024-12-08 15:19:21 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[18944 - RX-1] 2024-12-08 15:19:21 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[18944 - RX-1] 2024-12-08 15:19:21 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[18944 - RX-1] 2024-12-08 15:19:21 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[18944 - RX-1] 2024-12-08 15:19:21 Info: win32-syscall: Obtaining offload state failed, device "Bluetooth Device (Personal Area Network)" may not support offload. Error: 0x80041001
+[18944 - RX-1] 2024-12-08 15:19:21 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[14404 - W#01] 2024-12-08 15:19:21 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[12944 - Suricata-Main] 2024-12-08 15:19:21 Warning: suricata: setrlimit unavailable.
+[12944 - Suricata-Main] 2024-12-08 15:19:21 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[12944 - Suricata-Main] 2024-12-08 15:29:30 Notice: suricata: Signal Received.  Stopping engine.
+[29016 - Suricata-Main] 2024-12-09 11:08:14 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[29016 - Suricata-Main] 2024-12-09 11:08:14 Info: cpu: CPUs/cores online: 8
+[29016 - Suricata-Main] 2024-12-09 11:08:14 Info: exception-policy: master exception-policy set to: auto
+[29016 - Suricata-Main] 2024-12-09 11:08:14 Info: win32-syscall: Found a global MTU of 1500
+[29016 - Suricata-Main] 2024-12-09 11:08:14 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[29016 - Suricata-Main] 2024-12-09 11:08:14 Info: logopenfile: fast output device (regular) initialized: fast.log
+[29016 - Suricata-Main] 2024-12-09 11:08:14 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[29016 - Suricata-Main] 2024-12-09 11:08:14 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[29016 - Suricata-Main] 2024-12-09 11:08:14 Info: log-pcap: Selected pcap-log compression method: none
+[29016 - Suricata-Main] 2024-12-09 11:08:14 Info: log-pcap: Selected pcap-log conditional logging: all
+[29016 - Suricata-Main] 2024-12-09 11:08:14 Info: log-pcap: using normal logging
+[29016 - Suricata-Main] 2024-12-09 11:08:14 Info: logopenfile: stats output device (regular) initialized: stats.log
+[29016 - Suricata-Main] 2024-12-09 11:08:14 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[29016 - Suricata-Main] 2024-12-09 11:08:14 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[29016 - Suricata-Main] 2024-12-09 11:08:14 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[10072 - RX-1] 2024-12-09 11:08:14 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[10072 - RX-1] 2024-12-09 11:08:15 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[10072 - RX-1] 2024-12-09 11:08:15 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[10072 - RX-1] 2024-12-09 11:08:15 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[10920 - W#01] 2024-12-09 11:08:15 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[29016 - Suricata-Main] 2024-12-09 11:08:15 Warning: suricata: setrlimit unavailable.
+[29016 - Suricata-Main] 2024-12-09 11:08:15 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[29016 - Suricata-Main] 2024-12-09 11:29:23 Notice: suricata: Signal Received.  Stopping engine.
+[27396 - Suricata-Main] 2024-12-09 13:32:20 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[27396 - Suricata-Main] 2024-12-09 13:32:20 Info: cpu: CPUs/cores online: 8
+[27396 - Suricata-Main] 2024-12-09 13:32:20 Info: exception-policy: master exception-policy set to: auto
+[27396 - Suricata-Main] 2024-12-09 13:32:20 Info: win32-syscall: Found a global MTU of 1500
+[27396 - Suricata-Main] 2024-12-09 13:32:20 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[27396 - Suricata-Main] 2024-12-09 13:32:20 Info: logopenfile: fast output device (regular) initialized: fast.log
+[27396 - Suricata-Main] 2024-12-09 13:32:20 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[27396 - Suricata-Main] 2024-12-09 13:32:20 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[27396 - Suricata-Main] 2024-12-09 13:32:20 Info: log-pcap: Selected pcap-log compression method: none
+[27396 - Suricata-Main] 2024-12-09 13:32:20 Info: log-pcap: Selected pcap-log conditional logging: all
+[27396 - Suricata-Main] 2024-12-09 13:32:20 Info: log-pcap: using normal logging
+[27396 - Suricata-Main] 2024-12-09 13:32:20 Info: logopenfile: stats output device (regular) initialized: stats.log
+[27396 - Suricata-Main] 2024-12-09 13:32:21 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[27396 - Suricata-Main] 2024-12-09 13:32:21 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[27396 - Suricata-Main] 2024-12-09 13:32:21 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[27912 - W#01] 2024-12-09 13:32:21 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[27396 - Suricata-Main] 2024-12-09 13:32:21 Warning: suricata: setrlimit unavailable.
+[20740 - TX#00] 2024-12-09 13:32:21 Error: windivert: WinDivertOpen failed, error 87 (0x00000057): The parameter is incorrect. The WinDivert packet filter string is invalid.
+[27396 - Suricata-Main] 2024-12-09 13:32:21 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[27396 - Suricata-Main] 2024-12-09 13:32:21 Error: threads: thread TX#00 failed
+[25768 - Suricata-Main] 2024-12-09 21:40:52 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[25768 - Suricata-Main] 2024-12-09 21:40:52 Info: cpu: CPUs/cores online: 8
+[25768 - Suricata-Main] 2024-12-09 21:40:52 Info: exception-policy: master exception-policy set to: auto
+[25768 - Suricata-Main] 2024-12-09 21:40:52 Info: win32-syscall: Found a global MTU of 1500
+[25768 - Suricata-Main] 2024-12-09 21:40:52 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[25768 - Suricata-Main] 2024-12-09 21:40:52 Info: logopenfile: fast output device (regular) initialized: fast.log
+[25768 - Suricata-Main] 2024-12-09 21:40:52 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[25768 - Suricata-Main] 2024-12-09 21:40:52 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[25768 - Suricata-Main] 2024-12-09 21:40:52 Info: log-pcap: Selected pcap-log compression method: none
+[25768 - Suricata-Main] 2024-12-09 21:40:52 Info: log-pcap: Selected pcap-log conditional logging: all
+[25768 - Suricata-Main] 2024-12-09 21:40:52 Info: log-pcap: using normal logging
+[25768 - Suricata-Main] 2024-12-09 21:40:52 Info: logopenfile: stats output device (regular) initialized: stats.log
+[25768 - Suricata-Main] 2024-12-09 21:40:52 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[25768 - Suricata-Main] 2024-12-09 21:40:52 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[25768 - Suricata-Main] 2024-12-09 21:40:52 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[25296 - W#01] 2024-12-09 21:40:52 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[25768 - Suricata-Main] 2024-12-09 21:40:52 Warning: suricata: setrlimit unavailable.
+[25768 - Suricata-Main] 2024-12-09 21:40:52 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[10228 - TX#00] 2024-12-09 21:40:54 Error: windivert: WinDivertOpen failed, error 87 (0x00000057): The parameter is incorrect. The WinDivert packet filter string is invalid.
+[25768 - Suricata-Main] 2024-12-09 21:40:54 Error: threads: thread TX#00 failed
+[29484 - Suricata-Main] 2024-12-09 21:45:38 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[29484 - Suricata-Main] 2024-12-09 21:45:38 Info: cpu: CPUs/cores online: 8
+[29484 - Suricata-Main] 2024-12-09 21:45:38 Info: exception-policy: master exception-policy set to: auto
+[29484 - Suricata-Main] 2024-12-09 21:45:38 Info: win32-syscall: Found a global MTU of 1500
+[29484 - Suricata-Main] 2024-12-09 21:45:38 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[29484 - Suricata-Main] 2024-12-09 21:45:38 Info: logopenfile: fast output device (regular) initialized: fast.log
+[29484 - Suricata-Main] 2024-12-09 21:45:38 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[29484 - Suricata-Main] 2024-12-09 21:45:38 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[29484 - Suricata-Main] 2024-12-09 21:45:38 Info: log-pcap: Selected pcap-log compression method: none
+[29484 - Suricata-Main] 2024-12-09 21:45:38 Info: log-pcap: Selected pcap-log conditional logging: all
+[29484 - Suricata-Main] 2024-12-09 21:45:38 Info: log-pcap: using normal logging
+[29484 - Suricata-Main] 2024-12-09 21:45:38 Info: logopenfile: stats output device (regular) initialized: stats.log
+[29484 - Suricata-Main] 2024-12-09 21:45:38 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[29484 - Suricata-Main] 2024-12-09 21:45:38 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[29484 - Suricata-Main] 2024-12-09 21:45:38 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[28204 - W#01] 2024-12-09 21:45:38 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[29484 - Suricata-Main] 2024-12-09 21:45:38 Warning: suricata: setrlimit unavailable.
+[29484 - Suricata-Main] 2024-12-09 21:45:38 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[24636 - TX#00] 2024-12-09 21:45:39 Error: windivert: WinDivertOpen failed, error 87 (0x00000057): The parameter is incorrect. The WinDivert packet filter string is invalid.
+[29484 - Suricata-Main] 2024-12-09 21:45:39 Error: threads: thread TX#00 failed
+[17256 - Suricata-Main] 2024-12-09 21:56:42 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[17256 - Suricata-Main] 2024-12-09 21:56:42 Info: cpu: CPUs/cores online: 8
+[17256 - Suricata-Main] 2024-12-09 21:56:42 Info: exception-policy: master exception-policy set to: auto
+[17256 - Suricata-Main] 2024-12-09 21:56:42 Info: win32-syscall: Found a global MTU of 1500
+[17256 - Suricata-Main] 2024-12-09 21:56:42 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[17256 - Suricata-Main] 2024-12-09 21:56:43 Info: logopenfile: fast output device (regular) initialized: fast.log
+[17256 - Suricata-Main] 2024-12-09 21:56:43 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[17256 - Suricata-Main] 2024-12-09 21:56:43 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[17256 - Suricata-Main] 2024-12-09 21:56:43 Info: log-pcap: Selected pcap-log compression method: none
+[17256 - Suricata-Main] 2024-12-09 21:56:43 Info: log-pcap: Selected pcap-log conditional logging: all
+[17256 - Suricata-Main] 2024-12-09 21:56:43 Info: log-pcap: using normal logging
+[17256 - Suricata-Main] 2024-12-09 21:56:43 Info: logopenfile: stats output device (regular) initialized: stats.log
+[17256 - Suricata-Main] 2024-12-09 21:56:43 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[17256 - Suricata-Main] 2024-12-09 21:56:43 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[17256 - Suricata-Main] 2024-12-09 21:56:43 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[5392 - W#01] 2024-12-09 21:56:43 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[17256 - Suricata-Main] 2024-12-09 21:56:43 Warning: suricata: setrlimit unavailable.
+[17256 - Suricata-Main] 2024-12-09 21:56:43 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[14268 - TX#00] 2024-12-09 21:56:43 Error: windivert: WinDivertOpen failed, error 87 (0x00000057): The parameter is incorrect. The WinDivert packet filter string is invalid.
+[17256 - Suricata-Main] 2024-12-09 21:56:43 Error: threads: thread TX#00 failed
+[13004 - Suricata-Main] 2024-12-09 22:11:24 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[13004 - Suricata-Main] 2024-12-09 22:11:24 Info: cpu: CPUs/cores online: 8
+[13004 - Suricata-Main] 2024-12-09 22:11:24 Info: suricata: Setting engine mode to IDS mode by default
+[13004 - Suricata-Main] 2024-12-09 22:11:24 Info: exception-policy: master exception-policy set to: auto
+[13004 - Suricata-Main] 2024-12-09 22:11:24 Info: win32-syscall: Found a global MTU of 1500
+[13004 - Suricata-Main] 2024-12-09 22:11:24 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[13004 - Suricata-Main] 2024-12-09 22:11:24 Info: logopenfile: fast output device (regular) initialized: fast.log
+[13004 - Suricata-Main] 2024-12-09 22:11:24 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[13004 - Suricata-Main] 2024-12-09 22:11:24 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[13004 - Suricata-Main] 2024-12-09 22:11:24 Info: log-pcap: Selected pcap-log compression method: none
+[13004 - Suricata-Main] 2024-12-09 22:11:24 Info: log-pcap: Selected pcap-log conditional logging: all
+[13004 - Suricata-Main] 2024-12-09 22:11:24 Info: log-pcap: using normal logging
+[13004 - Suricata-Main] 2024-12-09 22:11:24 Info: logopenfile: stats output device (regular) initialized: stats.log
+[13004 - Suricata-Main] 2024-12-09 22:11:24 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[13004 - Suricata-Main] 2024-12-09 22:11:24 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[13004 - Suricata-Main] 2024-12-09 22:11:24 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[8888 - RX-1] 2024-12-09 22:11:25 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[8888 - RX-1] 2024-12-09 22:11:25 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[8888 - RX-1] 2024-12-09 22:11:25 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[8888 - RX-1] 2024-12-09 22:11:25 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[10528 - W#01] 2024-12-09 22:11:25 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[13004 - Suricata-Main] 2024-12-09 22:11:25 Warning: suricata: setrlimit unavailable.
+[13004 - Suricata-Main] 2024-12-09 22:11:25 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[13004 - Suricata-Main] 2024-12-09 22:11:37 Notice: suricata: Signal Received.  Stopping engine.
+[12212 - Suricata-Main] 2024-12-09 22:11:43 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[12212 - Suricata-Main] 2024-12-09 22:11:43 Info: cpu: CPUs/cores online: 8
+[12212 - Suricata-Main] 2024-12-09 22:11:43 Info: exception-policy: master exception-policy set to: auto
+[12212 - Suricata-Main] 2024-12-09 22:11:43 Info: win32-syscall: Found a global MTU of 1500
+[12212 - Suricata-Main] 2024-12-09 22:11:43 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[12212 - Suricata-Main] 2024-12-09 22:11:43 Info: logopenfile: fast output device (regular) initialized: fast.log
+[12212 - Suricata-Main] 2024-12-09 22:11:43 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[12212 - Suricata-Main] 2024-12-09 22:11:43 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[12212 - Suricata-Main] 2024-12-09 22:11:43 Info: log-pcap: Selected pcap-log compression method: none
+[12212 - Suricata-Main] 2024-12-09 22:11:43 Info: log-pcap: Selected pcap-log conditional logging: all
+[12212 - Suricata-Main] 2024-12-09 22:11:43 Info: log-pcap: using normal logging
+[12212 - Suricata-Main] 2024-12-09 22:11:43 Info: logopenfile: stats output device (regular) initialized: stats.log
+[12212 - Suricata-Main] 2024-12-09 22:11:43 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[12212 - Suricata-Main] 2024-12-09 22:11:43 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[12212 - Suricata-Main] 2024-12-09 22:11:43 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[21120 - RX-1] 2024-12-09 22:11:43 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[21120 - RX-1] 2024-12-09 22:11:43 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[21120 - RX-1] 2024-12-09 22:11:43 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[21120 - RX-1] 2024-12-09 22:11:43 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[11288 - W#01] 2024-12-09 22:11:43 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[12212 - Suricata-Main] 2024-12-09 22:11:44 Warning: suricata: setrlimit unavailable.
+[12212 - Suricata-Main] 2024-12-09 22:11:44 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[12212 - Suricata-Main] 2024-12-09 22:11:51 Notice: suricata: Signal Received.  Stopping engine.
+[18032 - Suricata-Main] 2024-12-10 17:18:02 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[18032 - Suricata-Main] 2024-12-10 17:18:02 Info: cpu: CPUs/cores online: 8
+[18032 - Suricata-Main] 2024-12-10 17:18:02 Info: suricata: Setting engine mode to IDS mode by default
+[18032 - Suricata-Main] 2024-12-10 17:18:02 Info: exception-policy: master exception-policy set to: auto
+[18032 - Suricata-Main] 2024-12-10 17:18:02 Info: win32-syscall: Found a global MTU of 1500
+[18032 - Suricata-Main] 2024-12-10 17:18:02 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[18032 - Suricata-Main] 2024-12-10 17:18:02 Info: logopenfile: fast output device (regular) initialized: fast.log
+[18032 - Suricata-Main] 2024-12-10 17:18:02 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[18032 - Suricata-Main] 2024-12-10 17:18:02 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[18032 - Suricata-Main] 2024-12-10 17:18:02 Info: log-pcap: Selected pcap-log compression method: none
+[18032 - Suricata-Main] 2024-12-10 17:18:02 Info: log-pcap: Selected pcap-log conditional logging: all
+[18032 - Suricata-Main] 2024-12-10 17:18:02 Info: log-pcap: using normal logging
+[18032 - Suricata-Main] 2024-12-10 17:18:02 Info: logopenfile: stats output device (regular) initialized: stats.log
+[18032 - Suricata-Main] 2024-12-10 17:18:03 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[18032 - Suricata-Main] 2024-12-10 17:18:03 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[18032 - Suricata-Main] 2024-12-10 17:18:03 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[1340 - W#01] 2024-12-10 17:18:03 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[18032 - Suricata-Main] 2024-12-10 17:18:03 Warning: suricata: setrlimit unavailable.
+[18032 - Suricata-Main] 2024-12-10 17:18:03 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[21756 - TX#00] 2024-12-10 17:18:04 Error: windivert: WinDivertOpen failed, error 87 (0x00000057): The parameter is incorrect. The WinDivert packet filter string is invalid.
+[18032 - Suricata-Main] 2024-12-10 17:18:04 Error: threads: thread TX#00 failed
+[19724 - Suricata-Main] 2024-12-10 17:19:52 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[19724 - Suricata-Main] 2024-12-10 17:19:52 Info: cpu: CPUs/cores online: 8
+[19724 - Suricata-Main] 2024-12-10 17:19:52 Info: suricata: Setting engine mode to IDS mode by default
+[19724 - Suricata-Main] 2024-12-10 17:19:52 Info: exception-policy: master exception-policy set to: auto
+[19724 - Suricata-Main] 2024-12-10 17:19:52 Info: win32-syscall: Found a global MTU of 1500
+[19724 - Suricata-Main] 2024-12-10 17:19:52 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[19724 - Suricata-Main] 2024-12-10 17:19:52 Info: logopenfile: fast output device (regular) initialized: fast.log
+[19724 - Suricata-Main] 2024-12-10 17:19:52 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[19724 - Suricata-Main] 2024-12-10 17:19:52 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[19724 - Suricata-Main] 2024-12-10 17:19:52 Info: log-pcap: Selected pcap-log compression method: none
+[19724 - Suricata-Main] 2024-12-10 17:19:52 Info: log-pcap: Selected pcap-log conditional logging: all
+[19724 - Suricata-Main] 2024-12-10 17:19:52 Info: log-pcap: using normal logging
+[19724 - Suricata-Main] 2024-12-10 17:19:52 Info: logopenfile: stats output device (regular) initialized: stats.log
+[19724 - Suricata-Main] 2024-12-10 17:19:52 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[19724 - Suricata-Main] 2024-12-10 17:19:52 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[19724 - Suricata-Main] 2024-12-10 17:19:52 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[17124 - W#01] 2024-12-10 17:19:52 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[19724 - Suricata-Main] 2024-12-10 17:19:53 Warning: suricata: setrlimit unavailable.
+[19724 - Suricata-Main] 2024-12-10 17:19:53 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[10020 - TX#00] 2024-12-10 17:19:53 Error: windivert: WinDivertOpen failed, error 87 (0x00000057): The parameter is incorrect. The WinDivert packet filter string is invalid.
+[19724 - Suricata-Main] 2024-12-10 17:19:53 Error: threads: thread TX#00 failed
+[25516 - Suricata-Main] 2024-12-10 17:24:47 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[25516 - Suricata-Main] 2024-12-10 17:24:47 Info: cpu: CPUs/cores online: 8
+[25516 - Suricata-Main] 2024-12-10 17:24:47 Info: suricata: Setting engine mode to IDS mode by default
+[25516 - Suricata-Main] 2024-12-10 17:24:47 Info: exception-policy: master exception-policy set to: auto
+[25516 - Suricata-Main] 2024-12-10 17:24:48 Info: win32-syscall: Found a global MTU of 1500
+[25516 - Suricata-Main] 2024-12-10 17:24:48 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[25516 - Suricata-Main] 2024-12-10 17:24:48 Info: logopenfile: fast output device (regular) initialized: fast.log
+[25516 - Suricata-Main] 2024-12-10 17:24:48 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[25516 - Suricata-Main] 2024-12-10 17:24:48 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[25516 - Suricata-Main] 2024-12-10 17:24:48 Info: log-pcap: Selected pcap-log compression method: none
+[25516 - Suricata-Main] 2024-12-10 17:24:48 Info: log-pcap: Selected pcap-log conditional logging: all
+[25516 - Suricata-Main] 2024-12-10 17:24:48 Info: log-pcap: using normal logging
+[25516 - Suricata-Main] 2024-12-10 17:24:48 Info: logopenfile: stats output device (regular) initialized: stats.log
+[25516 - Suricata-Main] 2024-12-10 17:24:48 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[25516 - Suricata-Main] 2024-12-10 17:24:48 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[25516 - Suricata-Main] 2024-12-10 17:24:48 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[22832 - W#01] 2024-12-10 17:24:48 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[25516 - Suricata-Main] 2024-12-10 17:24:48 Warning: suricata: setrlimit unavailable.
+[22532 - TX#00] 2024-12-10 17:24:48 Error: windivert: WinDivertOpen failed, error 87 (0x00000057): The parameter is incorrect. The WinDivert packet filter string is invalid.
+[25516 - Suricata-Main] 2024-12-10 17:24:48 Error: threads: thread "TX#00" failed to start: flags 2123
+[4048 - Suricata-Main] 2024-12-10 17:27:31 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[4048 - Suricata-Main] 2024-12-10 17:27:31 Info: cpu: CPUs/cores online: 8
+[4048 - Suricata-Main] 2024-12-10 17:27:31 Info: suricata: Setting engine mode to IDS mode by default
+[4048 - Suricata-Main] 2024-12-10 17:27:31 Info: exception-policy: master exception-policy set to: auto
+[4048 - Suricata-Main] 2024-12-10 17:27:31 Info: win32-syscall: Found a global MTU of 1500
+[4048 - Suricata-Main] 2024-12-10 17:27:31 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[4048 - Suricata-Main] 2024-12-10 17:27:31 Info: logopenfile: fast output device (regular) initialized: fast.log
+[4048 - Suricata-Main] 2024-12-10 17:27:31 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[4048 - Suricata-Main] 2024-12-10 17:27:31 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[4048 - Suricata-Main] 2024-12-10 17:27:31 Info: log-pcap: Selected pcap-log compression method: none
+[4048 - Suricata-Main] 2024-12-10 17:27:31 Info: log-pcap: Selected pcap-log conditional logging: all
+[4048 - Suricata-Main] 2024-12-10 17:27:31 Info: log-pcap: using normal logging
+[4048 - Suricata-Main] 2024-12-10 17:27:31 Info: logopenfile: stats output device (regular) initialized: stats.log
+[4048 - Suricata-Main] 2024-12-10 17:27:31 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[4048 - Suricata-Main] 2024-12-10 17:27:31 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[4048 - Suricata-Main] 2024-12-10 17:27:31 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[14152 - W#01] 2024-12-10 17:27:31 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[4048 - Suricata-Main] 2024-12-10 17:27:32 Warning: suricata: setrlimit unavailable.
+[4048 - Suricata-Main] 2024-12-10 17:27:32 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[19624 - TX#00] 2024-12-10 17:27:32 Error: windivert: WinDivertOpen failed, error 87 (0x00000057): The parameter is incorrect. The WinDivert packet filter string is invalid.
+[4048 - Suricata-Main] 2024-12-10 17:27:32 Error: threads: thread TX#00 failed
+[5000 - Suricata-Main] 2024-12-10 17:27:38 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[5000 - Suricata-Main] 2024-12-10 17:27:38 Info: cpu: CPUs/cores online: 8
+[5000 - Suricata-Main] 2024-12-10 17:27:38 Info: suricata: Setting engine mode to IDS mode by default
+[5000 - Suricata-Main] 2024-12-10 17:27:38 Info: exception-policy: master exception-policy set to: auto
+[5000 - Suricata-Main] 2024-12-10 17:27:38 Info: win32-syscall: Found a global MTU of 1500
+[5000 - Suricata-Main] 2024-12-10 17:27:38 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[5000 - Suricata-Main] 2024-12-10 17:27:38 Info: logopenfile: fast output device (regular) initialized: fast.log
+[5000 - Suricata-Main] 2024-12-10 17:27:38 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[5000 - Suricata-Main] 2024-12-10 17:27:38 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[5000 - Suricata-Main] 2024-12-10 17:27:38 Info: log-pcap: Selected pcap-log compression method: none
+[5000 - Suricata-Main] 2024-12-10 17:27:38 Info: log-pcap: Selected pcap-log conditional logging: all
+[5000 - Suricata-Main] 2024-12-10 17:27:38 Info: log-pcap: using normal logging
+[5000 - Suricata-Main] 2024-12-10 17:27:38 Info: logopenfile: stats output device (regular) initialized: stats.log
+[5000 - Suricata-Main] 2024-12-10 17:27:38 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[5000 - Suricata-Main] 2024-12-10 17:27:38 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[5000 - Suricata-Main] 2024-12-10 17:27:38 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[22540 - W#01] 2024-12-10 17:27:38 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[5000 - Suricata-Main] 2024-12-10 17:27:39 Warning: suricata: setrlimit unavailable.
+[5000 - Suricata-Main] 2024-12-10 17:27:39 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[19792 - TX#00] 2024-12-10 17:27:39 Error: windivert: WinDivertOpen failed, error 87 (0x00000057): The parameter is incorrect. The WinDivert packet filter string is invalid.
+[5000 - Suricata-Main] 2024-12-10 17:27:39 Error: threads: thread TX#00 failed
+[16644 - Suricata-Main] 2024-12-10 17:27:54 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[16644 - Suricata-Main] 2024-12-10 17:27:54 Info: cpu: CPUs/cores online: 8
+[16644 - Suricata-Main] 2024-12-10 17:27:54 Info: suricata: Setting engine mode to IDS mode by default
+[16644 - Suricata-Main] 2024-12-10 17:27:54 Info: exception-policy: master exception-policy set to: auto
+[16644 - Suricata-Main] 2024-12-10 17:27:54 Info: win32-syscall: Found a global MTU of 1500
+[16644 - Suricata-Main] 2024-12-10 17:27:54 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[16644 - Suricata-Main] 2024-12-10 17:27:54 Info: logopenfile: fast output device (regular) initialized: fast.log
+[16644 - Suricata-Main] 2024-12-10 17:27:54 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[16644 - Suricata-Main] 2024-12-10 17:27:54 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[16644 - Suricata-Main] 2024-12-10 17:27:54 Info: log-pcap: Selected pcap-log compression method: none
+[16644 - Suricata-Main] 2024-12-10 17:27:54 Info: log-pcap: Selected pcap-log conditional logging: all
+[16644 - Suricata-Main] 2024-12-10 17:27:54 Info: log-pcap: using normal logging
+[16644 - Suricata-Main] 2024-12-10 17:27:54 Info: logopenfile: stats output device (regular) initialized: stats.log
+[16644 - Suricata-Main] 2024-12-10 17:27:54 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[16644 - Suricata-Main] 2024-12-10 17:27:54 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[16644 - Suricata-Main] 2024-12-10 17:27:54 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[19652 - RX-1] 2024-12-10 17:27:56 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[19652 - RX-1] 2024-12-10 17:27:56 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[19652 - RX-1] 2024-12-10 17:27:56 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[19652 - RX-1] 2024-12-10 17:27:56 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[23388 - W#01] 2024-12-10 17:27:56 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[16644 - Suricata-Main] 2024-12-10 17:27:56 Warning: suricata: setrlimit unavailable.
+[16644 - Suricata-Main] 2024-12-10 17:27:56 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[16644 - Suricata-Main] 2024-12-10 17:36:13 Notice: suricata: Signal Received.  Stopping engine.
+[3036 - Suricata-Main] 2024-12-10 18:07:30 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[3036 - Suricata-Main] 2024-12-10 18:07:30 Info: cpu: CPUs/cores online: 8
+[3036 - Suricata-Main] 2024-12-10 18:07:30 Info: suricata: Setting engine mode to IDS mode by default
+[3036 - Suricata-Main] 2024-12-10 18:07:30 Info: exception-policy: master exception-policy set to: auto
+[3036 - Suricata-Main] 2024-12-10 18:07:30 Info: win32-syscall: Found a global MTU of 1500
+[3036 - Suricata-Main] 2024-12-10 18:07:30 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[3036 - Suricata-Main] 2024-12-10 18:07:30 Info: logopenfile: fast output device (regular) initialized: fast.log
+[3036 - Suricata-Main] 2024-12-10 18:07:30 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[3036 - Suricata-Main] 2024-12-10 18:07:30 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[3036 - Suricata-Main] 2024-12-10 18:07:30 Info: log-pcap: Selected pcap-log compression method: none
+[3036 - Suricata-Main] 2024-12-10 18:07:30 Info: log-pcap: Selected pcap-log conditional logging: all
+[3036 - Suricata-Main] 2024-12-10 18:07:30 Info: log-pcap: using normal logging
+[3036 - Suricata-Main] 2024-12-10 18:07:30 Info: logopenfile: stats output device (regular) initialized: stats.log
+[3036 - Suricata-Main] 2024-12-10 18:07:30 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[3036 - Suricata-Main] 2024-12-10 18:07:30 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[3036 - Suricata-Main] 2024-12-10 18:07:30 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[12104 - RX-1] 2024-12-10 18:07:31 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[12104 - RX-1] 2024-12-10 18:07:31 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[12104 - RX-1] 2024-12-10 18:07:31 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[12104 - RX-1] 2024-12-10 18:07:31 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[7616 - W#01] 2024-12-10 18:07:31 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[3036 - Suricata-Main] 2024-12-10 18:07:32 Warning: suricata: setrlimit unavailable.
+[3036 - Suricata-Main] 2024-12-10 18:07:32 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[3036 - Suricata-Main] 2024-12-10 18:26:06 Notice: suricata: Signal Received.  Stopping engine.
+[14832 - Suricata-Main] 2024-12-10 18:45:02 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[14832 - Suricata-Main] 2024-12-10 18:45:02 Info: cpu: CPUs/cores online: 8
+[14832 - Suricata-Main] 2024-12-10 18:45:02 Info: suricata: Setting engine mode to IDS mode by default
+[14832 - Suricata-Main] 2024-12-10 18:45:02 Info: exception-policy: master exception-policy set to: auto
+[14832 - Suricata-Main] 2024-12-10 18:45:02 Info: win32-syscall: Found a global MTU of 1500
+[14832 - Suricata-Main] 2024-12-10 18:45:02 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[14832 - Suricata-Main] 2024-12-10 18:45:02 Info: logopenfile: fast output device (regular) initialized: fast.log
+[14832 - Suricata-Main] 2024-12-10 18:45:02 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[14832 - Suricata-Main] 2024-12-10 18:45:02 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[14832 - Suricata-Main] 2024-12-10 18:45:02 Info: log-pcap: Selected pcap-log compression method: none
+[14832 - Suricata-Main] 2024-12-10 18:45:02 Info: log-pcap: Selected pcap-log conditional logging: all
+[14832 - Suricata-Main] 2024-12-10 18:45:02 Info: log-pcap: using normal logging
+[14832 - Suricata-Main] 2024-12-10 18:45:02 Info: logopenfile: stats output device (regular) initialized: stats.log
+[14832 - Suricata-Main] 2024-12-10 18:45:02 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[14832 - Suricata-Main] 2024-12-10 18:45:02 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[14832 - Suricata-Main] 2024-12-10 18:45:02 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[29272 - RX-1] 2024-12-10 18:45:03 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[29272 - RX-1] 2024-12-10 18:45:03 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[29272 - RX-1] 2024-12-10 18:45:03 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[29272 - RX-1] 2024-12-10 18:45:03 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[21400 - W#01] 2024-12-10 18:45:03 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[14832 - Suricata-Main] 2024-12-10 18:45:03 Warning: suricata: setrlimit unavailable.
+[14832 - Suricata-Main] 2024-12-10 18:45:03 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[14832 - Suricata-Main] 2024-12-10 18:54:34 Notice: suricata: Signal Received.  Stopping engine.
+[11996 - Suricata-Main] 2024-12-10 19:13:08 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[11996 - Suricata-Main] 2024-12-10 19:13:08 Info: cpu: CPUs/cores online: 8
+[11996 - Suricata-Main] 2024-12-10 19:13:08 Info: suricata: Setting engine mode to IDS mode by default
+[11996 - Suricata-Main] 2024-12-10 19:13:08 Info: exception-policy: master exception-policy set to: auto
+[11996 - Suricata-Main] 2024-12-10 19:13:08 Info: win32-syscall: Found a global MTU of 1500
+[11996 - Suricata-Main] 2024-12-10 19:13:08 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[11996 - Suricata-Main] 2024-12-10 19:13:08 Info: logopenfile: fast output device (regular) initialized: fast.log
+[11996 - Suricata-Main] 2024-12-10 19:13:08 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[11996 - Suricata-Main] 2024-12-10 19:13:08 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[11996 - Suricata-Main] 2024-12-10 19:13:08 Info: log-pcap: Selected pcap-log compression method: none
+[11996 - Suricata-Main] 2024-12-10 19:13:08 Info: log-pcap: Selected pcap-log conditional logging: all
+[11996 - Suricata-Main] 2024-12-10 19:13:08 Info: log-pcap: using normal logging
+[11996 - Suricata-Main] 2024-12-10 19:13:08 Info: logopenfile: stats output device (regular) initialized: stats.log
+[11996 - Suricata-Main] 2024-12-10 19:13:08 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[11996 - Suricata-Main] 2024-12-10 19:13:08 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[11996 - Suricata-Main] 2024-12-10 19:13:08 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[28076 - RX-1] 2024-12-10 19:13:09 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[28076 - RX-1] 2024-12-10 19:13:09 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[28076 - RX-1] 2024-12-10 19:13:09 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[28076 - RX-1] 2024-12-10 19:13:09 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[22344 - W#01] 2024-12-10 19:13:09 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[11996 - Suricata-Main] 2024-12-10 19:13:09 Warning: suricata: setrlimit unavailable.
+[11996 - Suricata-Main] 2024-12-10 19:13:09 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[11996 - Suricata-Main] 2024-12-10 19:14:42 Notice: suricata: Signal Received.  Stopping engine.
+[8156 - Suricata-Main] 2024-12-10 19:30:14 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[8156 - Suricata-Main] 2024-12-10 19:30:14 Info: cpu: CPUs/cores online: 8
+[8156 - Suricata-Main] 2024-12-10 19:30:14 Info: suricata: Setting engine mode to IDS mode by default
+[8156 - Suricata-Main] 2024-12-10 19:30:14 Info: exception-policy: master exception-policy set to: auto
+[8156 - Suricata-Main] 2024-12-10 19:30:14 Info: win32-syscall: Found a global MTU of 1500
+[8156 - Suricata-Main] 2024-12-10 19:30:14 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[8156 - Suricata-Main] 2024-12-10 19:30:14 Info: logopenfile: fast output device (regular) initialized: fast.log
+[8156 - Suricata-Main] 2024-12-10 19:30:14 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[8156 - Suricata-Main] 2024-12-10 19:30:14 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[8156 - Suricata-Main] 2024-12-10 19:30:14 Info: log-pcap: Selected pcap-log compression method: none
+[8156 - Suricata-Main] 2024-12-10 19:30:14 Info: log-pcap: Selected pcap-log conditional logging: all
+[8156 - Suricata-Main] 2024-12-10 19:30:14 Info: log-pcap: using normal logging
+[8156 - Suricata-Main] 2024-12-10 19:30:14 Info: logopenfile: stats output device (regular) initialized: stats.log
+[8156 - Suricata-Main] 2024-12-10 19:30:14 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[8156 - Suricata-Main] 2024-12-10 19:30:14 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[8156 - Suricata-Main] 2024-12-10 19:30:14 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[29636 - RX-1] 2024-12-10 19:30:14 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[29636 - RX-1] 2024-12-10 19:30:15 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[29636 - RX-1] 2024-12-10 19:30:15 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[29636 - RX-1] 2024-12-10 19:30:15 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[13004 - W#01] 2024-12-10 19:30:15 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[8156 - Suricata-Main] 2024-12-10 19:30:15 Warning: suricata: setrlimit unavailable.
+[8156 - Suricata-Main] 2024-12-10 19:30:15 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[11788 - Suricata-Main] 2024-12-11 09:08:31 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[11788 - Suricata-Main] 2024-12-11 09:08:31 Info: cpu: CPUs/cores online: 8
+[11788 - Suricata-Main] 2024-12-11 09:08:31 Info: suricata: Setting engine mode to IDS mode by default
+[11788 - Suricata-Main] 2024-12-11 09:08:31 Info: exception-policy: master exception-policy set to: auto
+[11788 - Suricata-Main] 2024-12-11 09:08:31 Info: win32-syscall: Found a global MTU of 1500
+[11788 - Suricata-Main] 2024-12-11 09:08:31 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[11788 - Suricata-Main] 2024-12-11 09:08:31 Info: logopenfile: fast output device (regular) initialized: fast.log
+[11788 - Suricata-Main] 2024-12-11 09:08:31 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[11788 - Suricata-Main] 2024-12-11 09:08:31 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[11788 - Suricata-Main] 2024-12-11 09:08:31 Info: log-pcap: Selected pcap-log compression method: none
+[11788 - Suricata-Main] 2024-12-11 09:08:31 Info: log-pcap: Selected pcap-log conditional logging: all
+[11788 - Suricata-Main] 2024-12-11 09:08:31 Info: log-pcap: using normal logging
+[11788 - Suricata-Main] 2024-12-11 09:08:31 Info: logopenfile: stats output device (regular) initialized: stats.log
+[11788 - Suricata-Main] 2024-12-11 09:08:31 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[11788 - Suricata-Main] 2024-12-11 09:08:31 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[11788 - Suricata-Main] 2024-12-11 09:08:31 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[1284 - RX-1] 2024-12-11 09:08:31 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[1284 - RX-1] 2024-12-11 09:08:31 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[1284 - RX-1] 2024-12-11 09:08:31 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[1284 - RX-1] 2024-12-11 09:08:31 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[780 - W#01] 2024-12-11 09:08:32 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[11788 - Suricata-Main] 2024-12-11 09:08:32 Warning: suricata: setrlimit unavailable.
+[11788 - Suricata-Main] 2024-12-11 09:08:32 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[6992 - Suricata-Main] 2024-12-11 09:13:54 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[6992 - Suricata-Main] 2024-12-11 09:13:54 Info: cpu: CPUs/cores online: 8
+[6992 - Suricata-Main] 2024-12-11 09:13:54 Info: suricata: Setting engine mode to IDS mode by default
+[6992 - Suricata-Main] 2024-12-11 09:13:54 Info: exception-policy: master exception-policy set to: auto
+[6992 - Suricata-Main] 2024-12-11 09:13:54 Info: win32-syscall: Found a global MTU of 1500
+[6992 - Suricata-Main] 2024-12-11 09:13:54 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[6992 - Suricata-Main] 2024-12-11 09:13:54 Info: logopenfile: fast output device (regular) initialized: fast.log
+[6992 - Suricata-Main] 2024-12-11 09:13:54 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[6992 - Suricata-Main] 2024-12-11 09:13:54 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[6992 - Suricata-Main] 2024-12-11 09:13:54 Info: log-pcap: Selected pcap-log compression method: none
+[6992 - Suricata-Main] 2024-12-11 09:13:54 Info: log-pcap: Selected pcap-log conditional logging: all
+[6992 - Suricata-Main] 2024-12-11 09:13:54 Info: log-pcap: using normal logging
+[6992 - Suricata-Main] 2024-12-11 09:13:54 Info: logopenfile: stats output device (regular) initialized: stats.log
+[6992 - Suricata-Main] 2024-12-11 09:13:54 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[6992 - Suricata-Main] 2024-12-11 09:13:54 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[6992 - Suricata-Main] 2024-12-11 09:13:54 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[3644 - RX-1] 2024-12-11 09:13:54 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[3644 - RX-1] 2024-12-11 09:13:54 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[3644 - RX-1] 2024-12-11 09:13:54 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[3644 - RX-1] 2024-12-11 09:13:54 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[17764 - W#01] 2024-12-11 09:13:54 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[6992 - Suricata-Main] 2024-12-11 09:13:54 Warning: suricata: setrlimit unavailable.
+[6992 - Suricata-Main] 2024-12-11 09:13:54 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[7812 - Suricata-Main] 2024-12-11 09:18:58 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[7812 - Suricata-Main] 2024-12-11 09:18:58 Info: cpu: CPUs/cores online: 8
+[7812 - Suricata-Main] 2024-12-11 09:18:58 Info: suricata: Setting engine mode to IDS mode by default
+[7812 - Suricata-Main] 2024-12-11 09:18:58 Info: exception-policy: master exception-policy set to: auto
+[7812 - Suricata-Main] 2024-12-11 09:18:58 Info: win32-syscall: Found a global MTU of 1500
+[7812 - Suricata-Main] 2024-12-11 09:18:58 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[7812 - Suricata-Main] 2024-12-11 09:18:58 Info: logopenfile: fast output device (regular) initialized: fast.log
+[7812 - Suricata-Main] 2024-12-11 09:18:58 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[7812 - Suricata-Main] 2024-12-11 09:18:58 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[7812 - Suricata-Main] 2024-12-11 09:18:58 Info: log-pcap: Selected pcap-log compression method: none
+[7812 - Suricata-Main] 2024-12-11 09:18:58 Info: log-pcap: Selected pcap-log conditional logging: all
+[7812 - Suricata-Main] 2024-12-11 09:18:58 Info: log-pcap: using normal logging
+[7812 - Suricata-Main] 2024-12-11 09:18:58 Info: logopenfile: stats output device (regular) initialized: stats.log
+[7812 - Suricata-Main] 2024-12-11 09:18:58 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[7812 - Suricata-Main] 2024-12-11 09:18:58 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[7812 - Suricata-Main] 2024-12-11 09:18:58 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[13296 - RX-1] 2024-12-11 09:18:58 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[13296 - RX-1] 2024-12-11 09:18:58 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[13296 - RX-1] 2024-12-11 09:18:58 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[13296 - RX-1] 2024-12-11 09:18:58 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[16128 - W#01] 2024-12-11 09:18:58 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[7812 - Suricata-Main] 2024-12-11 09:18:59 Warning: suricata: setrlimit unavailable.
+[7812 - Suricata-Main] 2024-12-11 09:18:59 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[7812 - Suricata-Main] 2024-12-11 09:19:06 Notice: suricata: Signal Received.  Stopping engine.
+[15016 - Suricata-Main] 2024-12-11 09:20:16 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[15016 - Suricata-Main] 2024-12-11 09:20:16 Info: cpu: CPUs/cores online: 8
+[15016 - Suricata-Main] 2024-12-11 09:20:16 Info: suricata: Setting engine mode to IDS mode by default
+[15016 - Suricata-Main] 2024-12-11 09:20:16 Info: exception-policy: master exception-policy set to: auto
+[15016 - Suricata-Main] 2024-12-11 09:20:16 Info: win32-syscall: Found a global MTU of 1500
+[15016 - Suricata-Main] 2024-12-11 09:20:16 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[15016 - Suricata-Main] 2024-12-11 09:20:17 Info: logopenfile: fast output device (regular) initialized: fast.log
+[15016 - Suricata-Main] 2024-12-11 09:20:17 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[15016 - Suricata-Main] 2024-12-11 09:20:17 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[15016 - Suricata-Main] 2024-12-11 09:20:17 Info: log-pcap: Selected pcap-log compression method: none
+[15016 - Suricata-Main] 2024-12-11 09:20:17 Info: log-pcap: Selected pcap-log conditional logging: all
+[15016 - Suricata-Main] 2024-12-11 09:20:17 Info: log-pcap: using normal logging
+[15016 - Suricata-Main] 2024-12-11 09:20:17 Info: logopenfile: stats output device (regular) initialized: stats.log
+[15016 - Suricata-Main] 2024-12-11 09:20:17 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[15016 - Suricata-Main] 2024-12-11 09:20:17 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[15016 - Suricata-Main] 2024-12-11 09:20:17 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[568 - RX-1] 2024-12-11 09:20:17 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[568 - RX-1] 2024-12-11 09:20:17 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[568 - RX-1] 2024-12-11 09:20:17 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[568 - RX-1] 2024-12-11 09:20:17 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[13404 - W#01] 2024-12-11 09:20:17 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[15016 - Suricata-Main] 2024-12-11 09:20:17 Warning: suricata: setrlimit unavailable.
+[15016 - Suricata-Main] 2024-12-11 09:20:17 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[15016 - Suricata-Main] 2024-12-11 09:21:29 Notice: suricata: Signal Received.  Stopping engine.
+[14312 - Suricata-Main] 2024-12-11 09:23:51 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[14312 - Suricata-Main] 2024-12-11 09:23:51 Info: cpu: CPUs/cores online: 8
+[14312 - Suricata-Main] 2024-12-11 09:23:51 Info: suricata: Setting engine mode to IDS mode by default
+[14312 - Suricata-Main] 2024-12-11 09:23:51 Info: exception-policy: master exception-policy set to: auto
+[14312 - Suricata-Main] 2024-12-11 09:23:51 Info: win32-syscall: Found a global MTU of 1500
+[14312 - Suricata-Main] 2024-12-11 09:23:51 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[14312 - Suricata-Main] 2024-12-11 09:23:51 Info: logopenfile: fast output device (regular) initialized: fast.log
+[14312 - Suricata-Main] 2024-12-11 09:23:51 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[14312 - Suricata-Main] 2024-12-11 09:23:51 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[14312 - Suricata-Main] 2024-12-11 09:23:51 Info: log-pcap: Selected pcap-log compression method: none
+[14312 - Suricata-Main] 2024-12-11 09:23:51 Info: log-pcap: Selected pcap-log conditional logging: all
+[14312 - Suricata-Main] 2024-12-11 09:23:51 Info: log-pcap: using normal logging
+[14312 - Suricata-Main] 2024-12-11 09:23:51 Info: logopenfile: stats output device (regular) initialized: stats.log
+[14312 - Suricata-Main] 2024-12-11 09:23:51 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[14312 - Suricata-Main] 2024-12-11 09:23:51 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[14312 - Suricata-Main] 2024-12-11 09:23:51 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[14376 - RX-1] 2024-12-11 09:23:51 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[14376 - RX-1] 2024-12-11 09:23:51 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[14376 - RX-1] 2024-12-11 09:23:51 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[14376 - RX-1] 2024-12-11 09:23:52 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[16508 - W#01] 2024-12-11 09:23:52 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[14312 - Suricata-Main] 2024-12-11 09:23:52 Warning: suricata: setrlimit unavailable.
+[14312 - Suricata-Main] 2024-12-11 09:23:52 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[14312 - Suricata-Main] 2024-12-11 09:24:26 Notice: suricata: Signal Received.  Stopping engine.
+[6416 - Suricata-Main] 2024-12-11 09:26:26 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[6416 - Suricata-Main] 2024-12-11 09:26:26 Info: cpu: CPUs/cores online: 8
+[6416 - Suricata-Main] 2024-12-11 09:26:26 Info: suricata: Setting engine mode to IDS mode by default
+[6416 - Suricata-Main] 2024-12-11 09:26:26 Info: exception-policy: master exception-policy set to: auto
+[6416 - Suricata-Main] 2024-12-11 09:26:26 Info: win32-syscall: Found a global MTU of 1500
+[6416 - Suricata-Main] 2024-12-11 09:26:26 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[6416 - Suricata-Main] 2024-12-11 09:26:26 Info: logopenfile: fast output device (regular) initialized: fast.log
+[6416 - Suricata-Main] 2024-12-11 09:26:26 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[6416 - Suricata-Main] 2024-12-11 09:26:26 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[6416 - Suricata-Main] 2024-12-11 09:26:26 Info: log-pcap: Selected pcap-log compression method: none
+[6416 - Suricata-Main] 2024-12-11 09:26:26 Info: log-pcap: Selected pcap-log conditional logging: all
+[6416 - Suricata-Main] 2024-12-11 09:26:26 Info: log-pcap: using normal logging
+[6416 - Suricata-Main] 2024-12-11 09:26:26 Info: logopenfile: stats output device (regular) initialized: stats.log
+[6416 - Suricata-Main] 2024-12-11 09:26:26 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[6416 - Suricata-Main] 2024-12-11 09:26:26 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[6416 - Suricata-Main] 2024-12-11 09:26:27 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[13796 - RX-1] 2024-12-11 09:26:27 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[13796 - RX-1] 2024-12-11 09:26:27 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[13796 - RX-1] 2024-12-11 09:26:27 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[13796 - RX-1] 2024-12-11 09:26:27 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[10600 - W#01] 2024-12-11 09:26:27 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[6416 - Suricata-Main] 2024-12-11 09:26:27 Warning: suricata: setrlimit unavailable.
+[6416 - Suricata-Main] 2024-12-11 09:26:27 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[6416 - Suricata-Main] 2024-12-11 09:27:49 Notice: suricata: Signal Received.  Stopping engine.
+[16872 - Suricata-Main] 2024-12-11 09:28:48 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[16872 - Suricata-Main] 2024-12-11 09:28:48 Info: cpu: CPUs/cores online: 8
+[16872 - Suricata-Main] 2024-12-11 09:28:48 Info: suricata: Setting engine mode to IDS mode by default
+[16872 - Suricata-Main] 2024-12-11 09:28:48 Info: exception-policy: master exception-policy set to: auto
+[16872 - Suricata-Main] 2024-12-11 09:28:48 Info: win32-syscall: Found a global MTU of 1500
+[16872 - Suricata-Main] 2024-12-11 09:28:48 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[16872 - Suricata-Main] 2024-12-11 09:28:48 Info: logopenfile: fast output device (regular) initialized: fast.log
+[16872 - Suricata-Main] 2024-12-11 09:28:48 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[16872 - Suricata-Main] 2024-12-11 09:28:48 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[16872 - Suricata-Main] 2024-12-11 09:28:48 Info: log-pcap: Selected pcap-log compression method: none
+[16872 - Suricata-Main] 2024-12-11 09:28:48 Info: log-pcap: Selected pcap-log conditional logging: all
+[16872 - Suricata-Main] 2024-12-11 09:28:48 Info: log-pcap: using normal logging
+[16872 - Suricata-Main] 2024-12-11 09:28:48 Info: logopenfile: stats output device (regular) initialized: stats.log
+[16872 - Suricata-Main] 2024-12-11 09:28:48 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[16872 - Suricata-Main] 2024-12-11 09:28:48 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[16872 - Suricata-Main] 2024-12-11 09:28:48 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[17488 - RX-1] 2024-12-11 09:28:48 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[17488 - RX-1] 2024-12-11 09:28:48 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[17488 - RX-1] 2024-12-11 09:28:48 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[17488 - RX-1] 2024-12-11 09:28:49 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[14972 - W#01] 2024-12-11 09:28:49 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[16872 - Suricata-Main] 2024-12-11 09:28:49 Warning: suricata: setrlimit unavailable.
+[16872 - Suricata-Main] 2024-12-11 09:28:49 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[16872 - Suricata-Main] 2024-12-11 09:29:35 Notice: suricata: Signal Received.  Stopping engine.
+[13800 - Suricata-Main] 2024-12-11 09:34:16 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[13800 - Suricata-Main] 2024-12-11 09:34:16 Info: cpu: CPUs/cores online: 8
+[13800 - Suricata-Main] 2024-12-11 09:34:16 Info: suricata: Setting engine mode to IDS mode by default
+[13800 - Suricata-Main] 2024-12-11 09:34:16 Info: exception-policy: master exception-policy set to: auto
+[13800 - Suricata-Main] 2024-12-11 09:34:16 Info: win32-syscall: Found a global MTU of 1500
+[13800 - Suricata-Main] 2024-12-11 09:34:16 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[13800 - Suricata-Main] 2024-12-11 09:34:16 Info: logopenfile: fast output device (regular) initialized: fast.log
+[13800 - Suricata-Main] 2024-12-11 09:34:16 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[13800 - Suricata-Main] 2024-12-11 09:34:16 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[13800 - Suricata-Main] 2024-12-11 09:34:16 Info: log-pcap: Selected pcap-log compression method: none
+[13800 - Suricata-Main] 2024-12-11 09:34:16 Info: log-pcap: Selected pcap-log conditional logging: all
+[13800 - Suricata-Main] 2024-12-11 09:34:16 Info: log-pcap: using normal logging
+[13800 - Suricata-Main] 2024-12-11 09:34:16 Info: logopenfile: stats output device (regular) initialized: stats.log
+[13800 - Suricata-Main] 2024-12-11 09:34:16 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[13800 - Suricata-Main] 2024-12-11 09:34:16 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[13800 - Suricata-Main] 2024-12-11 09:34:16 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[9652 - RX-1] 2024-12-11 09:34:16 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[9652 - RX-1] 2024-12-11 09:34:16 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[9652 - RX-1] 2024-12-11 09:34:16 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[9652 - RX-1] 2024-12-11 09:34:16 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[17564 - W#01] 2024-12-11 09:34:16 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[13800 - Suricata-Main] 2024-12-11 09:34:16 Warning: suricata: setrlimit unavailable.
+[13800 - Suricata-Main] 2024-12-11 09:34:16 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[13800 - Suricata-Main] 2024-12-11 09:35:16 Notice: suricata: Signal Received.  Stopping engine.
+[15552 - Suricata-Main] 2024-12-11 09:35:23 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[15552 - Suricata-Main] 2024-12-11 09:35:23 Info: cpu: CPUs/cores online: 8
+[15552 - Suricata-Main] 2024-12-11 09:35:23 Info: suricata: Setting engine mode to IDS mode by default
+[15552 - Suricata-Main] 2024-12-11 09:35:23 Info: exception-policy: master exception-policy set to: auto
+[15552 - Suricata-Main] 2024-12-11 09:35:23 Info: win32-syscall: Found a global MTU of 1500
+[15552 - Suricata-Main] 2024-12-11 09:35:23 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[15552 - Suricata-Main] 2024-12-11 09:35:23 Info: logopenfile: fast output device (regular) initialized: fast.log
+[15552 - Suricata-Main] 2024-12-11 09:35:23 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[15552 - Suricata-Main] 2024-12-11 09:35:23 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[15552 - Suricata-Main] 2024-12-11 09:35:23 Info: log-pcap: Selected pcap-log compression method: none
+[15552 - Suricata-Main] 2024-12-11 09:35:23 Info: log-pcap: Selected pcap-log conditional logging: all
+[15552 - Suricata-Main] 2024-12-11 09:35:23 Info: log-pcap: using normal logging
+[15552 - Suricata-Main] 2024-12-11 09:35:23 Info: logopenfile: stats output device (regular) initialized: stats.log
+[15552 - Suricata-Main] 2024-12-11 09:35:23 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[15552 - Suricata-Main] 2024-12-11 09:35:23 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[15552 - Suricata-Main] 2024-12-11 09:35:23 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[6300 - RX-1] 2024-12-11 09:35:24 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[6300 - RX-1] 2024-12-11 09:35:24 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[6300 - RX-1] 2024-12-11 09:35:24 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[6300 - RX-1] 2024-12-11 09:35:24 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[10692 - W#01] 2024-12-11 09:35:24 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[15552 - Suricata-Main] 2024-12-11 09:35:24 Warning: suricata: setrlimit unavailable.
+[15552 - Suricata-Main] 2024-12-11 09:35:24 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[15552 - Suricata-Main] 2024-12-11 09:36:13 Notice: suricata: Signal Received.  Stopping engine.
+[11156 - Suricata-Main] 2024-12-11 09:46:48 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[11156 - Suricata-Main] 2024-12-11 09:46:48 Info: cpu: CPUs/cores online: 8
+[11156 - Suricata-Main] 2024-12-11 09:46:48 Info: suricata: Setting engine mode to IDS mode by default
+[11156 - Suricata-Main] 2024-12-11 09:46:48 Info: exception-policy: master exception-policy set to: auto
+[11156 - Suricata-Main] 2024-12-11 09:46:48 Info: win32-syscall: Found a global MTU of 1500
+[11156 - Suricata-Main] 2024-12-11 09:46:48 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[11156 - Suricata-Main] 2024-12-11 09:46:48 Info: logopenfile: fast output device (regular) initialized: fast.log
+[11156 - Suricata-Main] 2024-12-11 09:46:48 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[11156 - Suricata-Main] 2024-12-11 09:46:48 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[11156 - Suricata-Main] 2024-12-11 09:46:48 Info: log-pcap: Selected pcap-log compression method: none
+[11156 - Suricata-Main] 2024-12-11 09:46:48 Info: log-pcap: Selected pcap-log conditional logging: all
+[11156 - Suricata-Main] 2024-12-11 09:46:48 Info: log-pcap: using normal logging
+[11156 - Suricata-Main] 2024-12-11 09:46:48 Info: logopenfile: stats output device (regular) initialized: stats.log
+[11156 - Suricata-Main] 2024-12-11 09:46:48 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[11156 - Suricata-Main] 2024-12-11 09:46:48 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[11156 - Suricata-Main] 2024-12-11 09:46:48 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[10884 - RX-1] 2024-12-11 09:46:48 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[10884 - RX-1] 2024-12-11 09:46:48 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[10884 - RX-1] 2024-12-11 09:46:48 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[10884 - RX-1] 2024-12-11 09:46:48 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[11360 - W#01] 2024-12-11 09:46:48 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[11156 - Suricata-Main] 2024-12-11 09:46:48 Warning: suricata: setrlimit unavailable.
+[11156 - Suricata-Main] 2024-12-11 09:46:48 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[11156 - Suricata-Main] 2024-12-11 09:47:28 Notice: suricata: Signal Received.  Stopping engine.
+[348 - Suricata-Main] 2024-12-11 09:51:34 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[348 - Suricata-Main] 2024-12-11 09:51:34 Info: cpu: CPUs/cores online: 8
+[348 - Suricata-Main] 2024-12-11 09:51:34 Info: suricata: Setting engine mode to IDS mode by default
+[348 - Suricata-Main] 2024-12-11 09:51:34 Info: exception-policy: master exception-policy set to: auto
+[348 - Suricata-Main] 2024-12-11 09:51:34 Info: win32-syscall: Found a global MTU of 1500
+[348 - Suricata-Main] 2024-12-11 09:51:34 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[348 - Suricata-Main] 2024-12-11 09:51:34 Info: logopenfile: fast output device (regular) initialized: fast.log
+[348 - Suricata-Main] 2024-12-11 09:51:34 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[348 - Suricata-Main] 2024-12-11 09:51:34 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[348 - Suricata-Main] 2024-12-11 09:51:34 Info: log-pcap: Selected pcap-log compression method: none
+[348 - Suricata-Main] 2024-12-11 09:51:34 Info: log-pcap: Selected pcap-log conditional logging: all
+[348 - Suricata-Main] 2024-12-11 09:51:34 Info: log-pcap: using normal logging
+[348 - Suricata-Main] 2024-12-11 09:51:34 Info: logopenfile: stats output device (regular) initialized: stats.log
+[348 - Suricata-Main] 2024-12-11 09:51:34 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[348 - Suricata-Main] 2024-12-11 09:51:34 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[348 - Suricata-Main] 2024-12-11 09:51:34 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[6680 - RX-1] 2024-12-11 09:51:34 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[6680 - RX-1] 2024-12-11 09:51:34 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[6680 - RX-1] 2024-12-11 09:51:34 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[6680 - RX-1] 2024-12-11 09:51:34 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[18676 - W#01] 2024-12-11 09:51:34 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[348 - Suricata-Main] 2024-12-11 09:51:34 Warning: suricata: setrlimit unavailable.
+[348 - Suricata-Main] 2024-12-11 09:51:34 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[348 - Suricata-Main] 2024-12-11 09:52:51 Notice: suricata: Signal Received.  Stopping engine.
+[348 - Suricata-Main] 2024-12-11 09:52:51 Info: suricata: time elapsed 77.390s
+[6680 - RX-1] 2024-12-11 09:52:52 Info: windivert: (RX-1) Packets 2752, Bytes 9355936, Errors 0
+[6680 - RX-1] 2024-12-11 09:52:52 Info: windivert: (RX-1) Verdict: Accepted 2752, Dropped 0, Replaced 0
+[348 - Suricata-Main] 2024-12-11 09:52:53 Info: counters: Alerts: 0
+[17648 - Suricata-Main] 2024-12-11 09:53:03 Notice: suricata: This is Suricata version 7.0.7 RELEASE running in SYSTEM mode
+[17648 - Suricata-Main] 2024-12-11 09:53:03 Info: cpu: CPUs/cores online: 8
+[17648 - Suricata-Main] 2024-12-11 09:53:03 Info: suricata: Setting engine mode to IDS mode by default
+[17648 - Suricata-Main] 2024-12-11 09:53:03 Info: exception-policy: master exception-policy set to: auto
+[17648 - Suricata-Main] 2024-12-11 09:53:03 Info: win32-syscall: Found a global MTU of 1500
+[17648 - Suricata-Main] 2024-12-11 09:53:03 Info: coredump-config: Configuring core dump is not yet supported on Windows.
+[17648 - Suricata-Main] 2024-12-11 09:53:03 Info: logopenfile: fast output device (regular) initialized: fast.log
+[17648 - Suricata-Main] 2024-12-11 09:53:03 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[17648 - Suricata-Main] 2024-12-11 09:53:03 Info: log-pcap: Using log dir C:\\Program Files\\Suricata\\log
+[17648 - Suricata-Main] 2024-12-11 09:53:03 Info: log-pcap: Selected pcap-log compression method: none
+[17648 - Suricata-Main] 2024-12-11 09:53:03 Info: log-pcap: Selected pcap-log conditional logging: all
+[17648 - Suricata-Main] 2024-12-11 09:53:03 Info: log-pcap: using normal logging
+[17648 - Suricata-Main] 2024-12-11 09:53:03 Info: logopenfile: stats output device (regular) initialized: stats.log
+[17648 - Suricata-Main] 2024-12-11 09:53:03 Info: detect: 1 rule files processed. 7 rules successfully loaded, 0 rules failed, 0
+[17648 - Suricata-Main] 2024-12-11 09:53:03 Warning: threshold-config: Error opening file: "C:\Program Files\Suricata\\\threshold.config": No such file or directory
+[17648 - Suricata-Main] 2024-12-11 09:53:03 Info: detect: 7 signatures processed. 0 are IP-only rules, 0 are inspecting packet payload, 1 inspect application layer, 0 are decoder event only
+[4032 - RX-1] 2024-12-11 09:53:03 Info: win32-syscall: Obtaining offload state failed, device "TAP-ProtonVPN Windows Adapter V9" may not support offload. Error: 0x80041001
+[4032 - RX-1] 2024-12-11 09:53:03 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet1" may not support offload. Error: 0x80041001
+[4032 - RX-1] 2024-12-11 09:53:03 Info: win32-syscall: Obtaining offload state failed, device "VMware Virtual Ethernet Adapter for VMnet8" may not support offload. Error: 0x80041001
+[4032 - RX-1] 2024-12-11 09:53:03 Info: win32-syscall: Obtaining offload state failed, device "Software Loopback Interface 1" may not support offload. Error: 0x80041002
+[11564 - W#01] 2024-12-11 09:53:03 Info: log-pcap: Unable to initialize ring buffer on this platform.
+[17648 - Suricata-Main] 2024-12-11 09:53:03 Warning: suricata: setrlimit unavailable.
+[17648 - Suricata-Main] 2024-12-11 09:53:03 Notice: threads: Threads created -> RX: 1 W: 8 TX: 1 FM: 1 FR: 1   Engine started.
+[17648 - Suricata-Main] 2024-12-11 09:53:26 Notice: suricata: Signal Received.  Stopping engine.
