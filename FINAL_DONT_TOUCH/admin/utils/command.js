@@ -1,54 +1,15 @@
-import { exec } from 'child_process';
+import os from "os";
+import { exec } from "child_process";
 
 const dns_servers = [
-    "8.8.8.8",      // Google DNS
-    "8.8.4.4",      // Google DNS Secondary
-    "1.1.1.1",      // Cloudflare
-    "1.0.0.1",      // Cloudflare Secondary
-    "9.9.9.9",      // Quad9
+    "8.8.8.8", // Google DNS
+    "8.8.4.4", // Google DNS Secondary
+    "1.1.1.1", // Cloudflare
+    "1.0.0.1", // Cloudflare Secondary
+    "9.9.9.9", // Quad9
     "208.67.222.222", // OpenDNS
-    "208.67.220.220"  // OpenDNS Secondary
+    "208.67.220.220" // OpenDNS Secondary
 ];
-
-export const getIpFromDomain = async (domain) => {
-    const all_ips = new Set();
-
-    for (const dns_server of dns_servers) {
-        const command = `nslookup ${domain} ${dns_server}`;
-        console.log("command", command);
-
-        try {
-            const result = await execCommand(command);
-            console.log("result", result);
-
-            // Extract IP addresses using regex
-            const ip_pattern = /\b(?:\d{1,3}\.){3}\d{1,3}\b/g;  // Matches IPv4 addresses
-            const ip_addresses = result.match(ip_pattern);
-
-            // Add valid IPs to set
-            if (ip_addresses) {
-                ip_addresses.forEach(ip => {
-                    // Exclude DNS server IPs and localhost
-                    if (!ip.startsWith('127.') && !dns_servers.includes(ip)) {
-                        all_ips.add(ip);
-                    }
-                });
-            }
-        } catch (error) {
-            console.log(`nslookup command failed for DNS ${dns_server}: ${error.message}`);
-        }
-    }
-
-    const unique_ips = Array.from(all_ips);
-    console.log("unique_ips", unique_ips);
-    if (unique_ips.length > 0) {
-        console.log(`Resolved IP addresses across all DNS servers: ${unique_ips.join(', ')}`);
-        return unique_ips;
-    } else {
-        console.log("No IP addresses found from any DNS server.");
-        return [];
-    }
-};
 
 const execCommand = (command) => {
     return new Promise((resolve, reject) => {
@@ -62,91 +23,127 @@ const execCommand = (command) => {
     });
 };
 
-export const generateNetshCommand = async (actionRule, rule, listType) => {
-    const { rule_name, domain, app_path, action , direction, ports, protocol } = rule;
-    const direction_flag = direction === "inbound" ? "in" : "out";
-    const action_flag = action === "allow" ? "allow" : "block";
-    
-    const profile_flag = "profile=any"; // Specify the profile
-    let base_command = [
-        "netsh", "advfirewall", "firewall", actionRule === "delete" ? "delete" : "add", "rule",
-        `name=${rule_name}`,
-        `dir=${direction_flag}`,
-        `action=${action_flag}`,
-        profile_flag
-    ];
+export const getIpFromDomain = async (domain) => {
+    const all_ips = new Set();
+    const isWindows = os.platform() === "win32";
 
-    if (app_path) {
-        base_command.push(`program="${app_path}"`);
-    }
+    for (const dns_server of dns_servers) {
+        const command = isWindows
+            ? `nslookup ${domain} ${dns_server}`
+            : `dig @${dns_server} ${domain} +short`;
+        console.log("Command:", command);
 
-    if (domain) {
-        const ip_addresses = await getIpFromDomain(domain);
-        if (ip_addresses.length > 0) {
-            base_command.push(`remoteip=${ip_addresses.join(',')}`);
+        try {
+            const result = await execCommand(command);
+            console.log("Result:", result);
+
+            // Extract IP addresses using regex
+            const ip_pattern = /\b(?:\d{1,3}\.){3}\d{1,3}\b/g; // Matches IPv4 addresses
+            const ip_addresses = result.match(ip_pattern);
+
+            // Add valid IPs to set
+            if (ip_addresses) {
+                ip_addresses.forEach((ip) => {
+                    if (!ip.startsWith("127.") && !dns_servers.includes(ip)) {
+                        all_ips.add(ip);
+                    }
+                });
+            }
+        } catch (error) {
+            console.log(`Command failed for DNS ${dns_server}: ${error.message}`);
         }
     }
 
-    
-    // Handle whitelist/blocklist specific logic
+    const unique_ips = Array.from(all_ips);
+    console.log("Unique IPs:", unique_ips);
+    return unique_ips;
+};
+
+export const getIpsFromDomains = async (domains) => {
+    const all_ips = new Set();
+
+    for (const domain of domains) {
+        const ips = await getIpFromDomain(domain);
+        ips.forEach((ip) => all_ips.add(ip));
+    }
+
+    const unique_ips = Array.from(all_ips);
+    console.log("Unique IPs from Domains:", unique_ips);
+    return unique_ips;
+};
+
+export const generateFirewallCommand = async (actionRule, rule, listType) => {
+    const { rule_name, domains, app_path, action, direction, ports, protocol, ip_addresses } = rule;
+    const isWindows = os.platform() === "win32";
     const commands = [];
+    const direction_flag = direction === "inbound" ? (isWindows ? "in" : "INPUT") : (isWindows ? "out" : "OUTPUT");
+    const action_flag = action === "allow" ? (isWindows ? "allow" : "-A") : (isWindows ? "block" : "-D");
 
-    if (listType === "whitelist") {
-        // Block all connections except those in the whitelist
-        const block_all_command = [
-            "netsh", "advfirewall", "firewall", "add", "rule",
-            `name=block_all_except_whitelist`,
-            `dir=${direction_flag}`,
-            `action=block`,
-            profile_flag,
-            `program="${app_path}"`,
-            `remoteip=any`,
-            "enable=yes",
-        
-
-        ];
-        console.log("Generated command to block all except whitelist:", block_all_command.join(" "));
-        commands.push(block_all_command.join(" "));
-    } else if (listType === "blocklist") {
-        // Allow all connections except those in the blocklist
-        const allow_all_command = [
-            "netsh", "advfirewall", "firewall", "add", "rule",
-            `name=allow_all_except_blocklist`,
-            `dir=${direction_flag}`,
-            `action=allow`,
-            profile_flag,
-            `program="${app_path}"`,
-            `remoteip=any`,
-            "enable=yes",
-           
-        ];
-        console.log("Generated command to allow all except blocklist:", allow_all_command.join(" "));
-        commands.push(allow_all_command.join(" "));
+    // Combine resolved IPs from domains and provided IP addresses
+    let resolved_ips = [];
+    if (domains && domains.length > 0) {
+        resolved_ips = await getIpsFromDomains(domains);
     }
 
-    if (ports && ports.length > 0) {
-        ports.forEach(port => {
-            let port_command = [...base_command];
-            port_command.push(`localport=${port}`);
-            port_command.push(`remoteport=${port}`);
-            port_command.push(`protocol=${protocol || "TCP"}`);
-            port_command.push("enable=yes");
-            console.log("Generated command:", port_command.join(" "));
-            commands.push(port_command.join(" "));
-        });
+    const all_ips = [...resolved_ips, ...(ip_addresses || [])];
+    if (isWindows) {
+        let base_command = [
+            "netsh", "advfirewall", "firewall", actionRule === "delete" ? "delete" : "add", "rule",
+            `name=${rule_name}`,
+            `dir=${direction_flag}`,
+            `action=${action_flag}`,
+            "profile=any"
+        ];
+
+        if (app_path) {
+            base_command.push(`program="${app_path}"`);
+        }
+
+        if (all_ips.length > 0) {
+            base_command.push(`remoteip=${all_ips.join(",")}`);
+        }
+
+        if (ports && ports.length > 0) {
+            ports.forEach((port) => {
+                const port_command = [...base_command, `localport=${port}`, `remoteport=${port}`, `protocol=${protocol || "TCP"}`, "enable=yes"];
+                commands.push(port_command.join(" "));
+            });
+        } else {
+            base_command.push("enable=yes");
+            commands.push(base_command.join(" "));
+        }
     } else {
-        base_command.push("enable=yes");
-        console.log("Generated command:", base_command.join(" "));
-        commands.push(base_command.join(" "));
+        let base_command = ["iptables", action_flag, direction_flag];
+
+        if (all_ips.length > 0) {
+            all_ips.forEach((ip) => {
+                const ip_command = [...base_command, `-s ${ip}`, `-j ${action === "allow" ? "ACCEPT" : "DROP"}`];
+                commands.push(ip_command.join(" "));
+            });
+        }
+
+        if (ports && ports.length > 0) {
+            ports.forEach((port) => {
+                const port_command = [...base_command, `--dport ${port}`, `-j ${action === "allow" ? "ACCEPT" : "DROP"}`];
+                commands.push(port_command.join(" "));
+            });
+        } else {
+            base_command.push(`-j ${action === "allow" ? "ACCEPT" : "DROP"}`);
+            commands.push(base_command.join(" "));
+        }
     }
+    console.log(commands);
 
     return commands;
 };
 export function parseFirewallRules(inputString) {
     const rules = [];
 
+    // Normalize line endings for cross-platform compatibility
+    const normalizedInput = inputString.replace(/\r\n/g, '\n');
+
     // Split the input into blocks by "Rule Name:"
-    const ruleBlocks = inputString.split(/Rule Name:/).slice(1); // Skip the first empty part
+    const ruleBlocks = normalizedInput.split(/Rule Name:/).slice(1); // Skip the first empty part
 
     ruleBlocks.forEach((block) => {
         const rule = {};
@@ -172,11 +169,12 @@ export function parseFirewallRules(inputString) {
 
     return rules;
 }
+
 export function refineFirewallRule(rule) {
     const refinedRule = {};
     for (const [key, value] of Object.entries(rule)) {
-        // Remove trailing backslashes
-        let cleanedValue = value.replace(/\\+$/g, ''); 
+        // Remove trailing backslashes (Windows-specific artifacts in some cases)
+        let cleanedValue = value.replace(/\\+$/g, '');
 
         // Parse nested JSON-like strings if applicable
         try {
