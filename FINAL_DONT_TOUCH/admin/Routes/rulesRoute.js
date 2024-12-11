@@ -45,7 +45,9 @@ router.post("/add-app-rules", async (req, res) => {
             if (clientInfo) {
                 const socketId = clientInfo.socketID;
                 io.to(socketId).emit("command", { commands , rule_type : "app_rules" });
-                const newRule = new Rule(rule);
+                const newRule = await new Rule(rule);
+                newRule.clientIds.push(clientID);
+                newRule.created_by = "palash@gmail.com"
                 await newRule.save();
 
             } else {
@@ -95,6 +97,11 @@ router.post("/block-domain", async (req, res) => {
               if (clientInfo) {
                   const socketId = clientInfo.socketID;
                   io.to(socketId).emit("command", { commands , rule_type : "domain_rules" });
+                  const newRule = await new Rule(rule);
+                    newRule.clientIds.push(clientID);
+                    newRule.created_by = "palash@gmail.com"
+                    await newRule.save();
+                    
               } else {
                   console.error(`Client not found in clientMap: ${clientID}`);
               }

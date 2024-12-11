@@ -1,8 +1,39 @@
 import os
 import time
+import threading
 import subprocess
 import json
 from shutil import copyfile
+
+def fetch_firewall_rules():
+    """
+    Fetch all Windows Firewall rules using `netsh` and filter rules with "CSS" in their names.
+
+    Returns a list of dictionaries containing rule metadata.
+    """
+    command = ["netsh", "advfirewall", "firewall", "show", "rule", "name=all"]
+    try:
+        result = subprocess.run(command, capture_output=True, text=True, check=True)
+        rules = []
+        current_rule = {}
+        for line in result.stdout.splitlines():
+            line = line.strip()
+            if line.startswith("Rule Name:"):
+                if current_rule:
+                    rules.append(current_rule)
+                current_rule = {"Name": line.split("Rule Name:")[1].strip()}
+            elif ":" in line:
+                key, value = line.split(":", 1)
+                current_rule[key.strip()] = value.strip()
+        if current_rule:
+            rules.append(current_rule)
+
+        # Filter rules with "CSS" in the name
+        css_rules = [rule for rule in rules if "CSS" in rule.get("Name", "")]
+        return css_rules
+    except Exception as e:
+        print(f"Error fetching firewall rules: {e}")
+        return []
 
 def parse_firewall_log_line(line):
     """
@@ -23,84 +54,37 @@ def parse_firewall_log_line(line):
         "destination_ip": parts[5],
         "source_port": parts[6],
         "destination_port": parts[7],
-        "size": parts[8]
+        "size": parts[8],
     }
-
-def get_firewall_rules():
-    """
-    Fetch all Windows Firewall rules using PowerShell and return them as a list of dictionaries.
-    """
-    command = [
-        "powershell",
-        "-Command",
-        "Get-NetFirewallRule | Get-NetFirewallPortFilter | ConvertTo-Json -Depth 2"
-    ]
-    try:
-        result = subprocess.run(command, capture_output=True, text=True, check=True)
-        rules = json.loads(result.stdout)
-        print(rules[0])
-        css_rules = [rule for rule in rules if rule.get("Name", "").startswith("CSS")]
-        return css_rules
-    except Exception as e:
-        print(f"Error fetching firewall rules: {e}")
-        return []
 
 def match_log_to_rule(log_entry, rules):
     """
-    Match a log entry to a firewall rule.
+    Match a log entry to a firewall rule by metadata.
 
     Returns the matching rule or None if no match is found.
     """
     for rule in rules:
-        if rule.get("Enabled", "").lower() != "true":
-            continue
-
         # Match protocol
         if log_entry["protocol"].lower() != rule.get("Protocol", "").lower():
             continue
 
-        # Match ports
-        local_port = rule.get("LocalPort")
-        if isinstance(local_port, str):
-            local_ports = local_port.split(",")  # Split string into list
-        elif isinstance(local_port, list):
-            local_ports = local_port  # Already a list
-        else:
-            local_ports = []  # Default to empty list if type is unexpected
-
-        if log_entry["destination_port"] not in local_ports:
+        # Match ports (assuming rule ports are a string of ranges or values)
+        local_port = rule.get("LocalPorts", "")
+        if log_entry["destination_port"] not in local_port:
             continue
 
         # Match remote IP (if specified in rule)
-        remote_address = rule.get("RemoteAddress", "")
-        if isinstance(remote_address, str):
-            remote_ips = remote_address.split(",")  # Split string into list
-        elif isinstance(remote_address, list):
-            remote_ips = remote_address  # Already a list
-        else:
-            remote_ips = []  # Default to empty list if type is unexpected
-
-        if remote_ips and log_entry["destination_ip"] not in remote_ips:
+        remote_ip = rule.get("RemoteIP", "")
+        if remote_ip != "Any" and log_entry["destination_ip"] not in remote_ip:
             continue
 
         return rule
     return None
 
-def backup_log_file(log_path, backup_dir):
+def monitor_firewall_logs(log_path, backup_dir, rules, alert_file, max_size_kb=32):
     """
-    Backup the current log file to a timestamped file in the backup directory.
+    Monitor the Windows Firewall log for dropped packets and log matches to CSS_ALERTS.
     """
-    timestamp = time.strftime("%Y%m%d-%H%M%S")
-    backup_path = os.path.join(backup_dir, f"firewall_log_{timestamp}.log")
-    copyfile(log_path, backup_path)
-    print(f"Backup created: {backup_path}")
-
-def monitor_firewall_logs(log_path, backup_dir, max_size_kb=32):
-    """
-    Monitor the Windows Firewall log for dropped packets and synchronize before the size limit.
-    """
-    print(f"Monitoring firewall log at {log_path}...")
-
     if not os.path.exists(log_path):
         print("Firewall log file not found. Ensure logging is enabled.")
         return
@@ -108,12 +92,6 @@ def monitor_firewall_logs(log_path, backup_dir, max_size_kb=32):
     if not os.path.exists(backup_dir):
         os.makedirs(backup_dir)
 
-    rules = get_firewall_rules()
-    if not rules:
-        print("No CSS-prefixed firewall rules fetched. Ensure you have permissions.")
-        return
-
-    print(f"Fetched {len(rules)} CSS-prefixed rules.")
     last_position = 0
 
     while True:
@@ -121,44 +99,55 @@ def monitor_firewall_logs(log_path, backup_dir, max_size_kb=32):
         log_size_kb = os.path.getsize(log_path) / 1024
         if log_size_kb >= max_size_kb:
             print(f"Log file size exceeds {max_size_kb} KB. Backing up and resetting log...")
-            backup_log_file(log_path, backup_dir)
-            # Clear the log after backup
+            backup_path = os.path.join(backup_dir, f"firewall_log_{time.strftime('%Y%m%d-%H%M%S')}.log")
+            copyfile(log_path, backup_path)
             open(log_path, "w").close()
 
         with open(log_path, "r") as log_file:
             log_file.seek(last_position)
             for line in log_file:
                 if line.startswith("#"):
-                    # Skip comment lines in the log file
                     continue
 
                 event = parse_firewall_log_line(line)
                 if event and event["action"].lower() == "drop":
-                    print("\n[Packet Dropped]")
-                    print(f"Date: {event['date']} {event['time']}")
-                    print(f"Protocol: {event['protocol']}")
-                    print(f"Source IP: {event['source_ip']}")
-                    print(f"Destination IP: {event['destination_ip']}")
-                    print(f"Source Port: {event['source_port']}")
-                    print(f"Destination Port: {event['destination_port']}")
-
-                    # Match to a CSS-prefixed rule
                     matching_rule = match_log_to_rule(event, rules)
                     if matching_rule:
-                        print("\n[Matching Rule Found]")
-                        print(f"Name: {matching_rule.get('Name', 'Unknown')}")
-                        print(f"Direction: {matching_rule.get('Direction', 'Unknown')}")
-                        print(f"Protocol: {matching_rule.get('Protocol', 'Unknown')}")
-                        print(f"Local Port: {matching_rule.get('LocalPort', 'Unknown')}")
-                        print(f"Remote Address: {matching_rule.get('RemoteAddress', 'Unknown')}")
-                    else:
-                        print("\n[No Matching CSS Rule Found]")
-            
+                        with open(alert_file, "a") as alert_log:
+                            alert_log.write(
+                                f"[ALERT] {event['date']} {event['time']} - Matched Rule: {matching_rule['Name']}\n"
+                            )
+                            alert_log.write(
+                                f"    Protocol: {event['protocol']}, Source IP: {event['source_ip']}, Destination IP: {event['destination_ip']}\n"
+                            )
+
             last_position = log_file.tell()
 
         time.sleep(1)  # Poll for new log entries every second
 
+def start_monitoring_thread(log_path, backup_dir, alert_file):
+    """
+    Start a thread to monitor the firewall logs continuously.
+    """
+    rules = fetch_firewall_rules()
+    if not rules:
+        print("No CSS-prefixed firewall rules found. Exiting.")
+        return
+    print(rules)
+    print(f"Fetched {len(rules)} CSS-prefixed rules.")
+
+    monitor_thread = threading.Thread(
+        target=monitor_firewall_logs, args=(log_path, backup_dir, rules, alert_file), daemon=True
+    )
+    monitor_thread.start()
+
 if __name__ == "__main__":
     FIREWALL_LOG_PATH = r"C:\\Windows\\System32\\LogFiles\\Firewall\\pfirewall.log"
     BACKUP_DIR = r"C:\\Windows\\System32\\LogFiles\\Firewall\\Backups"
-    monitor_firewall_logs(FIREWALL_LOG_PATH, BACKUP_DIR)
+    ALERT_FILE = r"CSS_ALERTS.log"
+
+    start_monitoring_thread(FIREWALL_LOG_PATH, BACKUP_DIR, ALERT_FILE)
+
+    print("Monitoring started. Press Ctrl+C to exit.")
+    while True:
+        time.sleep(1)

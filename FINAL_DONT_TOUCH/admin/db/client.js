@@ -9,7 +9,12 @@ const ruleSchema = new mongoose.Schema({
   ip_addresses:[{
     type:String
     }],
-  port: { type: Number }, // Optional, specific port for port rules
+    clientIds:[{
+        type:String
+    }],
+    created_by:{
+        type:String
+    },
   protocol: { type: String, enum: ["TCP", "UDP"] }, 
   action: { type: String, enum: ["allow", "block"], default: "block" },
   direction: { type: String, enum: ["inbound", "outbound"], required: true },
