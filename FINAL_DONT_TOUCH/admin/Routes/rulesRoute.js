@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { getSocket } from "../socket/init.js";
 import { clientMap } from "../server.js";
-import { Client } from "../db/client.js";
+import { Client, Rule } from "../db/client.js";
 import { generateNetshCommand } from "../utils/command.js";
 
 const router = Router();
@@ -45,6 +45,8 @@ router.post("/add-app-rules", async (req, res) => {
             if (clientInfo) {
                 const socketId = clientInfo.socketID;
                 io.to(socketId).emit("command", { commands , rule_type : "app_rules" });
+                const newRule = new Rule(rule);
+                await newRule.save();
 
             } else {
                 console.error(`Client not found in clientMap: ${clientID}`);

@@ -108,20 +108,20 @@ class Client:
             result.append(self.firewallAgent.execute_command(command))
         self.socket.emit("response", {"response": result, "identity": self.identity , "rule_type": rule_type})
 
-    def monitor_firewall_rules(self):
-        """
-        Continuously monitor for triggered firewall rules and send alerts to the server.
-        """
-        print("Monitoring firewall rules...")
-        for event in self.firewallAgent.monitor_events():  # Assuming monitor_events() yields events
-            self.socket.emit("firewall-alert", {
-                "rule": event["rule_name"],
-                "source_ip": event["source_ip"],
-                "destination_ip": event["destination_ip"],
-                "action": event["action"],
-                "identity": self.identity
-            })
-            print(f"Firewall alert sent: {event}")
+    # def monitor_firewall_rules(self):
+    #     """
+    #     Continuously monitor for triggered firewall rules and send alerts to the server.
+    #     """
+    #     print("Monitoring firewall rules...")
+    #     for event in self.firewallAgent.monitor_events():  # Assuming monitor_events() yields events
+    #         self.socket.emit("firewall-alert", {
+    #             "rule": event["rule_name"],
+    #             "source_ip": event["source_ip"],
+    #             "destination_ip": event["destination_ip"],
+    #             "action": event["action"],
+    #             "identity": self.identity
+    #         })
+    #         print(f"Firewall alert sent: {event}")
 
 if __name__ == "__main__":
     client = Client()
