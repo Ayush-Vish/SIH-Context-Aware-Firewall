@@ -3,10 +3,19 @@ import { v4 as uuidv4 } from 'uuid';
 const ruleSchema = new mongoose.Schema({
   rule_name: { type: String, required: true },
   appName: { type: String, required: false }, // Link to the application
-  domain: { type: String }, // Optional for domain rules
+  domain: [{ type: String }], // Optional for domain rules
   app_path: { type: String , required:false }, // Optional, executable path for domain rules
+  ip_addresses:[{
+    type:String
+  }],
+  applied_to:[{
+    type:String
+  }],
+  created_by:{
+    type:String
+  },
+
   ports: [{ type: Number }], // Optional, ports for the rule
-  port: { type: Number }, // Optional, specific port for port rules
   protocol: { type: String, enum: ["TCP", "UDP"] }, 
   action: { type: String, enum: ["allow", "block"], default: "block" },
   direction: { type: String, enum: ["inbound", "outbound"], required: true },

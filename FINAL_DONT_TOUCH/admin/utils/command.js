@@ -136,6 +136,7 @@ export const generateFirewallCommand = async (actionRule, rule, listType) => {
 
     return commands;
 };
+
 export function parseFirewallRules(inputString) {
     const rules = [];
 
