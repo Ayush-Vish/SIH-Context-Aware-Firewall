@@ -1,21 +1,18 @@
 import psutil
 import requests
-import socket
+import os
 import platform
+import socket
 import time
 from datetime import datetime
 
-# Mock functions for application-specific features
-def get_domain_mapping():
-    # Replace with your actual domain mapping function
-    return {}
 
-def get_application_details():
-    # Replace with your actual application details function
-    return {}
-
-def get_active_connections():
-    """Fetch active network connections."""
+def get_active_connections(exclude_system=True):
+    system_processes = [
+        "systemd", "init", "kthreadd", "ksoftirqd", "rcu_sched",
+        "migration", "kswapd", "irqbalance", "dbus-daemon", "NetworkManager",
+        "systemd-journald", "systemd-resolved", "systemd-udevd"
+    ]
     connections = psutil.net_connections(kind='inet')
     active_connections = []
 
@@ -27,17 +24,22 @@ def get_active_connections():
 
         if pid:
             try:
+                pid = int(pid)
                 process = psutil.Process(pid)
                 process_name = process.name()
-            except (psutil.NoSuchProcess, psutil.AccessDenied):
+            except (psutil.NoSuchProcess, psutil.AccessDenied, ValueError):
                 process_name = "N/A"
         else:
             process_name = "N/A"
 
         protocol = 'tcp' if conn.type == socket.SOCK_STREAM else 'udp'
 
+        # Exclude system processes if the flag is set
+        if exclude_system and process_name.lower() in [p.lower() for p in system_processes]:
+            continue
+
         active_connections.append({
-            "pid": pid if pid else "N/A",
+            "pid": pid if pid else 'N/A',
             "protocol": protocol,
             "local_address": local_addr,
             "remote_address": remote_addr,
@@ -49,7 +51,6 @@ def get_active_connections():
 
 
 def get_interfaces_info():
-    """Fetch network interface information."""
     interfaces = psutil.net_if_addrs()
     interface_details = psutil.net_if_stats()
     interfaces_info = []
@@ -78,9 +79,9 @@ def get_interfaces_info():
 
 
 def get_public_ip():
-    """Fetch public IP address."""
     try:
-        response = requests.get("https://icanhazip.com", timeout=5)
+        # Make a request to an external service that provides the public IP
+        response = requests.get('https://icanhazip.com', verify=True)
         public_ip = response.text.strip()
         return public_ip
     except requests.exceptions.RequestException as e:
@@ -89,31 +90,28 @@ def get_public_ip():
 
 
 def get_device_info():
-    """Fetch general device information."""
     device_name = socket.gethostname()
     os_name = platform.system()
     os_version = platform.version()
     os_release = platform.release()
-
+    
     boot_time = psutil.boot_time()
     uptime_seconds = time.time() - boot_time
     uptime_days = int(uptime_seconds // (24 * 3600))
     uptime_hours = int((uptime_seconds % (24 * 3600)) // 3600)
     uptime_minutes = int((uptime_seconds % 3600) // 60)
-
+    
     cpu_cores = psutil.cpu_count(logical=True)
     cpu_usage = psutil.cpu_percent(interval=1)
     memory_info = psutil.virtual_memory()
     total_memory = memory_info.total / (1024 ** 3)
     used_memory = memory_info.used / (1024 ** 3)
     available_memory = memory_info.available / (1024 ** 3)
-
-    public_ip = get_public_ip()
-
+    
     return {
         "device_name": device_name,
         "os": f"{os_name} {os_release} (Version: {os_version})",
-        "public_ip": public_ip,
+        "public_ip": get_public_ip(),
         "uptime": {
             "days": uptime_days,
             "hours": uptime_hours,
@@ -132,7 +130,6 @@ def get_device_info():
 
 
 def get_packet_byte_device_usage_info():
-    """Fetch network byte and packet usage."""
     net_io = psutil.net_io_counters()
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -145,8 +142,12 @@ def get_packet_byte_device_usage_info():
     }
 
 
-def get_running_processes():
-    """Fetch running processes."""
+def get_running_processes(exclude_system=True):
+    system_processes = [
+        "systemd", "init", "kthreadd", "ksoftirqd", "rcu_sched",
+        "migration", "kswapd", "irqbalance", "dbus-daemon", "NetworkManager",
+        "systemd-journald", "systemd-resolved", "systemd-udevd"
+    ]
     running_processes = []
 
     for proc in psutil.process_iter(['pid', 'name', 'exe']):
@@ -154,6 +155,10 @@ def get_running_processes():
             pid = proc.info['pid']
             name = proc.info['name']
             exe = proc.info['exe']
+
+            # Skip system processes if exclude_system is True
+            if exclude_system and name.lower() in [p.lower() for p in system_processes]:
+                continue
 
             running_processes.append({
                 "pid": pid,
@@ -167,7 +172,6 @@ def get_running_processes():
 
 
 def get_open_ports():
-    """Fetch open ports."""
     connections = psutil.net_connections(kind='inet')
     open_ports = []
 
@@ -192,15 +196,12 @@ def get_open_ports():
 
 
 def collect_device_info():
-    """Collect all device information."""
     device_info = get_device_info()
     active_connections = get_active_connections()
     interfaces_info = get_interfaces_info()
     network_usage = get_packet_byte_device_usage_info()
     running_processes = get_running_processes()
     open_ports = get_open_ports()
-    domain_mapping = get_domain_mapping()
-    application_data = get_application_details()
 
     result = {
         "device_info": device_info,
@@ -209,8 +210,11 @@ def collect_device_info():
         "network_usage": network_usage,
         "running_processes": running_processes,
         "open_ports": open_ports,
-        "domain_mapping": domain_mapping,
-        "application_data": application_data
     }
 
     return result
+
+
+if __name__ == "__main__":
+    device_info = collect_device_info()
+    print(device_info)

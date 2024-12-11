@@ -6,13 +6,19 @@ processes_info = {}
 
 def get_friendly_app_name(path):
     """
-    Placeholder function to fetch friendly app names.
-    For Linux, simply return the base name of the path.
+    Get a friendly application name from the executable path.
+    Cross-platform: Uses file basename for both Windows and Linux.
     """
-    return os.path.basename(path)
+    try:
+        # For Linux and other platforms, just use the executable name
+        return os.path.splitext(os.path.basename(path))[0].capitalize()
+    except Exception:
+        return "Unknown"
 
 def format_uptime(seconds):
-    """Converts uptime in seconds to a more readable format."""
+    """
+    Converts uptime in seconds to a more readable format.
+    """
     days = seconds // (24 * 3600)
     hours = (seconds % (24 * 3600)) // 3600
     minutes = (seconds % 3600) // 60
@@ -29,12 +35,17 @@ def format_uptime(seconds):
 
 def get_process_info(pid):
     """
-    Fetches detailed information about a process.
+    Get detailed process information for a given PID.
     """
     try:
         process = psutil.Process(pid)
         uptime = time.time() - process.create_time()
-        path = process.exe() if process.exe() else "N/A"
+        path = process.exe()
+
+        # Skip processes without valid paths or system processes
+        if not path or path.lower().startswith("/usr") or path.lower().startswith("/bin"):
+            return None
+        
         name = get_friendly_app_name(path)
         process_info = {
             "name": name,
@@ -43,10 +54,9 @@ def get_process_info(pid):
             "uptime": format_uptime(uptime),
             "total_bytes_sent": 0,
             "total_bytes_received": 0,
-            "network_info": []  # Initialize as an empty list
         }
         
-        # Get system-wide bytes sent and received (this is per system, not per process)
+        # Get system-wide bytes sent and received
         net_io = psutil.net_io_counters()
         process_info["total_bytes_sent"] = net_io.bytes_sent
         process_info["total_bytes_received"] = net_io.bytes_recv
@@ -57,7 +67,7 @@ def get_process_info(pid):
 
 def get_all_processes_info():
     """
-    Iterates over all processes and updates process information.
+    Collect information about all processes running on the system.
     """
     for proc in psutil.process_iter(['pid', 'name']):
         pid = proc.info['pid']
@@ -72,23 +82,17 @@ def get_all_processes_info():
 
 def get_application_details():
     """
-    Collects details of all running applications in an array-like format.
+    Return detailed application information as a list of dictionaries.
     """
     get_all_processes_info()
-
     def convert_to_array(data):
         result = []
         for key, value in data.items():
             result.append({**value, 'process': key})
         return result
-
     return convert_to_array(processes_info)
 
-# Example usage
 if __name__ == "__main__":
-    # Run the script with root (Linux) or administrator (Windows) privileges
-    # On Linux: Use 'sudo python3 application_data.py' to avoid AccessDenied errors
-    # On Windows: Run as Administrator to access process details and avoid restrictions
     app_details = get_application_details()
     for app in app_details:
         print(app)

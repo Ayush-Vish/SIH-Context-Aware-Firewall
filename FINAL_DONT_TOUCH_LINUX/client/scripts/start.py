@@ -1,8 +1,7 @@
 import os
 
 def getAdminEmail():
-    # Use a cross-platform folder path
-    folder_path = os.path.join(os.path.expanduser("~"), "CSS")
+    folder_path = "C:/CSS"
     file_path = os.path.join(folder_path, "css.conf")
 
     # Create folder if it doesn't exist
@@ -11,6 +10,7 @@ def getAdminEmail():
 
     admin_email = None  # Variable to store admin email
 
+    
     if os.path.exists(file_path):
         with open(file_path, "r") as file:
             print("Reading config file...")
@@ -28,8 +28,7 @@ def getAdminEmail():
     return admin_email
 
 def changeAdminEmail():
-    # Use a cross-platform folder path
-    folder_path = os.path.join(os.path.expanduser("~"), "CSS")
+    folder_path = "C:/CSS"
     file_path = os.path.join(folder_path, "css.conf")
 
     # Create folder if it doesn't exist

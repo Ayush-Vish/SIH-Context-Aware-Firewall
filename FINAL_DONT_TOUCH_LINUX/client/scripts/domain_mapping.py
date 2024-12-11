@@ -1,13 +1,3 @@
-"""
-DNS Query Logger with Process Mapping
-
-This script captures DNS queries (UDP port 53) and maps them to running processes on the system.
-It must be run with elevated permissions to access raw network sockets.
-
-For Linux:
-    Run with `sudo python3 domain_mapping.py` to ensure sufficient permissions.
-"""
-
 import threading
 from scapy.all import sniff, DNS, DNSQR, UDP
 import psutil
@@ -20,59 +10,76 @@ def get_domain_mapping():
     return app_domains
 
 def capture_dns_requests(pkt):
+    """
+    Callback function to capture and process DNS requests.
+    """
     # Check if the packet contains DNS and is a query
-    if pkt.haslayer(DNS) and pkt[DNS].qr == 0:  # qr=0 means it's a query, not a response
-        domain = pkt[DNSQR].qname.decode()  # Extract the requested domain
+    if pkt.haslayer(DNS) and pkt.getlayer(DNS).qr == 0:  # qr=0 means it's a query, not a response
+        domain = pkt.getlayer(DNSQR).qname.decode()  # Extract the requested domain
         
         # Get the source port and the process associated with it
-        if pkt.haslayer(UDP):  # Ensure the packet has a UDP layer
-            src_port = pkt[UDP].sport  # Source port
-            process_name = get_process_by_port(src_port)
+        src_port = pkt[UDP].sport  # Source port
+        process_name = get_process_by_port(src_port)
+        
+        if process_name:
+            # Get the current timestamp when the domain is accessed
+            timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             
-            if process_name:
-                # Get the current timestamp when the domain is accessed
-                timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-                
-                # Check if the process is already in the app_domains list
-                process_found = False
-                for app in app_domains:
-                    if app['process_name'] == process_name:
+            # Check if the process is already in the app_domains list
+            for app in app_domains:
+                if app['process_name'] == process_name:
+                    # Check if the domain already exists for this process
+                    if not any(entry['domain'] == domain for entry in app['domains']):
                         app['domains'].append({'domain': domain, 'timestamp': timestamp})  # Add the domain with timestamp
-                        process_found = True
-                        break
-                
-                # If the process is not found, add it to the list
-                if not process_found:
-                    app_domains.append({'process_name': process_name, 'domains': [{'domain': domain, 'timestamp': timestamp}]})
+                    return
+            
+            # If the process is not found, add it to the list
+            app_domains.append({
+                'process_name': process_name,
+                'domains': [{'domain': domain, 'timestamp': timestamp}]
+            })
 
-# Function to get the process name by port
 def get_process_by_port(port):
-    for conn in psutil.net_connections(kind='inet'):
-        if conn.laddr.port == port and conn.pid:
-            try:
-                process = psutil.Process(conn.pid)
-                return process.name()  # Return the process name
-            except psutil.NoSuchProcess:
-                pass
-    return None  # Return None if no process is found for the port
+    """
+    Get the process name by its network port.
+    """
+    try:
+        for conn in psutil.net_connections(kind='inet'):
+            if conn.laddr.port == port and conn.pid:
+                try:
+                    process = psutil.Process(conn.pid)
+                    return process.name()  # Return the process name
+                except psutil.NoSuchProcess:
+                    return None
+    except Exception as e:
+        print(f"Error fetching process for port {port}: {e}")
+    return None
 
-# Start sniffing, filter for DNS packets (UDP port 53)
 def start_dns_sniffing():
-    sniff(filter="udp port 53", prn=capture_dns_requests, store=0)
+    """
+    Start sniffing DNS packets.
+    """
+    try:
+        sniff(filter="udp port 53", prn=capture_dns_requests, store=0)
+    except PermissionError:
+        print("Permission denied. Please run as root or with administrator privileges.")
+    except Exception as e:
+        print(f"Error starting DNS sniffing: {e}")
 
-# Function to start the sniffing in the background thread
 def start_dns_in_background():
+    """
+    Start DNS sniffing in a background thread.
+    """
     dns_thread = threading.Thread(target=start_dns_sniffing, daemon=True)
     dns_thread.start()
 
-# Example to run in the background
 if __name__ == "__main__":
-    print("Starting DNS sniffing...")
     start_dns_in_background()
+    print("DNS sniffing started. Press Ctrl+C to stop.")
+    
     try:
+        # Keep the program running
         while True:
-            # Keep the main program running to allow background sniffing
-            time.sleep(5)
-            print("Logged DNS queries:", get_domain_mapping())
+            time.sleep(1)
     except KeyboardInterrupt:
         print("\nStopping DNS sniffing...")

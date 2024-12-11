@@ -11,6 +11,8 @@ API_KEY = "f04ae8a8b3b3b1"
 VPN_API_URL = "https://ipinfo.io/"
 CHECK_INTERVAL = 30  # Time interval (in seconds) to recheck
 
+vpn_detected_flag = threading.Event()
+
 def get_active_connections():
     """Fetch active network connections using psutil."""
     connections = psutil.net_connections(kind='inet')
@@ -48,7 +50,8 @@ def monitor_connections():
 
         for ip in new_ips:
             if check_vpn_proxy(ip):
-                print(f"Alert: VPN or Proxy detected on IP {ip}")
+                vpn_detected_flag.set()
+                vpn_detected_flag.ip = ip
         seen_ips = remote_ips
         time.sleep(CHECK_INTERVAL)
 
