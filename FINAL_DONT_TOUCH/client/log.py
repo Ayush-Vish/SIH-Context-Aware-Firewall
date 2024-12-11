@@ -69,14 +69,16 @@ def match_log_to_rule(log_entry, rules):
             continue
 
         # Match ports (assuming rule ports are a string of ranges or values)
-        local_port = rule.get("LocalPorts", "")
+        local_port = rule.get("LocalPort", "")
         if log_entry["destination_port"] not in local_port:
             continue
 
         # Match remote IP (if specified in rule)
         remote_ip = rule.get("RemoteIP", "")
-        if remote_ip != "Any" and log_entry["destination_ip"] not in remote_ip:
-            continue
+        if remote_ip != "Any":
+            remote_ips = [ip.strip() for ip in remote_ip.split(",")]
+            if log_entry["destination_ip"] not in remote_ips:
+                continue
 
         return rule
     return None

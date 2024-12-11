@@ -6,116 +6,149 @@ import { generateNetshCommand } from "../utils/command.js";
 
 const router = Router();
 
+
 router.post("/add-app-rules", async (req, res) => {
-    const { clientID, rules } = req.body;
+    const { data } = req.body;
 
     // Validate input
-    if (!clientID || !rules || !Array.isArray(rules)) {
+    if (!data || !Array.isArray(data)) {
         return res.status(400).send({
-            message: "Invalid input. Provide clientID, appName, listType (whitelist/blocklist), and rules.",
+            message: "Invalid input. Provide an array of client data.",
         });
     }
 
     try {
-        const client = await Client.findOne({ clientID: clientID });
-        if (!client) {
-            return res.status(404).send({ message: "Client not found.", clientID });
-        }
+        for (const clientData of data) {
+            const { clientID, rules } = clientData;
 
-        for (const rule of rules) {
-            const { appName } = rule;
-            let app = client.applications.find((app) => app.appName === appName);
-            if (!app) {
-                // Create a new application entry if it doesn't exist
-                app = { appName, whitelist: [], blocklist: [], active_list: null };
-                client.applications.push(app);
+            if (!clientID || !rules || !Array.isArray(rules)) {
+                return res.status(400).send({
+                    message: "Invalid input. Provide clientID and an array of rules.",
+                });
             }
 
-            app.blocklist.push(rule);
+            const client = await Client.findOne({ clientID: clientID });
+            if (!client) {
+                return res.status(404).send({ message: "Client not found.", clientID });
+            }
 
-            // Generate the netsh command
-            const commands = await generateNetshCommand("add", rule);
+            for (const rule of rules) {
+                const { appName } = rule;
+                let app = client.applications.find((app) => app.appName === appName);
+                if (!app) {
+                    // Create a new application entry if it doesn't exist
+                    app = { appName, whitelist: [], blocklist: [], active_list: null };
+                    client.applications.push(app);
+                }
 
-            // Save the client with the new rule
-            await client.save();
+                app.blocklist.push(rule);
 
-            const io = getSocket();
-            const clientInfo = clientMap.get(clientID);
+                // Generate the netsh command
+                const commands = await generateNetshCommand("add", rule);
 
-            if (clientInfo) {
-                const socketId = clientInfo.socketID;
-                io.to(socketId).emit("command", { commands , rule_type : "app_rules" });
-                const newRule = await new Rule(rule);
-                newRule.clientIds.push(clientID);
-                newRule.created_by = "palash@gmail.com"
-                await newRule.save();
+                // Save the client with the new rule
+                await client.save();
 
-            } else {
-                console.error(`Client not found in clientMap: ${clientID}`);
+                const io = getSocket();
+                const clientInfo = clientMap.get(clientID);
+
+                if (clientInfo) {
+                    const socketId = clientInfo.socketID;
+                    io.to(socketId).emit("command", { commands, rule_type: "app_rules" });
+                    const newRule = new Rule(rule);
+                    newRule.clientIds.push(clientID);
+                    newRule.created_by = "palash@gmail.com";
+                    await newRule.save();
+                } else {
+                    console.error(`Client not found in clientMap: ${clientID}`);
+                }
             }
         }
 
         res.send({
-            message: "Rules added and sent to client",
-            clientID,
-            rules,
+            message: "Rules added and sent to clients",
+            data,
         });
     } catch (error) {
-        console.error(`Error adding rules for client ${clientID}:`, error);
+        console.error(`Error adding rules:`, error);
         res.status(500).send({
             message: "An error occurred while adding rules.",
             error: error.message,
         });
     }
 });
-
 router.post("/block-domain", async (req, res) => {
-      const { clientID, rules } = req.body;
-  
-      // Validate input
-      if (!clientID || !rules || !Array.isArray(rules)) {
-          return res.status(400).send({
-              message: "Invalid input. Provide clientID and rules.",
-          });
-      }
-  
-      try {
-          const client = await Client.findOne({ clientID: clientID });
-          if (!client) {
-              return res.status(404).send({ message: "Client not found.", clientID });
-          }
-  
-          for (const rule of rules) {
-              const commands = await generateNetshCommand("add", rule);
-  
-              client.global_rules.push(rule);
-              await client.save();
-  
-              const clientInfo = clientMap.get(clientID);
-              const io = getSocket();
-  
-              if (clientInfo) {
-                  const socketId = clientInfo.socketID;
-                  io.to(socketId).emit("command", { commands , rule_type : "domain_rules" });
-                  const newRule = await new Rule(rule);
-                    newRule.clientIds.push(clientID);
-                    newRule.created_by = "palash@gmail.com"
-                    await newRule.save();
-                    
-              } else {
-                  console.error(`Client not found in clientMap: ${clientID}`);
-              }
-          }
-  
-          res.send({ message: "Rules added and sent to client", clientID, rules });
-      } catch (error) {
-          console.error(`Error adding domain rules for client ${clientID}:`, error);
-          res.status(500).send({
-              message: "An error occurred while adding domain rules.",
-              error: error.message,
-          });
-      }
-  });
+    const { data } = req.body;
+
+    // Validate input
+    if (!data || !Array.isArray(data)) {
+        return res.status(400).send({
+            message: "Invalid input. Provide an array of client data.",
+        });
+    }
+
+    try {
+        for (const clientData of data) {
+            const { clientID, rules } = clientData;
+
+            if (!clientID || !rules || !Array.isArray(rules)) {
+                return res.status(400).send({
+                    message: "Invalid input. Provide clientID and an array of rules.",
+                });
+            }
+
+            const client = await Client.findOne({ clientID: clientID });
+            if (!client) {
+                return res.status(404).send({ message: "Client not found.", clientID });
+            }
+
+            for (const rule of rules) {
+                const { rule_name, domains, direction, action, ip_addresses } = rule;
+
+                // Create a new rule entry
+                const newRule = {
+                    rule_name,
+                    domains,
+                    direction,
+                    action,
+                    ip_addresses: ip_addresses || [],
+                };
+
+                // Generate the netsh command
+                const commands = await generateNetshCommand("add", newRule);
+
+                // Save the client with the new rule
+                client.global_rules.push(newRule);
+                await client.save();
+
+                const io = getSocket();
+                const clientInfo = clientMap.get(clientID);
+
+                if (clientInfo) {
+                    const socketId = clientInfo.socketID;
+                    io.to(socketId).emit("command", { commands, rule_type: "domain_rules" });
+                    const ruleEntry = new Rule(newRule);
+                    ruleEntry.clientIds.push(clientID);
+                    ruleEntry.created_by = "palash@gmail.com";
+                    await ruleEntry.save();
+                } else {
+                    console.error(`Client not found in clientMap: ${clientID}`);
+                }
+            }
+        }
+
+        res.send({
+            message: "Rules added and sent to clients",
+            data,
+        });
+    } catch (error) {
+        console.error(`Error adding domain rules:`, error);
+        res.status(500).send({
+            message: "An error occurred while adding domain rules.",
+            error: error.message,
+        });
+    }
+});
   
   router.post("/block-port", async (req, res) => {
       const { clientID, rules } = req.body;
