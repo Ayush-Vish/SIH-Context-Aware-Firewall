@@ -62,12 +62,47 @@ const execCommand = (command) => {
     });
 };
 
+export const getIpsFromDomains = async (domains) => {
+    const all_ips = new Set();
+
+    for (const domain of domains) {
+        for (const dns_server of dns_servers) {
+            const command = `nslookup ${domain} ${dns_server}`;
+            console.log("command", command);
+
+            try {
+                const result = await execCommand(command);
+                console.log("result", result);
+
+                // Extract IP addresses using regex
+                const ip_pattern = /\b(?:\d{1,3}\.){3}\d{1,3}\b/g; // Matches IPv4 addresses
+                const ip_addresses = result.match(ip_pattern);
+
+                // Add valid IPs to the set
+                if (ip_addresses) {
+                    ip_addresses.forEach(ip => {
+                        if (!ip.startsWith('127.') && !dns_servers.includes(ip)) {
+                            all_ips.add(ip);
+                        }
+                    });
+                }
+            } catch (error) {
+                console.log(`nslookup command failed for DNS ${dns_server}: ${error.message}`);
+            }
+        }
+    }
+
+    const unique_ips = Array.from(all_ips);
+    console.log("unique_ips", unique_ips);
+    return unique_ips;
+};
+
 export const generateNetshCommand = async (actionRule, rule, listType) => {
-    const { rule_name, domain, app_path, action , direction, ports, protocol } = rule;
+    const { rule_name, domains, app_path, action, direction, ports, protocol, ip_addresses } = rule;
     const direction_flag = direction === "inbound" ? "in" : "out";
     const action_flag = action === "allow" ? "allow" : "block";
-    
-    const profile_flag = "profile=any"; // Specify the profile
+    const profile_flag = "profile=any";
+
     let base_command = [
         "netsh", "advfirewall", "firewall", actionRule === "delete" ? "delete" : "add", "rule",
         `name=${rule_name}`,
@@ -80,19 +115,23 @@ export const generateNetshCommand = async (actionRule, rule, listType) => {
         base_command.push(`program="${app_path}"`);
     }
 
-    if (domain) {
-        const ip_addresses = await getIpFromDomain(domain);
-        if (ip_addresses.length > 0) {
-            base_command.push(`remoteip=${ip_addresses.join(',')}`);
-        }
+    // Combine resolved IPs from domains and provided IP addresses
+    let resolved_ips = [];
+    if (domains && domains.length > 0) {
+        resolved_ips = await getIpsFromDomains(domains);
+    }
+    console.log("ip_addresses", ip_addresses);
+
+    const all_ips = [...resolved_ips, ...(ip_addresses || [])];
+
+    if (all_ips.length > 0) {
+        base_command.push(`remoteip=${all_ips.join(',')}`);
     }
 
-    
     // Handle whitelist/blocklist specific logic
     const commands = [];
 
     if (listType === "whitelist") {
-        // Block all connections except those in the whitelist
         const block_all_command = [
             "netsh", "advfirewall", "firewall", "add", "rule",
             `name=block_all_except_whitelist`,
@@ -102,13 +141,10 @@ export const generateNetshCommand = async (actionRule, rule, listType) => {
             `program="${app_path}"`,
             `remoteip=any`,
             "enable=yes",
-        
-
         ];
         console.log("Generated command to block all except whitelist:", block_all_command.join(" "));
         commands.push(block_all_command.join(" "));
     } else if (listType === "blocklist") {
-        // Allow all connections except those in the blocklist
         const allow_all_command = [
             "netsh", "advfirewall", "firewall", "add", "rule",
             `name=allow_all_except_blocklist`,
@@ -118,7 +154,6 @@ export const generateNetshCommand = async (actionRule, rule, listType) => {
             `program="${app_path}"`,
             `remoteip=any`,
             "enable=yes",
-           
         ];
         console.log("Generated command to allow all except blocklist:", allow_all_command.join(" "));
         commands.push(allow_all_command.join(" "));
@@ -142,6 +177,7 @@ export const generateNetshCommand = async (actionRule, rule, listType) => {
 
     return commands;
 };
+
 export function parseFirewallRules(inputString) {
     const rules = [];
 

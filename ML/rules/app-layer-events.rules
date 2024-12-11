@@ -1,0 +1,38 @@
+# App layer event  rules
+#
+# SID's fall in the 2260000+ range. See http://doc.emergingthreats.net/bin/view/Main/SidAllocation
+#
+# These sigs fire at most once per connection.
+#
+# A flowint applayer.anomaly.count is incremented for each match. By default it will be 0.
+#
+alert ip any any -> any any (msg:"SURICATA Applayer Mismatch protocol both directions"; flow:established; app-layer-event:applayer_mismatch_protocol_both_directions; flowint:applayer.anomaly.count,+,1; classtype:protocol-command-decode; sid:2260000; rev:1;)
+alert ip any any -> any any (msg:"SURICATA Applayer Wrong direction first Data"; flow:established; app-layer-event:applayer_wrong_direction_first_data; flowint:applayer.anomaly.count,+,1; classtype:protocol-command-decode; sid:2260001; rev:1;)
+alert ip any any -> any any (msg:"SURICATA Applayer Detect protocol only one direction"; flow:established; app-layer-event:applayer_detect_protocol_only_one_direction; flowint:applayer.anomaly.count,+,1; classtype:protocol-command-decode; sid:2260002; rev:1;)
+alert ip any any -> any any (msg:"SURICATA Applayer Protocol detection skipped"; flow:established; app-layer-event:applayer_proto_detection_skipped; flowint:applayer.anomaly.count,+,1; classtype:protocol-command-decode; sid:2260003; rev:1;)
+# alert if STARTTLS was not followed by actual SSL/TLS
+alert tcp any any -> any any (msg:"SURICATA Applayer No TLS after STARTTLS"; flow:established; app-layer-event:applayer_no_tls_after_starttls; flowint:applayer.anomaly.count,+,1; classtype:protocol-command-decode; sid:2260004; rev:2;)
+# unexpected protocol in protocol upgrade
+alert tcp any any -> any any (msg:"SURICATA Applayer Unexpected protocol"; flow:established; app-layer-event:applayer_unexpected_protocol; flowint:applayer.anomaly.count,+,1; classtype:protocol-command-decode; sid:2260005; rev:1;)
+
+#next sid is 2260006
+# 1 HTTP - working
+drop http any any -> any any (msg:"DROP: HTTP traffic detected"; sid:2260006;rev:1;)
+
+# 2. domain -working
+#drop tls any any -> any any (msg:"Block YouTube HTTPS"; tls.sni; content:"youtube.com"; nocase; sid:2260008; rev:1;)
+
+# 3. TCP or UDP -  working
+#drop udp any any -> any any (msg:"DROP: UDP traffic detected"; sid:2260008;rev:1;)
+
+# 4. ICMP - working
+#drop icmp any any -> any any (msg:"DROP: ICMP traffic detected"; sid:2260009;rev:1;)
+
+# 5. specific port  - working
+#drop tcp any any -> any 80 (msg:"DROP: PORT 80 traffic detected"; sid:2260010;rev:1;)
+
+# 6. port ranges - working
+#drop tcp any any -> any 88:444 (msg:"DROP: Blocking ports 80-89"; sid:2260011; rev:1;)
+
+# 7. ip ranges - working
+#drop ip 192.168.1.0/24 any -> any any (msg:"Blocked IP range 192.168.1.0/24"; sid:2260012; rev:1;)

@@ -1,0 +1,99 @@
+App Name: Git
+Install Path: C:\Program Files\Git\
+
+App Name: Microsoft Visual C++ 2022 Arm64 Runtime - 14.38.33130
+Install Path: 
+
+App Name: Python 3.13.1 Standard Library (64-bit)
+Install Path: 
+
+App Name: Python 3.13.1 Documentation (64-bit)
+Install Path: 
+
+App Name: Python 3.13.1 pip Bootstrap (64-bit)
+Install Path: 
+
+App Name: Microsoft .NET Host - 8.0.11 (x64)
+Install Path: 
+
+App Name: Node.js
+Install Path: 
+
+App Name: Python 3.13.1 Test Suite (64-bit)
+Install Path: 
+
+App Name: Spice webdavd 2.5 (ARM64)
+Install Path: 
+
+App Name: Python 3.13.1 Executables (64-bit)
+Install Path: 
+
+App Name: Python 3.13.1 Add to Path (64-bit)
+Install Path: 
+
+App Name: Microsoft .NET Runtime - 8.0.11 (x64)
+Install Path: 
+
+App Name: Python 3.13.1 Core Interpreter (64-bit)
+Install Path: 
+
+App Name: Microsoft Windows Desktop Runtime - 8.0.11 (x64)
+Install Path: 
+
+App Name: Python 3.13.1 Tcl/Tk Support (64-bit)
+Install Path: 
+
+App Name: Microsoft .NET Host FX Resolver - 8.0.11 (x64)
+Install Path: 
+
+App Name: Python 3.13.1 Development Libraries (64-bit)
+Install Path: 
+
+App Name: Google Chrome
+Install Path: C:\Program Files\Google\Chrome\Application
+
+App Name: Microsoft Edge
+Install Path: C:\Program Files (x86)\Microsoft\Edge\Application
+
+App Name: Microsoft Edge WebView2 Runtime
+Install Path: C:\Program Files (x86)\Microsoft\EdgeWebView\Application
+
+App Name: Npcap
+Install Path: C:\Program Files\Npcap
+
+App Name: UTM Guest Tools 0.229
+Install Path: N/A
+
+App Name: TurboVPN 2.26.0.0 stable
+Install Path: N/A
+
+App Name: Microsoft .NET Runtime - 8.0.10 (x86)
+Install Path: 
+
+App Name: Microsoft ASP.NET Core 8.0.10 Shared Framework (x86)
+Install Path: 
+
+App Name: Microsoft ASP.NET Core 8.0.10 - Shared Framework (x86)
+Install Path: N/A
+
+App Name: Microsoft Windows Desktop Runtime - 8.0.10 (x86)
+Install Path: N/A
+
+App Name: Python Launcher
+Install Path: 
+
+App Name: Microsoft .NET Host FX Resolver - 8.0.10 (x86)
+Install Path: 
+
+App Name: Microsoft Visual C++ 2022 Redistributable (Arm64) - 14.38.33130
+Install Path: N/A
+
+App Name: Microsoft Windows Desktop Runtime - 8.0.11 (x64)
+Install Path: N/A
+
+App Name: Microsoft .NET Host - 8.0.10 (x86)
+Install Path: 
+
+App Name: Microsoft Windows Desktop Runtime - 8.0.10 (x86)
+Install Path: 
+

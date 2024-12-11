@@ -152,6 +152,11 @@ socket.on("connect", async (socket) => {
 
 				// Print the parsed rule
 				console.log(refineFirewallRule(rule));
+				const socketID = clientMap.get(data.clientID).socketID;
+				socket.to(socketID).emit("get_rules", {
+					rule: refineFirewallRule(rule),
+					clientID
+				})
 			}
 
 			//     const rulesDataStructure = parseFirewallRules(responseString);
