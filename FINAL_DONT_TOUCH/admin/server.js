@@ -265,28 +265,42 @@ app.post("/resend/client/", (req, res) => {
 	}
 });
 
-app.post("/details/admin", async (req, res) => {
+app.post("/details", async (req, res) => {
 	const { email } = req.body;
 	const admin = await findAdminByEmail(email);
+
 	if (!admin) {
 		res.send({
-			message: "admin for given email doesnt exist",
+			message: "admin for given email doesn't exist",
 		});
 		return;
 	}
+
 	const activeClients = [];
 
 	clientMap.forEach((value, clientID) => {
-		console.log(value, clientID);
-
 		if (value.adminID === admin.adminID) {
 			activeClients.push({ clientID, ...value });
 		}
 	});
 
+	const promises = admin.clientID.map(async (c) => {
+		const res = await getStaticData(c);
+		if (res) {
+			return res; // Return the result to collect later
+		}
+	});
+
+	// Wait for all promises to resolve
+	const results = await Promise.all(promises);
+
+	// Filter out undefined/null results
+	const clientDetails = results.filter(Boolean);
+
 	res.send({
 		message: "admin details",
 		admin: admin,
+		clientDetails: clientDetails,
 		activeClients: activeClients,
 	});
 });
