@@ -1,11 +1,15 @@
+import os
+import sys
+import ctypes
 import socketio
 import psutil
 import threading
-from scripts.start import getAdminEmail , changeAdminEmail
+from scripts.start import getAdminEmail, changeAdminEmail
 from scripts.static_info import collect_device_info
 from scripts.domain_mapping import start_dns_in_background
-from scripts.vpn import start_vpn_monitoring , vpn_detected_flag
+from scripts.vpn import start_vpn_monitoring, vpn_detected_flag
 from scripts.firewall_agent import FirewallAgent
+from scripts.globalblock import add_multiple_entries,delete_map
 
 class Client:
     def __init__(self):
@@ -102,12 +106,22 @@ class Client:
     def v2(self, data):
         print(data)
         rule_type = data.get("rule_type")
+        if rule_type == "delete_rule":
+            domainToMap = data.get("domainToIpMap")
+            delete_map(domainToMap)
+        if rule_type == "domain_rules" or rule_type == "app_rules":
+            domainToMap = data.get("domainToIpMap")
+            add_multiple_entries(domainToMap)
+
         commands = data.get("commands")
         result = []
+        
         for command in commands:
             result.append(self.firewallAgent.execute_command(command))
+        
         self.socket.emit("response", {"response": result, "identity": self.identity , "rule_type": rule_type})
 
+    # Uncomment this function when you implement it
     # def monitor_firewall_rules(self):
     #     """
     #     Continuously monitor for triggered firewall rules and send alerts to the server.
@@ -123,6 +137,22 @@ class Client:
     #         })
     #         print(f"Firewall alert sent: {event}")
 
+def is_admin():
+    """Check if the script is running with administrative privileges."""
+    try:
+        return ctypes.windll.shell32.IsUserAnAdmin()
+    except:
+        return False
+
+def run_as_admin():
+    """Relaunch the script with administrative privileges."""
+    if sys.platform == "win32":
+        ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, ' '.join(sys.argv), None, 1)
+
 if __name__ == "__main__":
-    client = Client()
-    client.start()
+    if not is_admin():
+        print("This script requires administrative privileges. Relaunching...")
+        run_as_admin()
+    else:
+        client = Client()
+        client.start()
