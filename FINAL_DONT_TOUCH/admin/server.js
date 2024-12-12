@@ -340,7 +340,7 @@ app.post("/details", async (req, res) => {
 connect(MONGO_URL, {})
 	.then(() => {
 		console.log("connected to mongo db");
-		const PORT = 80;
+		const PORT = 3000;
 		server.listen(PORT, () => {
 			console.log("server is running on localhost 80");
 		});
