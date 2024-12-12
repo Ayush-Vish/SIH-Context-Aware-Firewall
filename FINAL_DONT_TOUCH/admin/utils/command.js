@@ -25,7 +25,7 @@ export const execCommand = (command) => {
 
 export const getIpFromDomain = async (domain) => {
     const all_ips = new Set();
-    const isWindows = os.platform() === "win32";
+    const isWindows = os.platform() !== "win32";
     const dns_server = dns_servers[0]; // Use the first DNS server by default
         const command = isWindows
             ? `nslookup ${domain} ${dns_server}`
