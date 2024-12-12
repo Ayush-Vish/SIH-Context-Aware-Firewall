@@ -1,7 +1,7 @@
 # batch_hosts_manager.py
 
 import re
-from nethost import add, delete, isPresent
+from .nethost import add, delete, isPresent
 
 
 def add_multiple_entries(domain_ip_map):
