@@ -30,7 +30,7 @@ class Client:
         while True:
             try:
                 adminEmail = "palash@gmail.com"
-                self.socket.connect("http://localhost:3000", auth={"adminEmail": adminEmail})
+                self.socket.connect("http://13.203.78.23:3000", auth={"adminEmail": adminEmail})
                 self.socket.wait()
             except KeyboardInterrupt:
                 print("Disconnected due to keyboard interrupt.")

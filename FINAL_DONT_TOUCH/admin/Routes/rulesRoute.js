@@ -26,7 +26,7 @@ router.post("/add-app-rules", async (req, res) => {
 				});
 			}
 
-			const client = await Client.findOne({ clientID: clientID });
+			const client = await Client.findOne({ clientID: clientID }).populate("");
 			if (!client) {
 				return res.status(404).send({ message: "Client not found.", clientID });
 			}

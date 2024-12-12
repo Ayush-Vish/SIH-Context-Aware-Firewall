@@ -72,7 +72,7 @@ export const getIpsFromDomains = async (domains) => {
 
 export const generateNetshCommand = async (actionRule, rule, listType) => {
     const { rule_name, domains, app_path, action, direction, ports, protocol, ip_addresses } = rule;
-    const isWindows = os.platform() === "win32";
+    const isWindows = os.platform() !== "win32";
     const commands = [];
     const direction_flag = direction === "inbound" ? (isWindows ? "in" : "INPUT") : (isWindows ? "out" : "OUTPUT");
     const action_flag = action === "allow" ? (isWindows ? "allow" : "-A") : (isWindows ? "block" : "-D");
