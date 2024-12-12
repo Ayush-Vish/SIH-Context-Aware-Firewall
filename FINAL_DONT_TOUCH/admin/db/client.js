@@ -1,5 +1,9 @@
 import mongoose from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
+
+
+
+
 const ruleSchema = new mongoose.Schema({
   rule_name: { type: String, required: true },
   appName: { type: String, required: false }, // Link to the application
@@ -14,6 +18,9 @@ const ruleSchema = new mongoose.Schema({
     }],
     created_by:{
         type:String
+    },
+    domainToIpMap:{
+        type :String
     },
   protocol: { type: String, enum: ["TCP", "UDP"] }, 
   action: { type: String, enum: ["allow", "block"], default: "block" },

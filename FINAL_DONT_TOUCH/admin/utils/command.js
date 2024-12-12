@@ -11,7 +11,7 @@ const dns_servers = [
     "208.67.220.220" // OpenDNS Secondary
 ];
 
-const execCommand = (command) => {
+export const execCommand = (command) => {
     return new Promise((resolve, reject) => {
         exec(command, (error, stdout, stderr) => {
             if (error) {
@@ -26,8 +26,7 @@ const execCommand = (command) => {
 export const getIpFromDomain = async (domain) => {
     const all_ips = new Set();
     const isWindows = os.platform() === "win32";
-
-    for (const dns_server of dns_servers) {
+    const dns_server = dns_servers[0]; // Use the first DNS server by default
         const command = isWindows
             ? `nslookup ${domain} ${dns_server}`
             : `dig @${dns_server} ${domain} +short`;
@@ -52,11 +51,10 @@ export const getIpFromDomain = async (domain) => {
         } catch (error) {
             console.log(`Command failed for DNS ${dns_server}: ${error.message}`);
         }
-    }
 
     const unique_ips = Array.from(all_ips);
     console.log("Unique IPs:", unique_ips);
-    return unique_ips;
+    return unique_ips[0];
 };
 
 export const getIpsFromDomains = async (domains) => {
@@ -72,7 +70,7 @@ export const getIpsFromDomains = async (domains) => {
     return unique_ips;
 };
 
-export const generateFirewallCommand = async (actionRule, rule, listType) => {
+export const generateNetshCommand = async (actionRule, rule, listType) => {
     const { rule_name, domains, app_path, action, direction, ports, protocol, ip_addresses } = rule;
     const isWindows = os.platform() === "win32";
     const commands = [];
@@ -80,9 +78,16 @@ export const generateFirewallCommand = async (actionRule, rule, listType) => {
     const action_flag = action === "allow" ? (isWindows ? "allow" : "-A") : (isWindows ? "block" : "-D");
 
     // Combine resolved IPs from domains and provided IP addresses
+    const domainToIpMap = {};
     let resolved_ips = [];
     if (domains && domains.length > 0) {
-        resolved_ips = await getIpsFromDomains(domains);
+        for (const domain of domains) {
+            const ip = await getIpFromDomain(domain);
+            if (ip) {
+                resolved_ips.push(ip);
+                domainToIpMap[domain] = ip;
+            }
+        }
     }
 
     const all_ips = [...resolved_ips, ...(ip_addresses || [])];
@@ -134,8 +139,17 @@ export const generateFirewallCommand = async (actionRule, rule, listType) => {
     }
     console.log(commands);
 
-    return commands;
+    return { commands, domainToIpMap };
 };
+
+export const getDomaintoIpMApping = async (domains) =>  {
+    const domainToIpMap = {};
+    for (const domain of domains) {
+        const ips = await getIpFromDomain(domain);
+        domainToIpMap[domain] = ips[0];
+    }
+    return domainToIpMap;
+}
 
 export function parseFirewallRules(inputString) {
     const rules = [];
