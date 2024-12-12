@@ -227,7 +227,27 @@ router.get("/get-rules/:clientID", async (req, res) => {
 	}
 });
 
-router.delete("/delete-rule", async (req, res) => {
+
+
+router.get("/get-rules-created-by-admin" ,async (req , res ) => {
+	try {
+
+		const rules = await Rule.find({
+			created_by:"palash@gmail.com"
+		})
+
+
+		return res.status(200).json({
+			rules
+		})
+	} catch (error) {
+		return res.status(400).json({
+			message: "An error occurred while getting rules.",
+			error: error.message,
+		})
+	}
+})
+router.post("/delete-rule", async (req, res) => {
 	const { clientID, appName, ruleName } = req.body;
 
 	// Validate input

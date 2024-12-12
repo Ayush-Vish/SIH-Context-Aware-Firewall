@@ -2,7 +2,7 @@ import express from "express";
 import { createServer } from "http";
 import cors from "cors";
 import { connect } from "mongoose";
-import { initSocket } from "./socket/init.js";
+import { getNextNamespace, initSocket } from "./socket/init.js";
 import {
 	createAdminByEmail,
 	findAdminByEmail,
@@ -17,6 +17,8 @@ import { parseFirewallRules, refineFirewallRule } from "./utils/command.js";
 const app = express();
 const server = createServer(app);
 const socket = initSocket(server);
+
+
 const MONGO_URL =
 	"mongodb+srv://palashchitnavis:palash1234@css.cyoff.mongodb.net/?retryWrites=true&w=majority&appName=CSS";
 
@@ -24,7 +26,14 @@ app.use(express.json());
 //app.use("/static", staticInfoRoute);
 // Map clientID -> {socketID , adminID}
 export const clientMap = new Map();
-app.use(cors());
+export const frontendMap = new Map();
+
+app.use(cors(
+	{	
+
+		origin:"http://localhost:3001"
+	}
+));
 
 // socket connect
 socket.on("connect", async (socket) => {
@@ -120,55 +129,51 @@ socket.on("connect", async (socket) => {
 		if (data.rule_type === "get_rules") {
 			const inputString = JSON.stringify(data.response, null, 2);
 			const parsedRules = parseFirewallRules(inputString);
-			// Safely stringify and extract the rules string
+	
 			for (const ruleString of parsedRules) {
-				// Ensure the rule is a string before processing
 				const cleanedString =
 					typeof ruleString === "string"
 						? ruleString.replace(/\\n/g, "\n")
 						: JSON.stringify(ruleString).replace(/\\n/g, "\n");
-
+	
 				const lines = cleanedString
 					.split("\n")
 					.map((line) => line.trim())
 					.filter((line) => line);
-
+	
 				const rule = {};
-
-				// The first line is the Rule Name
+	
 				if (lines.length > 0) {
 					rule["Rule Name"] = lines[0];
 				}
-
-				// Process subsequent lines for key-value pairs
+	
 				for (let i = 1; i < lines.length; i++) {
 					const line = lines[i];
 					if (line.includes(":")) {
 						const [key, ...valueParts] = line.split(":");
-						const value = valueParts.join(":").trim(); // Join in case the value contains ":"
+						const value = valueParts.join(":").trim();
 						rule[key.trim()] = value;
 					}
 				}
-
-				// Print the parsed rule
-				console.log(refineFirewallRule(rule));
-				const socketID = clientMap.get(data.clientID).socketID;
-				socket.to(socketID).emit("get_rules", {
-					rule: refineFirewallRule(rule),
-					clientID
-				})
+	
+				const refinedRule = refineFirewallRule(rule);
+	
+				// Send rule to Next.js namespace
+				const nextNamespace = getNextNamespace();
+				
+				if (nextNamespace) {
+					nextNamespace.emit("get_rules", {
+						rule: refinedRule,
+						clientID: data.clientID,
+					});
+					console.log("Sent refined rule to Next.js:", refinedRule);
+				} else {
+					console.warn("Next.js namespace is not initialized.");
+				}
 			}
-
-			//     const rulesDataStructure = parseFirewallRules(responseString);
-			//     console.log("Parsed firewall rules:", rulesDataStructure);
-
-			// Log or handle parsed rules
-			//     console.log("Parsed firewall rules:", rulesDataStructure);
 		}
-
-		// Optional: Log full response for debugging
-		// console.log("Full response from client:", data);
 	});
+	
 });
 
 // Function to send the "resend static data" message every 10 minutes
