@@ -4,7 +4,6 @@ import ctypes
 import socketio
 import psutil
 import threading
-from scripts.start import getAdminEmail, changeAdminEmail
 from scripts.static_info import collect_device_info
 from scripts.domain_mapping import start_dns_in_background
 from scripts.vpn import start_vpn_monitoring, vpn_detected_flag
@@ -20,8 +19,6 @@ class Client:
             'socketID': None
         }
         self.firewallAgent = FirewallAgent()
-
-        self.alert_thread = threading.Thread(target=self.monitor_vpn_alerts, daemon=True)
         
         # Events
         self.socket.on("connect", self.on_connect)
@@ -32,33 +29,15 @@ class Client:
     def start(self):
         while True:
             try:
-                user_choice = input("1. Start Client \n2. Change Admin \n").strip()
-
-                if user_choice == "2":
-                    adminEmail = changeAdminEmail()
-                    print(f"Admin email changed to: {adminEmail}")
-                elif user_choice == "1":
-                    adminEmail = getAdminEmail()
-                    self.socket.connect("http://localhost:3000", auth={"adminEmail": adminEmail})
-                    self.socket.wait()
-                else:
-                    print("Invalid choice. Please enter 1 or 2.")
-
+                adminEmail = "palash@gmail.com"
+                self.socket.connect("http://localhost:3000", auth={"adminEmail": adminEmail})
+                self.socket.wait()
             except KeyboardInterrupt:
                 print("Disconnected due to keyboard interrupt.")
                 break
             except Exception as e:
                 print(f"Error: {e}")
                 break
-
-    def monitor_vpn_alerts(self):
-        """Monitor VPN detected flag and handle alerts."""
-        while True:
-            if vpn_detected_flag.is_set():
-                ip = getattr(vpn_detected_flag, "ip", None)
-                print(f"VPN/Proxy detected: {ip}")
-                self.socket.emit("alert", {"ip": ip, "identity": self.identity, "type": "vpn-alert"})
-                vpn_detected_flag.clear()  # Reset the flag after handling
     
     @staticmethod
     def get_mac_address():
@@ -71,14 +50,10 @@ class Client:
 
     @staticmethod
     def start_background_processes():
-        start_dns_in_background()
-        start_vpn_monitoring()
-    
+        start_dns_in_background()    
     def on_connect(self):
         print("Connected to admin")
         self.start_background_processes()
-        self.monitor_firewall_rules()  # Start monitoring firewall rules
-
     def on_message(self, data):
         print(data)
         for key in ['adminID', 'clientID', 'socketID']:
@@ -120,22 +95,6 @@ class Client:
             result.append(self.firewallAgent.execute_command(command))
         
         self.socket.emit("response", {"response": result, "identity": self.identity , "rule_type": rule_type})
-
-    # Uncomment this function when you implement it
-    # def monitor_firewall_rules(self):
-    #     """
-    #     Continuously monitor for triggered firewall rules and send alerts to the server.
-    #     """
-    #     print("Monitoring firewall rules...")
-    #     for event in self.firewallAgent.monitor_events():  # Assuming monitor_events() yields events
-    #         self.socket.emit("firewall-alert", {
-    #             "rule": event["rule_name"],
-    #             "source_ip": event["source_ip"],
-    #             "destination_ip": event["destination_ip"],
-    #             "action": event["action"],
-    #             "identity": self.identity
-    #         })
-    #         print(f"Firewall alert sent: {event}")
 
 def is_admin():
     """Check if the script is running with administrative privileges."""
