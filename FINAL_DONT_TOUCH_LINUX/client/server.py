@@ -24,6 +24,7 @@ class Client:
         self.socket.on("message", self.on_message)
         self.socket.on("disconnect", self.on_disconnect)
         self.socket.on("command", self.v2)
+        
 
     def start(self):
         while True:
@@ -98,15 +99,24 @@ class Client:
         result = collect_device_info()
         self.socket.emit("static-details", {"static": result, "identity": self.identity})
         print("Static data sent to admin")
-
+    def block_ips_globally(self , data ) :
+        print(data)
+        ips = data.get("ips")
+        self.firewallAgent.block_ip_globally(ips)
+        self.socket.emit("response", {"response": "IP blocked", "identity": self.identity})
     def v2(self, data):
         print(data)
         rule_type = data.get("rule_type")
-        commands = data.get("commands")
-        result = []
-        for command in commands:
-            result.append(self.firewallAgent.execute_command(command))
-        self.socket.emit("response", {"response": result, "identity": self.identity , "rule_type": rule_type})
+        domains = data.get("domains")
+        ips =data.get("ips")
+        results = []
+        if(rule_type == "block_ips_globally"):
+            results.append(self.firewallAgent.block_ips_addresses(domains ,ips , True))
+        elif (rule_type == "block_app"):
+            results.append(self.firewallAgent.blockapp (domains , ips , True) )
+        elif (rule_type == "delete-rule"):
+            results.append(self.firewallAgent.block_ips_addresses(domains ,ips , False))
+        self.socket.emit("response", {"response": results, "identity": self.identity , "rule_type": rule_type})
 
     def monitor_firewall_rules(self):
         """

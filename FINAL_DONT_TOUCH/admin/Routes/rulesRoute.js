@@ -56,7 +56,7 @@ router.post("/add-app-rules", async (req, res) => {
 					const newRule = new Rule(rule);
 					newRule.clientIds.push(clientID);
 					newRule.created_by = "palash@gmail.com";
-					newRule.domainToIpMap = domainToIpMap;
+					newRule.domainToIpMap = JSON.stringify(domainToIpMap);
 					await newRule.save();
 				} else {
 					console.error(`Client not found in clientMap: ${clientID}`);
@@ -300,7 +300,9 @@ router.post("/delete-rule", async (req, res) => {
 				rule_name: ruleName,
 			})
 
-			io.to(socketId).emit("command", { commands, rule_type: "delete_rule" , domainToIpMap : JSON.parse(rule.domainToIpMap) , rule  });
+			console.log(rule.domainToIpMap)
+
+			io.to(socketId).emit("command", { commands, rule_type: "delete_rule" , domainToIpMap : JSON.parse(rule?.domainToIpMap) , rule  });
 			res.send({
 				message: "Rule deleted and sent to client",
 				clientID,
