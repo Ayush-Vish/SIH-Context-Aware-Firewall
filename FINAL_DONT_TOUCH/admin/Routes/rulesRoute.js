@@ -41,10 +41,9 @@ router.post("/add-app-rules", async (req, res) => {
 				}
 
 				app.blocklist.push(rule);
-
 				// Generate the netsh command
-				const commands = await generateNetshCommand("add", rule);
-
+				const {commands , domainToIpMap} = await generateNetshCommand("add", rule);
+				console.log(commands , domainToIpMap)
 				// Save the client with the new rule
 				await client.save();
 
@@ -53,10 +52,11 @@ router.post("/add-app-rules", async (req, res) => {
 
 				if (clientInfo) {
 					const socketId = clientInfo.socketID;
-					io.to(socketId).emit("command", { commands, rule_type: "app_rules" });
+					io.to(socketId).emit("command", { commands, rule_type: "app_rules" , domainToIpMap , rule });
 					const newRule = new Rule(rule);
 					newRule.clientIds.push(clientID);
 					newRule.created_by = "palash@gmail.com";
+					newRule.domainToIpMap = JSON.stringify(domainToIpMap);
 					await newRule.save();
 				} else {
 					console.error(`Client not found in clientMap: ${clientID}`);
@@ -114,8 +114,8 @@ router.post("/block-domain", async (req, res) => {
 				};
 
 				// Generate the netsh command
-				const commands = await generateNetshCommand("add", newRule);
-
+				const {commands ,domainToIpMap} = await generateNetshCommand("add", newRule);
+				console.log(commands , domainToIpMap)
 				// Save the client with the new rule
 				client.global_rules.push(newRule);
 				await client.save();
@@ -127,11 +127,15 @@ router.post("/block-domain", async (req, res) => {
 					const socketId = clientInfo.socketID;
 					io.to(socketId).emit("command", {
 						commands,
+						domainToIpMap ,
+						rule, 
 						rule_type: "domain_rules",
 					});
 					const ruleEntry = new Rule(newRule);
 					ruleEntry.clientIds.push(clientID);
 					ruleEntry.created_by = "palash@gmail.com";
+					ruleEntry.domainToIpMap = JSON.stringify(domainToIpMap);
+					console.log(ruleEntry)
 					await ruleEntry.save();
 				} else {
 					console.error(`Client not found in clientMap: ${clientID}`);
@@ -312,7 +316,13 @@ router.post("/delete-rule", async (req, res) => {
 					`name=${ruleName}`,
 				],
 			];
-			io.to(socketId).emit("command", { commands, rule_type: "delete_rule" });
+			const rule = await Rule.findOneAndDelete({
+				rule_name: ruleName,
+			})
+
+			console.log(rule.domainToIpMap)
+
+			io.to(socketId).emit("command", { commands, rule_type: "delete_rule" , domainToIpMap : JSON.parse(rule?.domainToIpMap) , rule  });
 			res.send({
 				message: "Rule deleted and sent to client",
 				clientID,

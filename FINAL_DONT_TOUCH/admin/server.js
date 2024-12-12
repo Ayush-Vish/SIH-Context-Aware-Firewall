@@ -12,7 +12,6 @@ import { message } from "./socket/message.js";
 import { createClientByMAC, findClientByMAC } from "./db/client.js";
 import { getStaticData, upsertStaticData } from "./db/clientData.js";
 import rulesRoutes from "./Routes/rulesRoute.js";
-// import staticInfoRoute from "./Routes/staticInfoRoute.js";
 import { parseFirewallRules, refineFirewallRule } from "./utils/command.js";
 const app = express();
 const server = createServer(app);
@@ -315,28 +314,28 @@ app.post("/details", async (req, res) => {
 	});
 });
 
-app.post("/details/clients", async (req, res) => {
-	const { clientIDS } = req.body;
+// app.post("/details/clients", async (req, res) => {
+// 	const { clientIDS } = req.body;
 
-	try {
-		// Use Promise.all to wait for all async operations to complete
-		const staticDataPromises = clientIDS.map(async (clientID) => {
-			const data = await getStaticData(clientID);
-			return data; // Return the data for Promise.all to resolve
-		});
+// 	try {
+// 		// Use Promise.all to wait for all async operations to complete
+// 		const staticDataPromises = clientIDS.map(async (clientID) => {
+// 			const data = await getStaticData(clientID);
+// 			return data; // Return the data for Promise.all to resolve
+// 		});
 
-		// Wait for all promises to resolve
-		const staticData = await Promise.all(staticDataPromises);
+// 		// Wait for all promises to resolve
+// 		const staticData = await Promise.all(staticDataPromises);
 
-		res.send({
-			message: "client static data",
-			data: staticData,
-		});
-	} catch (error) {
-		console.log("Error getting static data:", error);
-		res.status(500).send({ message: "Error fetching data" });
-	}
-});
+// 		res.send({
+// 			message: "client static data",
+// 			data: staticData,
+// 		});
+// 	} catch (error) {
+// 		console.log("Error getting static data:", error);
+// 		res.status(500).send({ message: "Error fetching data" });
+// 	}
+// });
 
 connect(MONGO_URL, {})
 	.then(() => {

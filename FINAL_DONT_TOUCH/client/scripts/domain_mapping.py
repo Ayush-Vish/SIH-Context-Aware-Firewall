@@ -10,7 +10,6 @@ def get_domain_mapping():
     return app_domains
 
 def capture_dns_requests(pkt):
-    # Check if the packet contains DNS and is a query
     if pkt.haslayer(DNS) and pkt.getlayer(DNS).qr == 0:  # qr=0 means it's a query, not a response
         domain = pkt.getlayer(DNSQR).qname.decode()  # Extract the requested domain
         
