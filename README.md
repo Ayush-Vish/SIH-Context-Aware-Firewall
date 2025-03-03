@@ -1,4 +1,5 @@
-Suricata customised installer : https://drive.google.com/file/d/16S9vAIFT1IbHfFuPrW_RpZt6Q-FVgzeC/view?usp=sharing
+# Context Aware Firewall (SIH)
 
-After installing suricata locally and configuration of all files done , run in C:\Program Files\Suricata:
-```suricata -c suricata.yaml --windivert "true" --simulate-ips```
+- Admin -> A Central Web Admin Dashboard to block Traffic on nodes.
+- Windows -> Windows Agent.
+- Linux -> Linux Agent (In Progress).
